@@ -217,7 +217,7 @@ function Tag({ type }: { type: string }) {
   const t = map[type] ?? { bg: C.tealSoft, color: C.teal, label: type };
   return (
     <span
-      className="font-sans text-xs px-2.5 py-0.5 rounded-full font-medium"
+      className="font-sans text-sm px-2.5 py-0.5 rounded-full font-medium"
       style={{ background: t.bg, color: t.color, border: `1px solid ${t.color}22` }}
     >
       {t.label}
@@ -241,7 +241,7 @@ function Section({
       <div className="container">
         <div className="mb-10">
           <p
-            className="font-sans text-xs font-semibold tracking-widest uppercase mb-3"
+            className="font-sans text-sm font-semibold tracking-widest uppercase mb-3"
             style={{ color: teal ? "rgba(255,255,255,0.60)" : C.teal }}
           >
             {label}
@@ -286,14 +286,14 @@ function TimelineCard({ item }: { item: typeof TIMELINE[0]["items"][0] & { porta
         <div className="flex-1 min-w-0">
           <div className="flex flex-wrap items-center gap-2 mb-1.5">
             {item.time && (
-              <span className="font-sans text-xs font-semibold" style={{ color: C.teal }}>{item.time}</span>
+              <span className="font-sans text-sm font-semibold" style={{ color: C.teal }}>{item.time}</span>
             )}
             <Tag type={item.type} />
           </div>
           <p className="font-sans text-sm font-medium leading-snug" style={{ color: C.fg }}>{item.label}</p>
         </div>
         <span
-          className="text-xs mt-0.5 transition-transform duration-200"
+          className="text-sm mt-0.5 transition-transform duration-200"
           style={{ color: C.muted, transform: open ? "rotate(180deg)" : "rotate(0deg)", display: "inline-block" }}
         >
           ▾
@@ -303,7 +303,7 @@ function TimelineCard({ item }: { item: typeof TIMELINE[0]["items"][0] & { porta
       {open && item.details.length > 0 && (
         <div className="mt-4 pt-4 border-t space-y-2.5" style={{ borderColor: C.border }}>
           {item.details.map((d, i) => (
-            <div key={i} className="flex gap-3 text-xs">
+            <div key={i} className="flex gap-3 text-sm">
               <span
                 className="font-sans font-semibold whitespace-nowrap min-w-[90px] pt-0.5"
                 style={{ color: C.teal }}
@@ -322,8 +322,8 @@ function TimelineCard({ item }: { item: typeof TIMELINE[0]["items"][0] & { porta
               <div key={ci} className="space-y-2">
                 {col.map((portal, pi) => (
                   <div key={pi}>
-                    <span className="font-sans text-xs font-semibold block" style={{ color: C.fg }}>{portal.handle}</span>
-                    <span className="font-sans text-xs" style={{ color: C.muted }}>{portal.name}</span>
+                    <span className="font-sans text-sm font-semibold block" style={{ color: C.fg }}>{portal.handle}</span>
+                    <span className="font-sans text-sm" style={{ color: C.muted }}>{portal.name}</span>
                   </div>
                 ))}
               </div>
@@ -374,17 +374,17 @@ function PreCadastroForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label className="font-sans text-xs font-semibold tracking-widest uppercase block mb-2" style={{ color: C.teal }}>Nome</label>
+        <label className="font-sans text-sm font-semibold tracking-widest uppercase block mb-2" style={{ color: C.teal }}>Nome</label>
         <input style={inputStyle} type="text" placeholder="Seu nome completo"
           value={form.nome} onChange={e => setForm(f => ({ ...f, nome: e.target.value }))} required />
       </div>
       <div>
-        <label className="font-sans text-xs font-semibold tracking-widest uppercase block mb-2" style={{ color: C.teal }}>E-mail</label>
+        <label className="font-sans text-sm font-semibold tracking-widest uppercase block mb-2" style={{ color: C.teal }}>E-mail</label>
         <input style={inputStyle} type="email" placeholder="seu@email.com"
           value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} required />
       </div>
       <div>
-        <label className="font-sans text-xs font-semibold tracking-widest uppercase block mb-2" style={{ color: C.teal }}>Telefone</label>
+        <label className="font-sans text-sm font-semibold tracking-widest uppercase block mb-2" style={{ color: C.teal }}>Telefone</label>
         <input style={inputStyle} type="tel" placeholder="(62) 9 0000-0000"
           value={form.telefone} onChange={e => setForm(f => ({ ...f, telefone: e.target.value }))} required />
       </div>
@@ -438,7 +438,7 @@ function Checklist() {
             style={{ width: `${(done / NEXT_STEPS.length) * 100}%`, background: C.teal }}
           />
         </div>
-        <span className="font-sans text-xs font-semibold" style={{ color: C.teal }}>
+        <span className="font-sans text-sm font-semibold" style={{ color: C.teal }}>
           {done}/{NEXT_STEPS.length}
         </span>
       </div>
@@ -530,7 +530,7 @@ export default function Home() {
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className="font-sans text-xs tracking-wide transition-all duration-150"
+                  className="font-sans text-sm tracking-wide transition-all duration-150"
                   style={{
                     color: activeSection === item.id ? C.fgLight : "rgba(255,255,255,0.60)",
                     fontWeight: activeSection === item.id ? 600 : 400,
@@ -571,7 +571,7 @@ export default function Home() {
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className="text-left font-sans text-xs tracking-widest uppercase transition-colors"
+                  className="text-left font-sans text-sm tracking-widest uppercase transition-colors"
                   style={{
                     color: activeSection === item.id ? C.fgLight : "rgba(255,255,255,0.60)",
                     background: "none", border: "none", cursor: "pointer",
@@ -602,7 +602,7 @@ export default function Home() {
         <div className="container relative">
           <div className="max-w-3xl mx-auto text-center">
             <p
-              className="font-sans text-xs font-semibold tracking-widest uppercase mb-6"
+              className="font-sans text-sm font-semibold tracking-widest uppercase mb-6"
               style={{ color: "rgba(255,255,255,0.60)" }}
             >
               Pirenópolis, Goiás
@@ -624,13 +624,13 @@ export default function Home() {
             {/* Dates */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
               <div className="text-center">
-                <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.60)" }}>Sábado</p>
+                <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.60)" }}>Sábado</p>
                 <p className="font-display text-5xl" style={{ color: C.fgLight }}>05</p>
                 <p className="font-sans text-sm mt-1" style={{ color: "rgba(255,255,255,0.65)" }}>Setembro 2025</p>
               </div>
               <div className="hidden sm:block w-px h-14" style={{ background: "rgba(255,255,255,0.20)" }} />
               <div className="text-center">
-                <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.60)" }}>Domingo</p>
+                <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.60)" }}>Domingo</p>
                 <p className="font-display text-5xl" style={{ color: C.fgLight }}>06</p>
                 <p className="font-sans text-sm mt-1" style={{ color: "rgba(255,255,255,0.65)" }}>Setembro 2025</p>
               </div>
@@ -641,7 +641,7 @@ export default function Home() {
               {["Festival Boutique", "Experiência", "Lifestyle", "Conexão Social"].map(tag => (
                 <span
                   key={tag}
-                  className="font-sans text-xs rounded-full px-4 py-1.5"
+                  className="font-sans text-sm rounded-full px-4 py-1.5"
                   style={{ color: "rgba(255,255,255,0.75)", border: "1px solid rgba(255,255,255,0.25)" }}
                 >
                   {tag}
@@ -671,14 +671,14 @@ export default function Home() {
                   style={{ background: "rgba(255,255,255,0.80)" }}
                 />
                 <div>
-                  <p className="font-sans text-xs font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.60)" }}>05 de Setembro</p>
-                  <p className="font-sans text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Sábado</p>
+                  <p className="font-sans text-sm font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.60)" }}>05 de Setembro</p>
+                  <p className="font-sans text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>Sábado</p>
                 </div>
               </div>
               <div className="space-y-3">
                 {ARTISTS_DAY1.map((a, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span className="font-sans text-xs w-4" style={{ color: "rgba(255,255,255,0.35)" }}>{i + 1}</span>
+                    <span className="font-sans text-sm w-4" style={{ color: "rgba(255,255,255,0.35)" }}>{i + 1}</span>
                     <span
                       className="font-sans font-semibold"
                       style={{
@@ -705,14 +705,14 @@ export default function Home() {
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-2 h-2 rounded-full" style={{ background: "rgba(255,255,255,0.80)" }} />
                 <div>
-                  <p className="font-sans text-xs font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.60)" }}>06 de Setembro</p>
-                  <p className="font-sans text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Domingo</p>
+                  <p className="font-sans text-sm font-semibold tracking-widest uppercase" style={{ color: "rgba(255,255,255,0.60)" }}>06 de Setembro</p>
+                  <p className="font-sans text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>Domingo</p>
                 </div>
               </div>
               <div className="space-y-3">
                 {ARTISTS_DAY2.map((a, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span className="font-sans text-xs w-4" style={{ color: "rgba(255,255,255,0.35)" }}>{i + 1}</span>
+                    <span className="font-sans text-sm w-4" style={{ color: "rgba(255,255,255,0.35)" }}>{i + 1}</span>
                     <span
                       className="font-sans font-semibold"
                       style={{
@@ -745,8 +745,8 @@ export default function Home() {
               <div className="flex-1 pb-6">
                 <div className="mb-3">
                   <span className="font-display text-xl" style={{ color: C.teal }}>{block.date}</span>
-                  <span className="font-sans text-xs ml-2" style={{ color: C.muted }}>({block.day})</span>
-                  <p className="font-sans text-xs font-semibold uppercase tracking-widest mt-1" style={{ color: C.fg, opacity: 0.5 }}>
+                  <span className="font-sans text-sm ml-2" style={{ color: C.muted }}>({block.day})</span>
+                  <p className="font-sans text-sm font-semibold uppercase tracking-widest mt-1" style={{ color: C.fg, opacity: 0.5 }}>
                     {block.title}
                   </p>
                 </div>
@@ -765,7 +765,7 @@ export default function Home() {
       <section id="estrategias" className="py-20" style={{ background: C.teal }}>
         <div className="container">
           <div className="mb-10">
-            <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Ações Paralelas</p>
+            <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Ações Paralelas</p>
             <h2 className="font-display text-3xl md:text-4xl" style={{ color: C.fgLight }}>Estratégias</h2>
             <div className="mt-5 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)" }} />
           </div>
@@ -773,8 +773,8 @@ export default function Home() {
 
             {/* Influenciadores */}
             <div className="rounded-xl p-6" style={{ background: "rgba(255,255,255,0.10)", border: "1px solid rgba(255,255,255,0.16)" }}>
-              <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Grupo de Influenciadores</p>
-              <p className="font-sans text-xs mb-1" style={{ color: "rgba(255,255,255,0.50)" }}>Jordana · Rapha Eduardo</p>
+              <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Grupo de Influenciadores</p>
+              <p className="font-sans text-sm mb-1" style={{ color: "rgba(255,255,255,0.50)" }}>Jordana · Rapha Eduardo</p>
               <p className="font-sans text-sm mb-4 leading-relaxed" style={{ color: C.fgLight }}>
                 Reforçar o boom de lançamento e divulgação durante o período do evento.
               </p>
@@ -787,8 +787,8 @@ export default function Home() {
                   "Pós-evento: engajamento e retenção para próximas edições",
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <span className="mt-1 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>—</span>
-                    <span className="font-sans text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.70)" }}>{item}</span>
+                    <span className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>—</span>
+                    <span className="font-sans text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.70)" }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -796,8 +796,8 @@ export default function Home() {
 
             {/* Mailing */}
             <div className="rounded-xl p-6" style={{ background: "rgba(255,255,255,0.10)", border: "1px solid rgba(255,255,255,0.16)" }}>
-              <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Disparo de Mailing</p>
-              <p className="font-sans text-xs mb-1" style={{ color: "rgba(255,255,255,0.50)" }}>Ticketeira</p>
+              <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Disparo de Mailing</p>
+              <p className="font-sans text-sm mb-1" style={{ color: "rgba(255,255,255,0.50)" }}>Ticketeira</p>
               <p className="font-sans text-sm mb-4 leading-relaxed" style={{ color: C.fgLight }}>
                 Ampliar alcance nas principais regiões: Brasília e Goiânia.
               </p>
@@ -808,8 +808,8 @@ export default function Home() {
                   { key: "Mensagem", value: "Convite exclusivo, link de pré-cadastro, urgência" },
                 ].map((item, i) => (
                   <div key={i}>
-                    <p className="font-sans text-xs font-semibold" style={{ color: "rgba(255,255,255,0.55)" }}>{item.key}</p>
-                    <p className="font-sans text-xs" style={{ color: "rgba(255,255,255,0.70)" }}>{item.value}</p>
+                    <p className="font-sans text-sm font-semibold" style={{ color: "rgba(255,255,255,0.55)" }}>{item.key}</p>
+                    <p className="font-sans text-sm" style={{ color: "rgba(255,255,255,0.70)" }}>{item.value}</p>
                   </div>
                 ))}
               </div>
@@ -817,24 +817,24 @@ export default function Home() {
 
             {/* Coquetel */}
             <div className="rounded-xl p-6" style={{ background: "rgba(255,255,255,0.10)", border: "1px solid rgba(255,255,255,0.16)" }}>
-              <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Coquetel de Lançamento</p>
-              <p className="font-sans text-xs mb-1" style={{ color: "rgba(255,255,255,0.50)" }}>01 ou 02/06 · Segunda ou Terça</p>
+              <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Coquetel de Lançamento</p>
+              <p className="font-sans text-sm mb-1" style={{ color: "rgba(255,255,255,0.50)" }}>01 ou 02/06 · Segunda ou Terça</p>
               <p className="font-sans text-sm mb-4 leading-relaxed" style={{ color: C.fgLight }}>
                 Evento presencial na casa do Rapha Eduardo.
               </p>
               <div className="space-y-2 mb-4">
                 {["Bebidas (Patrocínio)", "Frios (Patrocínio)", "Palco, Som e Iluminação (Patrocínio)"].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <span className="mt-1 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>—</span>
-                    <span className="font-sans text-xs" style={{ color: "rgba(255,255,255,0.70)" }}>{item}</span>
+                    <span className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>—</span>
+                    <span className="font-sans text-sm" style={{ color: "rgba(255,255,255,0.70)" }}>{item}</span>
                   </div>
                 ))}
               </div>
               <div className="pt-3 space-y-1" style={{ borderTop: "1px solid rgba(255,255,255,0.14)" }}>
                 {["Gravação de conteúdo para redes sociais", "Apresentação oficial do evento", "Networking entre influenciadores e patrocinadores"].map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <span className="mt-1 text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>·</span>
-                    <span className="font-sans text-xs" style={{ color: "rgba(255,255,255,0.70)" }}>{item}</span>
+                    <span className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>·</span>
+                    <span className="font-sans text-sm" style={{ color: "rgba(255,255,255,0.70)" }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -848,7 +848,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <div className="space-y-6">
             <div className="rounded-xl p-6" style={{ background: C.surfaceW, border: `1px solid ${C.border}` }}>
-              <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-4" style={{ color: C.teal }}>Estrutura</p>
+              <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: C.teal }}>Estrutura</p>
               <div className="space-y-4">
                 {[
                   { key: "Landing Page", value: "Pré-cadastro com redirecionamento automático para grupo WhatsApp" },
@@ -857,8 +857,8 @@ export default function Home() {
                   { key: "Grupos WhatsApp", value: "Regionalizados (Goiânia, Anápolis, Pirenópolis, Brasília) + Master (influenciadores)" },
                 ].map((item, i) => (
                   <div key={i} className="flex gap-3">
-                    <span className="font-sans text-xs font-semibold min-w-[110px] pt-0.5" style={{ color: C.teal }}>{item.key}</span>
-                    <span className="font-sans text-xs leading-relaxed" style={{ color: C.muted }}>{item.value}</span>
+                    <span className="font-sans text-sm font-semibold min-w-[110px] pt-0.5" style={{ color: C.teal }}>{item.key}</span>
+                    <span className="font-sans text-sm leading-relaxed" style={{ color: C.muted }}>{item.value}</span>
                   </div>
                 ))}
               </div>
@@ -866,7 +866,7 @@ export default function Home() {
           </div>
 
           <div className="rounded-xl p-6" style={{ background: C.surfaceW, border: `1px solid ${C.border}`, boxShadow: "0 4px 32px rgba(26,107,94,0.08)" }}>
-            <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: C.teal }}>Pré-cadastro</p>
+            <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-1" style={{ color: C.teal }}>Pré-cadastro</p>
             <p className="font-display text-xl mb-5" style={{ color: C.fg }}>Garanta sua vaga</p>
             <PreCadastroForm />
           </div>
@@ -881,11 +881,11 @@ export default function Home() {
           <div className="rounded-xl p-6" style={{ background: C.surfaceW, border: `1px solid ${C.border}` }}>
             <div className="flex items-center gap-3 mb-5">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "#e8f0f8", border: "1px solid #c0d4e8" }}>
-                <span className="font-sans text-xs font-bold" style={{ color: "#1877f2" }}>M</span>
+                <span className="font-sans text-sm font-bold" style={{ color: "#1877f2" }}>M</span>
               </div>
               <div>
-                <p className="font-sans text-xs font-semibold tracking-widest uppercase" style={{ color: C.teal }}>Meta Ads</p>
-                <p className="font-sans text-xs" style={{ color: C.muted }}>Facebook · Instagram</p>
+                <p className="font-sans text-sm font-semibold tracking-widest uppercase" style={{ color: C.teal }}>Meta Ads</p>
+                <p className="font-sans text-sm" style={{ color: C.muted }}>Facebook · Instagram</p>
               </div>
             </div>
             <div className="space-y-4">
@@ -896,10 +896,10 @@ export default function Home() {
               ].map((camp, i) => (
                 <div key={i} className="pl-0">
                   <p className="font-sans text-sm font-semibold mb-1" style={{ color: C.fg }}>{camp.name}</p>
-                  <p className="font-sans text-xs leading-relaxed mb-2" style={{ color: C.muted }}>{camp.desc}</p>
+                  <p className="font-sans text-sm leading-relaxed mb-2" style={{ color: C.muted }}>{camp.desc}</p>
                   <div className="flex flex-wrap gap-1">
                     {camp.tags.map(t => (
-                      <span key={t} className="font-sans text-xs px-2 py-0.5 rounded-full" style={{ background: C.tealSoft, color: C.teal, border: `1px solid ${C.teal}22` }}>{t}</span>
+                      <span key={t} className="font-sans text-sm px-2 py-0.5 rounded-full" style={{ background: C.tealSoft, color: C.teal, border: `1px solid ${C.teal}22` }}>{t}</span>
                     ))}
                   </div>
                 </div>
@@ -911,11 +911,11 @@ export default function Home() {
           <div className="rounded-xl p-6" style={{ background: C.surfaceW, border: `1px solid ${C.border}` }}>
             <div className="flex items-center gap-3 mb-5">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "#f0e8f4", border: "1px solid #d0b8e0" }}>
-                <span className="font-sans text-xs font-bold" style={{ color: "#6a0dad" }}>T</span>
+                <span className="font-sans text-sm font-bold" style={{ color: "#6a0dad" }}>T</span>
               </div>
               <div>
-                <p className="font-sans text-xs font-semibold tracking-widest uppercase" style={{ color: C.teal }}>TikTok Ads</p>
-                <p className="font-sans text-xs" style={{ color: C.muted }}>TikTok</p>
+                <p className="font-sans text-sm font-semibold tracking-widest uppercase" style={{ color: C.teal }}>TikTok Ads</p>
+                <p className="font-sans text-sm" style={{ color: C.muted }}>TikTok</p>
               </div>
             </div>
             <div className="space-y-4">
@@ -925,10 +925,10 @@ export default function Home() {
               ].map((camp, i) => (
                 <div key={i} className="pl-0">
                   <p className="font-sans text-sm font-semibold mb-1" style={{ color: C.fg }}>{camp.name}</p>
-                  <p className="font-sans text-xs leading-relaxed mb-2" style={{ color: C.muted }}>{camp.desc}</p>
+                  <p className="font-sans text-sm leading-relaxed mb-2" style={{ color: C.muted }}>{camp.desc}</p>
                   <div className="flex flex-wrap gap-1">
                     {camp.tags.map(t => (
-                      <span key={t} className="font-sans text-xs px-2 py-0.5 rounded-full" style={{ background: C.tealSoft, color: C.teal, border: `1px solid ${C.teal}22` }}>{t}</span>
+                      <span key={t} className="font-sans text-sm px-2 py-0.5 rounded-full" style={{ background: C.tealSoft, color: C.teal, border: `1px solid ${C.teal}22` }}>{t}</span>
                     ))}
                   </div>
                 </div>
@@ -942,7 +942,7 @@ export default function Home() {
       <section id="ativacoes" className="py-20" style={{ background: C.teal }}>
         <div className="container">
           <div className="mb-10">
-            <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Presença Física</p>
+            <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Presença Física</p>
             <h2 className="font-display text-3xl md:text-4xl" style={{ color: C.fgLight }}>Ativações e Divulgações</h2>
             <div className="mt-5 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)" }} />
           </div>
@@ -955,20 +955,20 @@ export default function Home() {
               { city: "Flex Goiânia", subtitle: "Autoridade · Vaidade · Presença Premium", items: ["Buscar parceira flex", "Produzir materiais: banners premium, adesivos, cartazes", "Distribuir na primeira quinzena de junho", "Salões de beleza e spas", "Lojas de moda e lifestyle", "Estacionamentos de shoppings"] },
             ].map((city, ci) => (
               <div key={ci} className="rounded-xl p-5" style={{ background: "rgba(255,255,255,0.10)", border: "1px solid rgba(255,255,255,0.16)" }}>
-                <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.60)" }}>{city.city}</p>
+                <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-1" style={{ color: "rgba(255,255,255,0.60)" }}>{city.city}</p>
                 {city.subtitle && (
-                  <p className="font-sans text-xs mb-3" style={{ color: "rgba(255,255,255,0.50)" }}>{city.subtitle}</p>
+                  <p className="font-sans text-sm mb-3" style={{ color: "rgba(255,255,255,0.50)" }}>{city.subtitle}</p>
                 )}
                 <div className="mt-3 space-y-2">
                   {city.items.map((item, i) => (
                     <div key={i} className="flex items-start gap-2">
-                      <span className="mt-1 text-xs flex-shrink-0" style={{ color: "rgba(255,255,255,0.45)" }}>—</span>
-                      <span className="font-sans text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item}</span>
+                      <span className="mt-1 text-sm flex-shrink-0" style={{ color: "rgba(255,255,255,0.45)" }}>—</span>
+                      <span className="font-sans text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>{item}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.14)" }}>
-                  <p className="font-sans text-xs" style={{ color: "rgba(255,255,255,0.50)" }}>
+                  <p className="font-sans text-sm" style={{ color: "rgba(255,255,255,0.50)" }}>
                     Materiais: Adesivos · Banners · Panfletos com QR code · Cartazes
                   </p>
                 </div>
@@ -1007,17 +1007,17 @@ export default function Home() {
           ].map((brief, bi) => (
             <div key={bi} className="rounded-xl p-6" style={{ background: C.surfaceW, border: `1px solid ${C.border}` }}>
               <div className="mb-4">
-                <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-1" style={{ color: C.teal }}>Vídeo</p>
+                <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-1" style={{ color: C.teal }}>Vídeo</p>
                 <p className="font-display text-2xl" style={{ color: C.fg }}>{brief.artist}</p>
-                <p className="font-sans text-xs mt-1" style={{ color: C.muted }}>
+                <p className="font-sans text-sm mt-1" style={{ color: C.muted }}>
                   {brief.location}{brief.subtitle ? ` | ${brief.subtitle}` : ""}
                 </p>
               </div>
               <div className="space-y-2">
                 {brief.items.map((item, i) => (
                   <div key={i} className="flex items-start gap-2">
-                    <span className="mt-1 text-xs flex-shrink-0" style={{ color: C.teal }}>—</span>
-                    <span className="font-sans text-xs leading-relaxed" style={{ color: C.muted }}>{item}</span>
+                    <span className="mt-1 text-sm flex-shrink-0" style={{ color: C.teal }}>—</span>
+                    <span className="font-sans text-sm leading-relaxed" style={{ color: C.muted }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -1032,7 +1032,7 @@ export default function Home() {
       <section id="proximos" className="py-20" style={{ background: C.teal }}>
         <div className="container">
           <div className="mb-10">
-            <p className="font-sans text-xs font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Checklist</p>
+            <p className="font-sans text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: "rgba(255,255,255,0.60)" }}>Checklist</p>
             <h2 className="font-display text-3xl md:text-4xl" style={{ color: C.fgLight }}>Próximos Passos</h2>
             <div className="mt-5 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)" }} />
           </div>
@@ -1051,7 +1051,7 @@ export default function Home() {
       <footer className="py-10" style={{ background: C.tealDark, borderTop: `1px solid rgba(255,255,255,0.10)` }}>
         <div className="container text-center">
           <p className="font-display text-2xl mb-2" style={{ color: C.fgLight }}>Let's Piri Festival</p>
-          <p className="font-sans text-xs" style={{ color: "rgba(255,255,255,0.50)" }}>
+          <p className="font-sans text-sm" style={{ color: "rgba(255,255,255,0.50)" }}>
             5 e 6 de Setembro · Pirenópolis, Goiás · Estratégia de Lançamento 2025
           </p>
         </div>
