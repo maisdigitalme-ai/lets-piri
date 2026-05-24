@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --color-background:       #f5ede8;
+  --color-surface:          #faf3ef;
+  --color-surface-raised:   #ffffff;
+  --color-surface-teal:     #1d7265;
+  --color-surface-teal-dark:#155c50;
+  --color-foreground:       #0d3d2e;
+  --color-foreground-light: #ffffff;
+  --color-muted:            #3a6b58;
+  --color-label:            #1d7265;
+  --color-accent:           #1d7265;
+  --color-accent-hover:     #155c50;
+  --color-accent-soft:      #e8f4f1;
+  --color-border:           rgba(26, 107, 94, 0.15);
+  --color-border-strong:    rgba(26, 107, 94, 0.30);
+  --background:             var(--color-background);
+  --foreground:             var(--color-foreground);
+  --border:                 var(--color-border);
+  --radius:                 0.5rem;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+  }
+  ::selection { background: rgba(29, 114, 101, 0.20); color: var(--color-foreground); }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #f0e6e0; }
+  ::-webkit-scrollbar-thumb { background: #a8cfc8; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #1d7265; }
+  .flex { min-width: 0; min-height: 0; }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  .font-sans {
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  }
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
