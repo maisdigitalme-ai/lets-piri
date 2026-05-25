@@ -80,7 +80,7 @@ export default function PreCadastro() {
           <div style={styles.card}>
             <h2 style={styles.cardTitle}>Pré-cadastro</h2>
             <p style={styles.cardSubtitle}>
-              Garanta seu lugar na lista e entre no grupo exclusivo do festival.
+              Garanta seu acesso à pré-venda e entre no grupo exclusivo do festival.
             </p>
 
             <form onSubmit={handleSubmit} style={styles.form}>
@@ -129,7 +129,7 @@ export default function PreCadastro() {
                 ...styles.btn,
                 ...(loading ? styles.btnLoading : {}),
               }}>
-                {loading ? 'Enviando...' : 'Quero participar'}
+                {loading ? 'Enviando...' : 'Garantir Pré-Venda'}
               </button>
             </form>
           </div>
@@ -166,7 +166,7 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '40px 20px',
+    padding: '32px 16px',
     position: 'relative',
     overflow: 'hidden',
     fontFamily: "'Poppins', sans-serif",
@@ -193,7 +193,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   container: {
     width: '100%',
-    maxWidth: '440px',
+    maxWidth: '480px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -205,9 +205,9 @@ const styles: Record<string, React.CSSProperties> = {
     marginBottom: '28px',
   },
   logo: {
-    width: '240px',
+    width: 'clamp(160px, 50vw, 240px)',
     height: 'auto',
-    filter: 'brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(5deg)',
+    filter: 'none',
   },
   taglineWrap: {
     textAlign: 'center',
@@ -216,7 +216,7 @@ const styles: Record<string, React.CSSProperties> = {
   tagline: {
     fontFamily: "'Poppins', sans-serif",
     fontWeight: 300,
-    fontSize: '15px',
+    fontSize: 'clamp(13px, 3.5vw, 15px)',
     lineHeight: '1.8',
     color: WHITE_MUTED,
     margin: 0,
@@ -248,13 +248,13 @@ const styles: Record<string, React.CSSProperties> = {
     WebkitBackdropFilter: 'blur(20px)',
     border: '1px solid rgba(255,255,255,0.12)',
     borderRadius: '20px',
-    padding: '40px 36px',
+    padding: 'clamp(24px, 6vw, 40px) clamp(20px, 6vw, 36px)',
     boxShadow: '0 24px 60px rgba(0,0,0,0.3)',
   },
   cardTitle: {
     fontFamily: "'Poppins', sans-serif",
     fontWeight: 600,
-    fontSize: '22px',
+    fontSize: 'clamp(18px, 5vw, 22px)',
     color: WHITE,
     margin: '0 0 8px 0',
     letterSpacing: '-0.01em',
