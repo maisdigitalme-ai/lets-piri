@@ -145,7 +145,7 @@ export default function PreCadastro() {
 
         {/* Footer */}
         <p style={styles.footer}>
-          Pirenópolis, Goiás &nbsp;·&nbsp; Setembro 2025
+          Pirenópolis, Goiás &nbsp;·&nbsp; Setembro 2026
         </p>
       </div>
     </div>
