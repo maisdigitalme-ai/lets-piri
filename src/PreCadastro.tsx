@@ -40,7 +40,7 @@ export default function PreCadastro() {
       setSuccess(true)
       setTimeout(() => {
         window.location.href = WHATSAPP_URL
-      }, 2000)
+      }, 2500)
     } catch {
       setError('Algo deu errado. Tente novamente.')
       setLoading(false)
@@ -140,6 +140,14 @@ export default function PreCadastro() {
             <p style={styles.successText}>
               Redirecionando para o grupo do WhatsApp...
             </p>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={styles.fallbackBtn}
+            >
+              Entrar no Grupo
+            </a>
           </div>
         )}
 
@@ -166,7 +174,8 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '32px 16px',
+    padding: '20px 16px 24px',
+    boxSizing: 'border-box' as const,
     position: 'relative',
     overflow: 'hidden',
     fontFamily: "'Poppins', sans-serif",
@@ -202,16 +211,16 @@ const styles: Record<string, React.CSSProperties> = {
     zIndex: 1,
   },
   logoWrap: {
-    marginBottom: '28px',
+    marginBottom: '20px',
   },
   logo: {
-    width: 'clamp(160px, 50vw, 240px)',
+    width: 'clamp(130px, 42vw, 200px)',
     height: 'auto',
     filter: 'none',
   },
   taglineWrap: {
     textAlign: 'center',
-    marginBottom: '28px',
+    marginBottom: '16px',
   },
   tagline: {
     fontFamily: "'Poppins', sans-serif",
@@ -226,7 +235,7 @@ const styles: Record<string, React.CSSProperties> = {
     display: 'flex',
     alignItems: 'center',
     gap: '10px',
-    marginBottom: '36px',
+    marginBottom: '24px',
   },
   eventBadge: {
     fontFamily: "'Poppins', sans-serif",
@@ -355,12 +364,31 @@ const styles: Record<string, React.CSSProperties> = {
     margin: 0,
     lineHeight: '1.6',
   },
+  fallbackBtn: {
+    display: 'block',
+    marginTop: '20px',
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 600,
+    fontSize: '13px',
+    letterSpacing: '0.05em',
+    color: BG,
+    background: `linear-gradient(135deg, ${GOLD} 0%, #e8a93a 100%)`,
+    border: 'none',
+    borderRadius: '10px',
+    padding: '13px 20px',
+    cursor: 'pointer',
+    textAlign: 'center' as const,
+    textDecoration: 'none',
+    textTransform: 'uppercase' as const,
+    width: '100%',
+    boxSizing: 'border-box' as const,
+  },
   footer: {
     fontFamily: "'Poppins', sans-serif",
     fontWeight: 400,
     fontSize: '12px',
     color: 'rgba(255,255,255,0.35)',
-    marginTop: '32px',
+    marginTop: '20px',
     letterSpacing: '0.06em',
     textTransform: 'uppercase' as const,
   },
