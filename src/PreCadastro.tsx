@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzfPyjEAMHwwmBZYSdzt_QpTUi0elrNdsG3ReB0vZnS5bjC-BRVIJY6x9YPg5PzMwxc/exec'
-const WHATSAPP_URL = 'https://chat.whatsapp.com/GRUPO_LETS_PIRI'
+const WHATSAPP_URL = 'https://chat.whatsapp.com/LMeymmvmLJzCPDXsJuck7q'
 
 export default function PreCadastro() {
   const [form, setForm] = useState({ nome: '', email: '', telefone: '' })
