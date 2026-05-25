@@ -160,7 +160,6 @@ export default function PreCadastro() {
   )
 }
 
-const TEAL_DARK = '#0a6070'
 const GOLD = '#F5C469'
 const BG = '#0E7B8C'
 const CARD_BG = 'rgba(255,255,255,0.08)'
