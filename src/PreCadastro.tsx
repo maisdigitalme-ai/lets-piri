@@ -160,17 +160,17 @@ export default function PreCadastro() {
   )
 }
 
-const TEAL_DARK = '#155c50'
+const TEAL_DARK = '#0a6070'
 const GOLD = '#F5C469'
-const BG = '#0d3d2e'
-const CARD_BG = 'rgba(255,255,255,0.06)'
+const BG = '#0E7B8C'
+const CARD_BG = 'rgba(255,255,255,0.08)'
 const WHITE = '#ffffff'
-const WHITE_MUTED = 'rgba(255,255,255,0.65)'
+const WHITE_MUTED = 'rgba(255,255,255,0.70)'
 
 const styles: Record<string, React.CSSProperties> = {
   page: {
     minHeight: '100vh',
-    background: `linear-gradient(160deg, ${BG} 0%, #1a5c4a 50%, ${TEAL_DARK} 100%)`,
+    background: `linear-gradient(160deg, #0a5f6e 0%, ${BG} 45%, #1aa8bf 100%)`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -225,7 +225,7 @@ const styles: Record<string, React.CSSProperties> = {
   tagline: {
     fontFamily: "'Poppins', sans-serif",
     fontWeight: 300,
-    fontSize: 'clamp(13px, 3.5vw, 15px)',
+    fontSize: '13px',
     lineHeight: '1.8',
     color: WHITE_MUTED,
     margin: 0,
