@@ -28,6 +28,18 @@ export default async function handler(req, res) {
   const firstName = nameParts[0]
   const lastName = nameParts.slice(1).join(' ') || ''
 
+  // Converter telefone para formato E.164 (+55DDDNUMERO)
+  // O Brevo exige E.164 para o campo SMS
+  const phoneDigits = telefone.replace(/\D/g, '')
+  let phoneE164 = ''
+  if (phoneDigits.startsWith('55') && phoneDigits.length >= 12) {
+    phoneE164 = `+${phoneDigits}`
+  } else if (phoneDigits.length >= 10) {
+    phoneE164 = `+55${phoneDigits}`
+  } else {
+    phoneE164 = `+55${phoneDigits}`
+  }
+
   try {
     // 1. Criar/atualizar contato no Brevo
     const contactRes = await fetch('https://api.brevo.com/v3/contacts', {
@@ -40,13 +52,13 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         email,
         attributes: {
-          FIRSTNAME: firstName,   // atributo criado para personalização de e-mail
-          LASTNAME: lastName,     // atributo criado para personalização de e-mail
+          FIRSTNAME: firstName,   // atributo para personalização de e-mail
+          LASTNAME: lastName,     // atributo para personalização de e-mail
           NOME: firstName,        // atributo nativo da conta Brevo (em português)
           SOBRENOME: lastName,    // atributo nativo da conta Brevo (em português)
-          SMS: telefone,
+          SMS: phoneE164,         // telefone em formato E.164 (+55DDDNUMERO)
         },
-        listIds: [5], // Lista "Lets Piri - Cadastros" no Brevo (ID correto)
+        listIds: [5], // Lista "Lets Piri - Cadastros" no Brevo
         updateEnabled: true,
       }),
     })
@@ -57,7 +69,7 @@ export default async function handler(req, res) {
       console.error('Erro ao criar contato no Brevo:', JSON.stringify(contactData))
       // Não bloqueia — tenta enviar o e-mail mesmo assim
     } else {
-      console.log('Contato criado/atualizado com sucesso:', email, firstName)
+      console.log('Contato criado/atualizado com sucesso:', email, firstName, phoneE164)
     }
 
     // 2. Disparar e-mail de boas-vindas via template ID 1
