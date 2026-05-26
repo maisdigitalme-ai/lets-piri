@@ -46,7 +46,7 @@ export default async function handler(req, res) {
           SOBRENOME: lastName,    // atributo nativo da conta Brevo (em português)
           SMS: telefone,
         },
-        listIds: [2], // Lista "Let's Piri" no Brevo
+        listIds: [5], // Lista "Lets Piri - Cadastros" no Brevo (ID correto)
         updateEnabled: true,
       }),
     })
