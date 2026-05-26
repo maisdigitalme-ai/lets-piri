@@ -119,7 +119,7 @@ export default function PreCadastro() {
                 <input
                   name="telefone"
                   type="tel"
-                  placeholder="(62) 99999-9999"
+                  placeholder="(DDD) 9 0000-0000"
                   value={form.telefone}
                   onChange={handleChange}
                   style={styles.input}

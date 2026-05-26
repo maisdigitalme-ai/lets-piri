@@ -385,7 +385,7 @@ function PreCadastroForm() {
       </div>
       <div>
         <label className="font-sans text-sm font-semibold tracking-widest uppercase block mb-2" style={{ color: C.teal }}>Telefone</label>
-        <input style={inputStyle} type="tel" placeholder="(62) 9 0000-0000"
+        <input style={inputStyle} type="tel" placeholder="(DDD) 9 0000-0000"
           value={form.telefone} onChange={e => setForm(f => ({ ...f, telefone: e.target.value }))} required />
       </div>
       <button
