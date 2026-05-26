@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzfPyjEAMHwwmBZYSdzt_QpTUi0elrNdsG3ReB0vZnS5bjC-BRVIJY6x9YPg5PzMwxc/exec'
+const API_URL = '/api/subscribe'
 const WHATSAPP_URL = 'https://chat.whatsapp.com/LMeymmvmLJzCPDXsJuck7q'
 
 export default function PreCadastro() {
@@ -31,18 +31,22 @@ export default function PreCadastro() {
     setError('')
     setLoading(true)
     try {
-      await fetch(SCRIPT_URL, {
+      const res = await fetch(API_URL, {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || 'Erro ao processar cadastro')
+      }
       setSuccess(true)
       setTimeout(() => {
         window.location.href = WHATSAPP_URL
       }, 2500)
-    } catch {
-      setError('Algo deu errado. Tente novamente.')
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Algo deu errado. Tente novamente.'
+      setError(message)
       setLoading(false)
     }
   }
