@@ -24,8 +24,9 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Configuração interna inválida' })
   }
 
-  const firstName = nome.split(' ')[0]
-  const lastName = nome.split(' ').slice(1).join(' ') || ''
+  const nameParts = nome.trim().split(/\s+/)
+  const firstName = nameParts[0]
+  const lastName = nameParts.slice(1).join(' ') || ''
 
   try {
     // 1. Criar/atualizar contato no Brevo
@@ -39,8 +40,10 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         email,
         attributes: {
-          FIRSTNAME: firstName,
-          LASTNAME: lastName,
+          FIRSTNAME: firstName,   // atributo criado para personalização de e-mail
+          LASTNAME: lastName,     // atributo criado para personalização de e-mail
+          NOME: firstName,        // atributo nativo da conta Brevo (em português)
+          SOBRENOME: lastName,    // atributo nativo da conta Brevo (em português)
           SMS: telefone,
         },
         listIds: [2], // Lista "Let's Piri" no Brevo
@@ -51,8 +54,10 @@ export default async function handler(req, res) {
     const contactData = await contactRes.json().catch(() => ({}))
 
     if (!contactRes.ok && contactRes.status !== 204) {
-      console.error('Erro ao criar contato no Brevo:', contactData)
+      console.error('Erro ao criar contato no Brevo:', JSON.stringify(contactData))
       // Não bloqueia — tenta enviar o e-mail mesmo assim
+    } else {
+      console.log('Contato criado/atualizado com sucesso:', email, firstName)
     }
 
     // 2. Disparar e-mail de boas-vindas via template ID 1
@@ -76,10 +81,11 @@ export default async function handler(req, res) {
     const emailData = await emailRes.json().catch(() => ({}))
 
     if (!emailRes.ok) {
-      console.error('Erro ao enviar e-mail via Brevo:', emailData)
+      console.error('Erro ao enviar e-mail via Brevo:', JSON.stringify(emailData))
       return res.status(500).json({ error: 'Erro ao enviar e-mail de confirmação' })
     }
 
+    console.log('E-mail de boas-vindas enviado:', email, 'messageId:', emailData.messageId)
     return res.status(200).json({ success: true, messageId: emailData.messageId })
   } catch (err) {
     console.error('Erro interno:', err)
