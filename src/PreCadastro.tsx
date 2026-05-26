@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const API_URL = '/api/subscribe'
-const WHATSAPP_URL = 'https://chat.whatsapp.com/LMeymmvmLJzCPDXsJuck7q'
+const WHATSAPP_URL = 'https://chat.whatsapp.com/H2g1FyhF96h1stzn8NVUIR'
 
 export default function PreCadastro() {
   const [form, setForm] = useState({ nome: '', email: '', telefone: '' })
