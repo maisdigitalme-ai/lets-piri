@@ -301,6 +301,7 @@ const styles: Record<string, React.CSSProperties> = {
   logo: {
     width: 'clamp(130px, 42vw, 180px)',
     height: 'auto',
+    filter: 'brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%)',
   },
   dateBadge: {
     fontSize: '10.5px',
