@@ -96,7 +96,7 @@ export default function Prevenda() {
     <>
       <style>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { margin: 0; }
+        html, body { margin: 0; height: auto; overflow-x: hidden; }
         .pv-page {
           font-family: 'Poppins', sans-serif;
           background: linear-gradient(160deg, #0a5f6e 0%, ${BG} 45%, #1aa8bf 100%);
@@ -104,6 +104,7 @@ export default function Prevenda() {
           min-height: 100vh;
           position: relative;
           overflow-x: hidden;
+          overflow-y: auto;
           display: flex;
           flex-direction: column;
           align-items: center;
