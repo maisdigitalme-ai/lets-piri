@@ -33,11 +33,11 @@ function useCountdown() {
   return timeLeft
 }
 
-// Contador baseado no tempo decorrido desde o lançamento da página
-// Lançamento: 07/06/2026 17:00 Brasília — base 3.512
+// Contador progressivo baseado no tempo decorrido desde o lançamento
+// Lançamento: 07/06/2026 17:00 Brasília — base 3.512, +1 a cada 20s
 const COUNTER_BASE = 3512
 const COUNTER_START_TS = new Date('2026-06-07T17:00:00-03:00').getTime()
-const COUNTER_INTERVAL_MS = 20000 // +1 a cada 20s
+const COUNTER_INTERVAL_MS = 20000
 
 function useCounter() {
   function calcCurrent() {
@@ -106,18 +106,23 @@ export default function Prevenda() {
   return (
     <>
       <style>{`
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { margin: 0; padding: 0; overflow-x: hidden; }
-        #root { min-height: 100vh; }
-        .pv-page {
+        html, body, #root {
+          margin: 0 !important;
+          padding: 0 !important;
+          width: 100% !important;
+          height: auto !important;
+          min-height: 100vh !important;
+          overflow-x: hidden !important;
+          overflow-y: visible !important;
+        }
+        .pv-wrap {
           font-family: 'Poppins', sans-serif;
           background: linear-gradient(160deg, #0a5f6e 0%, ${BG} 45%, #1aa8bf 100%);
           color: ${WHITE};
+          width: 100%;
           min-height: 100vh;
           position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          overflow-x: hidden;
         }
         .pv-deco {
           position: absolute;
@@ -127,31 +132,38 @@ export default function Prevenda() {
           background-position: center;
           opacity: 0.08;
           pointer-events: none;
+          z-index: 0;
         }
         .pv-deco1 { top: 120px; right: -70px; width: 280px; height: 280px; }
-        .pv-deco2 { bottom: -50px; left: -50px; width: 200px; height: 200px; }
-        .pv-container {
-          width: 100%;
-          max-width: 640px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 48px 20px 40px;
+        .pv-deco2 { bottom: 60px; left: -50px; width: 200px; height: 200px; }
+        .pv-inner {
           position: relative;
           z-index: 1;
+          width: 100%;
+          max-width: 640px;
+          margin: 0 auto;
+          padding: 48px 20px 40px;
+          text-align: center;
         }
-        .pv-logo { width: clamp(110px, 38vw, 170px); height: auto; filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%); margin-bottom: 18px; }
-        .pv-date-badge {
+        .pv-logo {
+          width: clamp(110px, 38vw, 170px);
+          height: auto;
+          filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%);
+          margin-bottom: 18px;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .pv-date {
           font-size: 10px;
           font-weight: 500;
           letter-spacing: 3px;
           color: ${MUTED};
           text-transform: uppercase;
           margin-bottom: 28px;
-          text-align: center;
           line-height: 1.8;
         }
-        .pv-date-badge span { color: ${AMBER}; font-weight: 600; }
+        .pv-date span { color: ${AMBER}; font-weight: 600; }
         .pv-artists-wrap { width: 100%; margin-bottom: 44px; }
         .pv-placeholder {
           width: 100%;
@@ -159,29 +171,42 @@ export default function Prevenda() {
           background: rgba(255,255,255,0.04);
           border: 1.5px dashed rgba(240,201,106,0.25);
           border-radius: 16px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
+          display: table;
+          vertical-align: middle;
+          text-align: center;
+          padding: 40px 20px;
+        }
+        .pv-placeholder-inner { display: table-cell; vertical-align: middle; }
+        .pv-placeholder-text {
+          display: block;
+          font-size: 10px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
           color: ${MUTED};
+          opacity: 0.4;
+          margin-top: 10px;
         }
-        .pv-placeholder-text { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.4; }
-        .pv-artists-names {
+        .pv-names {
           margin-top: 16px;
-          display: flex;
-          justify-content: center;
-          gap: clamp(20px, 8vw, 48px);
-          flex-wrap: wrap;
+          display: table;
+          width: 100%;
         }
-        .pv-artist-entry { display: flex; flex-direction: column; align-items: center; }
+        .pv-names-inner {
+          display: table-row;
+        }
+        .pv-artist-col {
+          display: table-cell;
+          width: 50%;
+          text-align: center;
+          padding: 0 8px;
+          vertical-align: top;
+        }
         .pv-artist-name {
           font-size: clamp(13px, 3.5vw, 17px);
           font-weight: 600;
           color: ${WHITE};
           text-transform: uppercase;
           letter-spacing: 2px;
-          text-align: center;
         }
         .pv-artist-support {
           font-size: clamp(9px, 2.2vw, 10.5px);
@@ -191,43 +216,49 @@ export default function Prevenda() {
           font-weight: 400;
           margin-top: 6px;
           line-height: 1.9;
-          text-align: center;
         }
-        .pv-divider { width: 32px; height: 1.5px; background: ${AMBER_DARK}; opacity: 0.3; border-radius: 2px; margin-bottom: 40px; }
-        .pv-countdown-headline {
+        .pv-divider {
+          width: 32px;
+          height: 1.5px;
+          background: ${AMBER_DARK};
+          opacity: 0.3;
+          border-radius: 2px;
+          margin: 0 auto 40px;
+        }
+        .pv-cd-title {
           font-size: clamp(20px, 5.5vw, 34px);
           font-weight: 600;
           margin-bottom: 22px;
           letter-spacing: -0.3px;
+        }
+        .pv-cd-row {
+          display: table;
+          margin: 0 auto 48px;
+        }
+        .pv-cd-cells {
+          display: table-row;
+        }
+        .pv-cd-cell {
+          display: table-cell;
           text-align: center;
-        }
-        .pv-countdown {
-          display: flex;
-          gap: clamp(8px, 2.5vw, 14px);
-          justify-content: center;
-          margin-bottom: 48px;
-          flex-wrap: nowrap;
-        }
-        .pv-countdown-item {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
           background: rgba(255,255,255,0.05);
           border: 1px solid rgba(240,201,106,0.18);
           border-radius: 14px;
-          padding: clamp(12px, 3vw, 20px) clamp(10px, 3.5vw, 24px);
-          min-width: clamp(60px, 18vw, 88px);
-          flex: 1;
-          max-width: 100px;
+          padding: clamp(12px, 3vw, 20px) clamp(10px, 3.5vw, 22px);
+          min-width: clamp(58px, 18vw, 86px);
+          vertical-align: middle;
         }
-        .pv-count-num {
+        .pv-cd-cell + .pv-cd-cell { margin-left: clamp(6px, 2vw, 12px); }
+        .pv-cd-num {
+          display: block;
           font-size: clamp(28px, 8vw, 44px);
           font-weight: 600;
           color: ${AMBER};
           line-height: 1;
           font-variant-numeric: tabular-nums;
         }
-        .pv-count-unit {
+        .pv-cd-unit {
+          display: block;
           font-size: clamp(7px, 1.8vw, 9.5px);
           letter-spacing: 2px;
           text-transform: uppercase;
@@ -235,19 +266,26 @@ export default function Prevenda() {
           margin-top: 6px;
           font-weight: 500;
         }
-        .pv-social-proof {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
+        .pv-proof {
+          display: inline-block;
           background: rgba(240,201,106,0.07);
           border: 1px solid rgba(240,201,106,0.18);
           border-radius: 100px;
           padding: 10px 20px;
           margin-bottom: 40px;
           font-size: clamp(12px, 3.2vw, 13px);
-          text-align: center;
         }
-        .pv-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; flex-shrink: 0; }
+        .pv-proof-dot {
+          display: inline-block;
+          width: 7px;
+          height: 7px;
+          background: #4ade80;
+          border-radius: 50%;
+          margin-right: 8px;
+          vertical-align: middle;
+          position: relative;
+          top: -1px;
+        }
         .pv-card {
           width: 100%;
           max-width: 480px;
@@ -255,12 +293,31 @@ export default function Prevenda() {
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 20px;
           padding: clamp(24px, 6vw, 40px) clamp(18px, 5vw, 36px);
+          margin: 0 auto;
+          text-align: left;
         }
-        .pv-card-title { font-weight: 600; font-size: clamp(17px, 5vw, 22px); color: ${WHITE}; margin-bottom: 8px; }
-        .pv-card-subtitle { font-size: 13px; color: ${MUTED}; margin-bottom: 24px; line-height: 1.6; }
-        .pv-form { display: flex; flex-direction: column; gap: 16px; }
-        .pv-field { display: flex; flex-direction: column; gap: 6px; }
-        .pv-label { font-weight: 600; font-size: 10px; color: ${MUTED}; letter-spacing: 2.5px; text-transform: uppercase; }
+        .pv-card-title {
+          font-weight: 600;
+          font-size: clamp(17px, 5vw, 22px);
+          color: ${WHITE};
+          margin-bottom: 8px;
+        }
+        .pv-card-sub {
+          font-size: 13px;
+          color: ${MUTED};
+          margin-bottom: 24px;
+          line-height: 1.6;
+        }
+        .pv-field { margin-bottom: 16px; }
+        .pv-label {
+          display: block;
+          font-weight: 600;
+          font-size: 10px;
+          color: ${MUTED};
+          letter-spacing: 2.5px;
+          text-transform: uppercase;
+          margin-bottom: 6px;
+        }
         .pv-input {
           font-family: 'Poppins', sans-serif;
           font-size: 15px;
@@ -272,6 +329,7 @@ export default function Prevenda() {
           width: 100%;
           outline: none;
           -webkit-appearance: none;
+          display: block;
         }
         .pv-input::placeholder { color: rgba(143,181,194,0.5); }
         .pv-input:focus { border-color: rgba(240,201,106,0.4); background: rgba(255,255,255,0.09); }
@@ -286,21 +344,24 @@ export default function Prevenda() {
           border-radius: 10px;
           padding: 16px;
           cursor: pointer;
-          margin-top: 6px;
+          margin-top: 8px;
           width: 100%;
           text-transform: uppercase;
           -webkit-tap-highlight-color: transparent;
+          display: block;
         }
-        .pv-btn:active { transform: scale(0.97); }
+        .pv-btn:active { opacity: 0.85; }
         .pv-btn:disabled { opacity: 0.7; cursor: not-allowed; }
-        .pv-error { font-size: 13px; color: #ff8a80; text-align: center; }
+        .pv-error { font-size: 13px; color: #ff8a80; text-align: center; margin-top: 8px; }
         .pv-success-icon {
           width: 56px; height: 56px; border-radius: 50%;
           background: rgba(240,201,106,0.15);
           border: 2px solid ${AMBER};
-          display: flex; align-items: center; justify-content: center;
-          font-size: 22px; color: ${AMBER}; margin: 0 auto 18px;
+          display: table;
+          margin: 0 auto 18px;
+          text-align: center;
         }
+        .pv-success-icon span { display: table-cell; vertical-align: middle; font-size: 22px; color: ${AMBER}; }
         .pv-success-title { font-weight: 600; font-size: 20px; color: ${WHITE}; text-align: center; margin-bottom: 8px; }
         .pv-success-text { font-size: 13px; color: ${MUTED}; text-align: center; line-height: 1.6; }
         .pv-fallback-btn {
@@ -308,55 +369,61 @@ export default function Prevenda() {
           font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px;
           letter-spacing: 0.05em; color: ${BG}; background: ${AMBER};
           border-radius: 10px; padding: 13px 20px; text-align: center;
-          text-decoration: none; text-transform: uppercase; width: 100%;
+          text-decoration: none; text-transform: uppercase;
         }
         .pv-footer {
-          text-align: center; padding: 24px 20px;
+          text-align: center;
+          padding: 24px 20px;
           background: rgba(10,46,58,0.8);
-          font-size: 11px; color: ${MUTED}; letter-spacing: 1px; width: 100%;
+          font-size: 11px;
+          color: ${MUTED};
+          letter-spacing: 1px;
+          width: 100%;
+          margin-top: 40px;
         }
         .pv-footer a { color: ${AMBER}; text-decoration: none; }
-        .pv-open-now { font-size: 18px; font-weight: 600; color: ${AMBER}; letter-spacing: 3px; padding: 14px; margin-bottom: 20px; text-align: center; }
-        @media (max-width: 380px) {
-          .pv-countdown { gap: 6px; }
-          .pv-countdown-item { padding: 10px 8px; min-width: 56px; }
+        .pv-open-now {
+          font-size: 18px; font-weight: 600; color: ${AMBER};
+          letter-spacing: 3px; padding: 14px; margin-bottom: 20px; text-align: center;
         }
       `}</style>
 
-      <div className="pv-page">
+      <div className="pv-wrap">
         <div className="pv-deco pv-deco1" />
         <div className="pv-deco pv-deco2" />
 
-        <div className="pv-container">
+        <div className="pv-inner">
 
           {/* LOGO */}
           <img src="/Logo-Lets-Piri.png" alt="Let's Piri" className="pv-logo" />
 
-          {/* DATE BADGE */}
-          <div className="pv-date-badge">
-            05 e 06 de setembro &nbsp;·&nbsp;{' '}
-            <span>Pirenópolis, GO</span>
-            &nbsp;·&nbsp; Véspera de feriado
+          {/* DATE */}
+          <div className="pv-date">
+            05 e 06 de setembro &nbsp;·&nbsp; <span>Pirenópolis, GO</span> &nbsp;·&nbsp; Véspera de feriado
           </div>
 
           {/* ARTISTS */}
           <div className="pv-artists-wrap">
             <div className="pv-placeholder">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke={MUTED} strokeWidth="1.2" style={{ opacity: 0.35 }}>
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <circle cx="8.5" cy="8.5" r="1.5"/>
-                <path d="M21 15l-5-5L5 21"/>
-              </svg>
-              <span className="pv-placeholder-text">arte dos artistas</span>
-            </div>
-            <div className="pv-artists-names">
-              <div className="pv-artist-entry">
-                <div className="pv-artist-name">Panda</div>
-                <div className="pv-artist-support">CDB<br />Back 2 Brothers<br />A.Jota</div>
+              <div className="pv-placeholder-inner">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke={MUTED} strokeWidth="1.2" style={{ opacity: 0.35 }}>
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <path d="M21 15l-5-5L5 21"/>
+                </svg>
+                <span className="pv-placeholder-text">arte dos artistas</span>
               </div>
-              <div className="pv-artist-entry">
-                <div className="pv-artist-name">Mariana Fagundes</div>
-                <div className="pv-artist-support">Som de Faculdade<br />DJ Topo<br />Marllon</div>
+            </div>
+            <div className="pv-names">
+              <div className="pv-names-inner">
+                <div className="pv-artist-col">
+                  <div className="pv-artist-name">Panda</div>
+                  <div className="pv-artist-support">CDB<br />Back 2 Brothers<br />A.Jota</div>
+                </div>
+                <div className="pv-artist-col">
+                  <div className="pv-artist-name">Mariana Fagundes</div>
+                  <div className="pv-artist-support">Som de Faculdade<br />DJ Topo<br />Marllon</div>
+                </div>
               </div>
             </div>
           </div>
@@ -369,50 +436,50 @@ export default function Prevenda() {
             <div className="pv-open-now">A PRÉ-VENDA ESTÁ ABERTA!</div>
           ) : (
             <>
-              <div className="pv-countdown-headline">A pré-venda abre em:</div>
-              <div className="pv-countdown">
-                <div className="pv-countdown-item">
-                  <span className="pv-count-num">{pad(days)}</span>
-                  <span className="pv-count-unit">dias</span>
-                </div>
-                <div className="pv-countdown-item">
-                  <span className="pv-count-num">{pad(hours)}</span>
-                  <span className="pv-count-unit">horas</span>
-                </div>
-                <div className="pv-countdown-item">
-                  <span className="pv-count-num">{pad(minutes)}</span>
-                  <span className="pv-count-unit">min</span>
-                </div>
-                <div className="pv-countdown-item">
-                  <span className="pv-count-num">{pad(seconds)}</span>
-                  <span className="pv-count-unit">seg</span>
+              <div className="pv-cd-title">A pré-venda abre em:</div>
+              <div className="pv-cd-row">
+                <div className="pv-cd-cells">
+                  <div className="pv-cd-cell">
+                    <span className="pv-cd-num">{pad(days)}</span>
+                    <span className="pv-cd-unit">dias</span>
+                  </div>
+                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
+                    <span className="pv-cd-num">{pad(hours)}</span>
+                    <span className="pv-cd-unit">horas</span>
+                  </div>
+                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
+                    <span className="pv-cd-num">{pad(minutes)}</span>
+                    <span className="pv-cd-unit">min</span>
+                  </div>
+                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
+                    <span className="pv-cd-num">{pad(seconds)}</span>
+                    <span className="pv-cd-unit">seg</span>
+                  </div>
                 </div>
               </div>
             </>
           )}
 
           {/* SOCIAL PROOF */}
-          <div className="pv-social-proof">
-            <div className="pv-dot" />
-            <span>
-              <strong style={{ color: AMBER }}>{formatCount(count)}</strong>
-              {' '}pessoas já se cadastraram
-            </span>
+          <div className="pv-proof">
+            <span className="pv-proof-dot" />
+            <strong style={{ color: AMBER }}>{formatCount(count)}</strong>
+            {' '}pessoas já se cadastraram
           </div>
 
           {/* FORM CARD */}
           <div className="pv-card">
             {success ? (
               <div style={{ textAlign: 'center' }}>
-                <div className="pv-success-icon">✓</div>
+                <div className="pv-success-icon"><span>✓</span></div>
                 <p className="pv-success-title">Cadastro confirmado!</p>
                 <p className="pv-success-text">Você será redirecionado para o grupo exclusivo em instantes.</p>
                 <a href={WHATSAPP_URL} className="pv-fallback-btn">Entrar no grupo agora</a>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="pv-form">
+              <form onSubmit={handleSubmit}>
                 <div className="pv-card-title">Pré-cadastro</div>
-                <p className="pv-card-subtitle">Garanta seu acesso à pré-venda e entre no grupo exclusivo do festival.</p>
+                <p className="pv-card-sub">Garanta seu acesso à pré-venda e entre no grupo exclusivo do festival.</p>
 
                 <div className="pv-field">
                   <label className="pv-label">Nome completo</label>
