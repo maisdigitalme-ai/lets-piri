@@ -106,7 +106,7 @@ export default function Prevenda() {
 
         {/* 1. LOGO */}
         <div style={styles.logoWrap}>
-          <img src="/logo-full.png" alt="Let's Piri" style={styles.logo} />
+          <img src="/Logo-Lets-Piri.png" alt="Let's Piri" style={styles.logo} />
         </div>
 
         {/* 2. DATE BADGE */}
