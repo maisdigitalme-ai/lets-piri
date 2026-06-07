@@ -14,23 +14,24 @@ const WHATSAPP_URL = 'https://chat.whatsapp.com/DFbq1shJ6zD559HivKtbLb'
 const TARGET_DATE = new Date('2026-06-09T12:00:00-03:00').getTime()
 
 function useCountdown() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 })
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
   useEffect(() => {
     function calc() {
       const diff = TARGET_DATE - Date.now()
       if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0 })
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
         return
       }
       setTimeLeft({
         days: Math.floor(diff / 86400000),
         hours: Math.floor((diff % 86400000) / 3600000),
         minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
       })
     }
     calc()
-    const id = setInterval(calc, 10000)
+    const id = setInterval(calc, 1000)
     return () => clearInterval(id)
   }, [])
 
@@ -47,7 +48,7 @@ function useCounter(start: number, intervalMs: number) {
 }
 
 export default function Prevenda() {
-  const { days, hours, minutes } = useCountdown()
+  const { days, hours, minutes, seconds } = useCountdown()
   const count = useCounter(3512, 20000)
   const isOpen = TARGET_DATE - Date.now() <= 0
 
@@ -143,7 +144,7 @@ export default function Prevenda() {
         <div style={styles.divider} />
 
         {/* 4. COUNTDOWN */}
-        {isOpen ? (
+        {        isOpen ? (
           <div style={styles.openNow}>A PRÉ-VENDA ESTÁ ABERTA!</div>
         ) : (
           <>
@@ -160,6 +161,10 @@ export default function Prevenda() {
               <div style={styles.countdownItem}>
                 <span style={styles.countNum}>{pad(minutes)}</span>
                 <span style={styles.countUnit}>min</span>
+              </div>
+              <div style={styles.countdownItem}>
+                <span style={styles.countNum}>{pad(seconds)}</span>
+                <span style={styles.countUnit}>seg</span>
               </div>
             </div>
           </>
