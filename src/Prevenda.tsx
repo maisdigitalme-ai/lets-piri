@@ -33,18 +33,29 @@ function useCountdown() {
   return timeLeft
 }
 
-function useCounter(start: number, intervalMs: number) {
-  const [count, setCount] = useState(start)
+// Contador baseado no tempo decorrido desde o lançamento da página
+// Lançamento: 07/06/2026 17:00 Brasília — base 3.512
+const COUNTER_BASE = 3512
+const COUNTER_START_TS = new Date('2026-06-07T17:00:00-03:00').getTime()
+const COUNTER_INTERVAL_MS = 20000 // +1 a cada 20s
+
+function useCounter() {
+  function calcCurrent() {
+    const elapsed = Date.now() - COUNTER_START_TS
+    const increments = Math.floor(elapsed / COUNTER_INTERVAL_MS)
+    return COUNTER_BASE + Math.max(0, increments)
+  }
+  const [count, setCount] = useState(calcCurrent)
   useEffect(() => {
-    const id = setInterval(() => setCount(c => c + 1), intervalMs)
+    const id = setInterval(() => setCount(calcCurrent), COUNTER_INTERVAL_MS)
     return () => clearInterval(id)
-  }, [intervalMs])
+  }, [])
   return count
 }
 
 export default function Prevenda() {
   const { days, hours, minutes, seconds } = useCountdown()
-  const count = useCounter(3512, 20000)
+  const count = useCounter()
   const isOpen = TARGET_DATE - Date.now() <= 0
 
   const [form, setForm] = useState({ nome: '', email: '', telefone: '' })
@@ -96,15 +107,14 @@ export default function Prevenda() {
     <>
       <style>{`
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { margin: 0; overflow-x: hidden; }
-        body { margin: 0; overflow-x: hidden; overflow-y: scroll; }
+        html, body { margin: 0; padding: 0; overflow-x: hidden; }
+        #root { min-height: 100vh; }
         .pv-page {
           font-family: 'Poppins', sans-serif;
           background: linear-gradient(160deg, #0a5f6e 0%, ${BG} 45%, #1aa8bf 100%);
           color: ${WHITE};
           min-height: 100vh;
           position: relative;
-          overflow: visible;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -129,7 +139,6 @@ export default function Prevenda() {
           padding: 48px 20px 40px;
           position: relative;
           z-index: 1;
-          flex: 1;
         }
         .pv-logo { width: clamp(110px, 38vw, 170px); height: auto; filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%); margin-bottom: 18px; }
         .pv-date-badge {
