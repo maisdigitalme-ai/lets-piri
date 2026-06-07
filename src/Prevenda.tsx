@@ -15,14 +15,10 @@ const TARGET_DATE = new Date('2026-06-09T12:00:00-03:00').getTime()
 
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-
   useEffect(() => {
     function calc() {
       const diff = TARGET_DATE - Date.now()
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-        return
-      }
+      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return }
       setTimeLeft({
         days: Math.floor(diff / 86400000),
         hours: Math.floor((diff % 86400000) / 3600000),
@@ -34,7 +30,6 @@ function useCountdown() {
     const id = setInterval(calc, 1000)
     return () => clearInterval(id)
   }, [])
-
   return timeLeft
 }
 
@@ -98,483 +93,347 @@ export default function Prevenda() {
   const formatCount = (n: number) => n.toLocaleString('pt-BR')
 
   return (
-    <div style={styles.page}>
-      {/* bg circles */}
-      <div style={styles.bgCircle1} />
-      <div style={styles.bgCircle2} />
+    <>
+      <style>{`
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { margin: 0; }
+        .pv-page {
+          font-family: 'Poppins', sans-serif;
+          background: linear-gradient(160deg, #0a5f6e 0%, ${BG} 45%, #1aa8bf 100%);
+          color: ${WHITE};
+          min-height: 100vh;
+          position: relative;
+          overflow-x: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .pv-deco {
+          position: absolute;
+          background-image: url(/catavento.png);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          opacity: 0.08;
+          pointer-events: none;
+        }
+        .pv-deco1 { top: -60px; right: -60px; width: 260px; height: 260px; }
+        .pv-deco2 { bottom: -50px; left: -50px; width: 200px; height: 200px; }
+        .pv-container {
+          width: 100%;
+          max-width: 640px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 48px 20px 40px;
+          position: relative;
+          z-index: 1;
+          flex: 1;
+        }
+        .pv-logo { width: clamp(110px, 38vw, 170px); height: auto; filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%); margin-bottom: 18px; }
+        .pv-date-badge {
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 3px;
+          color: ${MUTED};
+          text-transform: uppercase;
+          margin-bottom: 28px;
+          text-align: center;
+          line-height: 1.8;
+        }
+        .pv-date-badge span { color: ${AMBER}; font-weight: 600; }
+        .pv-artists-wrap { width: 100%; margin-bottom: 44px; }
+        .pv-placeholder {
+          width: 100%;
+          aspect-ratio: 16/9;
+          background: rgba(255,255,255,0.04);
+          border: 1.5px dashed rgba(240,201,106,0.25);
+          border-radius: 16px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          color: ${MUTED};
+        }
+        .pv-placeholder-text { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.4; }
+        .pv-artists-names {
+          margin-top: 16px;
+          display: flex;
+          justify-content: center;
+          gap: clamp(20px, 8vw, 48px);
+          flex-wrap: wrap;
+        }
+        .pv-artist-entry { display: flex; flex-direction: column; align-items: center; }
+        .pv-artist-name {
+          font-size: clamp(13px, 3.5vw, 17px);
+          font-weight: 600;
+          color: ${WHITE};
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          text-align: center;
+        }
+        .pv-artist-support {
+          font-size: clamp(9px, 2.2vw, 10.5px);
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          color: ${MUTED};
+          font-weight: 400;
+          margin-top: 6px;
+          line-height: 1.9;
+          text-align: center;
+        }
+        .pv-divider { width: 32px; height: 1.5px; background: ${AMBER_DARK}; opacity: 0.3; border-radius: 2px; margin-bottom: 40px; }
+        .pv-countdown-headline {
+          font-size: clamp(20px, 5.5vw, 34px);
+          font-weight: 600;
+          margin-bottom: 22px;
+          letter-spacing: -0.3px;
+          text-align: center;
+        }
+        .pv-countdown {
+          display: flex;
+          gap: clamp(8px, 2.5vw, 14px);
+          justify-content: center;
+          margin-bottom: 48px;
+          flex-wrap: nowrap;
+        }
+        .pv-countdown-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(240,201,106,0.18);
+          border-radius: 14px;
+          padding: clamp(12px, 3vw, 20px) clamp(10px, 3.5vw, 24px);
+          min-width: clamp(60px, 18vw, 88px);
+          flex: 1;
+          max-width: 100px;
+        }
+        .pv-count-num {
+          font-size: clamp(28px, 8vw, 44px);
+          font-weight: 600;
+          color: ${AMBER};
+          line-height: 1;
+          font-variant-numeric: tabular-nums;
+        }
+        .pv-count-unit {
+          font-size: clamp(7px, 1.8vw, 9.5px);
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: ${MUTED};
+          margin-top: 6px;
+          font-weight: 500;
+        }
+        .pv-social-proof {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          background: rgba(240,201,106,0.07);
+          border: 1px solid rgba(240,201,106,0.18);
+          border-radius: 100px;
+          padding: 10px 20px;
+          margin-bottom: 40px;
+          font-size: clamp(12px, 3.2vw, 13px);
+          text-align: center;
+        }
+        .pv-dot { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; flex-shrink: 0; }
+        .pv-card {
+          width: 100%;
+          max-width: 480px;
+          background: ${CARD_BG};
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 20px;
+          padding: clamp(24px, 6vw, 40px) clamp(18px, 5vw, 36px);
+        }
+        .pv-card-title { font-weight: 600; font-size: clamp(17px, 5vw, 22px); color: ${WHITE}; margin-bottom: 8px; }
+        .pv-card-subtitle { font-size: 13px; color: ${MUTED}; margin-bottom: 24px; line-height: 1.6; }
+        .pv-form { display: flex; flex-direction: column; gap: 16px; }
+        .pv-field { display: flex; flex-direction: column; gap: 6px; }
+        .pv-label { font-weight: 600; font-size: 10px; color: ${MUTED}; letter-spacing: 2.5px; text-transform: uppercase; }
+        .pv-input {
+          font-family: 'Poppins', sans-serif;
+          font-size: 15px;
+          color: ${WHITE};
+          background: rgba(255,255,255,0.06);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 10px;
+          padding: 14px 16px;
+          width: 100%;
+          outline: none;
+          -webkit-appearance: none;
+        }
+        .pv-input::placeholder { color: rgba(143,181,194,0.5); }
+        .pv-input:focus { border-color: rgba(240,201,106,0.4); background: rgba(255,255,255,0.09); }
+        .pv-btn {
+          font-family: 'Poppins', sans-serif;
+          font-weight: 600;
+          font-size: 13px;
+          letter-spacing: 2.5px;
+          color: ${BG};
+          background: ${AMBER};
+          border: none;
+          border-radius: 10px;
+          padding: 16px;
+          cursor: pointer;
+          margin-top: 6px;
+          width: 100%;
+          text-transform: uppercase;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .pv-btn:active { transform: scale(0.97); }
+        .pv-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+        .pv-error { font-size: 13px; color: #ff8a80; text-align: center; }
+        .pv-success-icon {
+          width: 56px; height: 56px; border-radius: 50%;
+          background: rgba(240,201,106,0.15);
+          border: 2px solid ${AMBER};
+          display: flex; align-items: center; justify-content: center;
+          font-size: 22px; color: ${AMBER}; margin: 0 auto 18px;
+        }
+        .pv-success-title { font-weight: 600; font-size: 20px; color: ${WHITE}; text-align: center; margin-bottom: 8px; }
+        .pv-success-text { font-size: 13px; color: ${MUTED}; text-align: center; line-height: 1.6; }
+        .pv-fallback-btn {
+          display: block; margin-top: 18px;
+          font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px;
+          letter-spacing: 0.05em; color: ${BG}; background: ${AMBER};
+          border-radius: 10px; padding: 13px 20px; text-align: center;
+          text-decoration: none; text-transform: uppercase; width: 100%;
+        }
+        .pv-footer {
+          text-align: center; padding: 24px 20px;
+          background: rgba(10,46,58,0.8);
+          font-size: 11px; color: ${MUTED}; letter-spacing: 1px; width: 100%;
+        }
+        .pv-footer a { color: ${AMBER}; text-decoration: none; }
+        .pv-open-now { font-size: 18px; font-weight: 600; color: ${AMBER}; letter-spacing: 3px; padding: 14px; margin-bottom: 20px; text-align: center; }
+        @media (max-width: 380px) {
+          .pv-countdown { gap: 6px; }
+          .pv-countdown-item { padding: 10px 8px; min-width: 56px; }
+        }
+      `}</style>
 
-      <div style={styles.container}>
+      <div className="pv-page">
+        <div className="pv-deco pv-deco1" />
+        <div className="pv-deco pv-deco2" />
 
-        {/* 1. LOGO */}
-        <div style={styles.logoWrap}>
-          <img src="/Logo-Lets-Piri.png" alt="Let's Piri" style={styles.logo} />
-        </div>
+        <div className="pv-container">
 
-        {/* 2. DATE BADGE */}
-        <div style={styles.dateBadge}>
-          05 e 06 de setembro &nbsp;·&nbsp;{' '}
-          <span style={{ color: AMBER, fontWeight: 600 }}>Pirenópolis, GO</span>
-          &nbsp;·&nbsp; Véspera de feriado
-        </div>
+          {/* LOGO */}
+          <img src="/Logo-Lets-Piri.png" alt="Let's Piri" className="pv-logo" />
 
-        {/* 3. ARTIST PLACEHOLDER */}
-        <div style={styles.artistsWrap}>
-          <div style={styles.artistsPlaceholder}>
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke={MUTED} strokeWidth="1.2" style={{ opacity: 0.35 }}>
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <circle cx="8.5" cy="8.5" r="1.5"/>
-              <path d="M21 15l-5-5L5 21"/>
-            </svg>
-            <span style={styles.placeholderText}>arte dos artistas</span>
+          {/* DATE BADGE */}
+          <div className="pv-date-badge">
+            05 e 06 de setembro &nbsp;·&nbsp;{' '}
+            <span>Pirenópolis, GO</span>
+            &nbsp;·&nbsp; Véspera de feriado
           </div>
 
-          <div style={styles.artistsNames}>
-            <div style={styles.artistEntry}>
-              <div style={styles.artistName}>Panda</div>
-              <div style={styles.artistSupport}>CDB<br />Back 2 Brothers<br />A.Jota</div>
+          {/* ARTISTS */}
+          <div className="pv-artists-wrap">
+            <div className="pv-placeholder">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke={MUTED} strokeWidth="1.2" style={{ opacity: 0.35 }}>
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span className="pv-placeholder-text">arte dos artistas</span>
             </div>
-            <div style={styles.artistEntry}>
-              <div style={styles.artistName}>Mariana Fagundes</div>
-              <div style={styles.artistSupport}>Som de Faculdade<br />DJ Topo<br />Marllon</div>
+            <div className="pv-artists-names">
+              <div className="pv-artist-entry">
+                <div className="pv-artist-name">Panda</div>
+                <div className="pv-artist-support">CDB<br />Back 2 Brothers<br />A.Jota</div>
+              </div>
+              <div className="pv-artist-entry">
+                <div className="pv-artist-name">Mariana Fagundes</div>
+                <div className="pv-artist-support">Som de Faculdade<br />DJ Topo<br />Marllon</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* divider */}
-        <div style={styles.divider} />
+          {/* DIVIDER */}
+          <div className="pv-divider" />
 
-        {/* 4. COUNTDOWN */}
-        {        isOpen ? (
-          <div style={styles.openNow}>A PRÉ-VENDA ESTÁ ABERTA!</div>
-        ) : (
-          <>
-            <div style={styles.countdownHeadline}>A pré-venda abre em:</div>
-            <div style={styles.countdown}>
-              <div style={styles.countdownItem}>
-                <span style={styles.countNum}>{pad(days)}</span>
-                <span style={styles.countUnit}>dias</span>
-              </div>
-              <div style={styles.countdownItem}>
-                <span style={styles.countNum}>{pad(hours)}</span>
-                <span style={styles.countUnit}>horas</span>
-              </div>
-              <div style={styles.countdownItem}>
-                <span style={styles.countNum}>{pad(minutes)}</span>
-                <span style={styles.countUnit}>min</span>
-              </div>
-              <div style={styles.countdownItem}>
-                <span style={styles.countNum}>{pad(seconds)}</span>
-                <span style={styles.countUnit}>seg</span>
-              </div>
-            </div>
-          </>
-        )}
-
-        {/* 5. SOCIAL PROOF */}
-        <div style={styles.socialProof}>
-          <div style={styles.dot} />
-          <span>
-            <strong style={{ color: AMBER }}>{formatCount(count)}</strong>
-            {' '}pessoas já se cadastraram
-          </span>
-        </div>
-
-        {/* 6. FORM CARD */}
-        <div style={styles.card}>
-          {success ? (
-            <div style={{ textAlign: 'center' }}>
-              <div style={styles.successIcon}>✓</div>
-              <p style={styles.successTitle}>Cadastro confirmado!</p>
-              <p style={styles.successText}>
-                Você será redirecionado para o grupo exclusivo em instantes.
-              </p>
-              <a href={WHATSAPP_URL} style={styles.fallbackBtn}>
-                Entrar no grupo agora
-              </a>
-            </div>
+          {/* COUNTDOWN */}
+          {isOpen ? (
+            <div className="pv-open-now">A PRÉ-VENDA ESTÁ ABERTA!</div>
           ) : (
-            <form onSubmit={handleSubmit} style={styles.form}>
-              <div style={styles.cardTitle}>Pré-cadastro</div>
-              <p style={styles.cardSubtitle}>
-                Garanta seu acesso à pré-venda e entre no grupo exclusivo do festival.
-              </p>
-
-              <div style={styles.fieldWrap}>
-                <label style={styles.label}>Nome completo</label>
-                <input
-                  name="nome"
-                  type="text"
-                  placeholder="Seu nome"
-                  value={form.nome}
-                  onChange={handleChange}
-                  style={styles.input}
-                />
+            <>
+              <div className="pv-countdown-headline">A pré-venda abre em:</div>
+              <div className="pv-countdown">
+                <div className="pv-countdown-item">
+                  <span className="pv-count-num">{pad(days)}</span>
+                  <span className="pv-count-unit">dias</span>
+                </div>
+                <div className="pv-countdown-item">
+                  <span className="pv-count-num">{pad(hours)}</span>
+                  <span className="pv-count-unit">horas</span>
+                </div>
+                <div className="pv-countdown-item">
+                  <span className="pv-count-num">{pad(minutes)}</span>
+                  <span className="pv-count-unit">min</span>
+                </div>
+                <div className="pv-countdown-item">
+                  <span className="pv-count-num">{pad(seconds)}</span>
+                  <span className="pv-count-unit">seg</span>
+                </div>
               </div>
-
-              <div style={styles.fieldWrap}>
-                <label style={styles.label}>E-mail</label>
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="seu@email.com"
-                  value={form.email}
-                  onChange={handleChange}
-                  style={styles.input}
-                />
-              </div>
-
-              <div style={styles.fieldWrap}>
-                <label style={styles.label}>Telefone / WhatsApp</label>
-                <input
-                  name="telefone"
-                  type="tel"
-                  placeholder="(DDD) 9 0000-0000"
-                  value={form.telefone}
-                  onChange={handleChange}
-                  style={styles.input}
-                />
-              </div>
-
-              {error && <p style={styles.errorMsg}>{error}</p>}
-
-              <button
-                type="submit"
-                disabled={loading}
-                style={{ ...styles.btn, ...(loading ? styles.btnLoading : {}) }}
-              >
-                {loading ? 'Aguarde...' : 'Garantir pré-venda'}
-              </button>
-            </form>
+            </>
           )}
+
+          {/* SOCIAL PROOF */}
+          <div className="pv-social-proof">
+            <div className="pv-dot" />
+            <span>
+              <strong style={{ color: AMBER }}>{formatCount(count)}</strong>
+              {' '}pessoas já se cadastraram
+            </span>
+          </div>
+
+          {/* FORM CARD */}
+          <div className="pv-card">
+            {success ? (
+              <div style={{ textAlign: 'center' }}>
+                <div className="pv-success-icon">✓</div>
+                <p className="pv-success-title">Cadastro confirmado!</p>
+                <p className="pv-success-text">Você será redirecionado para o grupo exclusivo em instantes.</p>
+                <a href={WHATSAPP_URL} className="pv-fallback-btn">Entrar no grupo agora</a>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="pv-form">
+                <div className="pv-card-title">Pré-cadastro</div>
+                <p className="pv-card-subtitle">Garanta seu acesso à pré-venda e entre no grupo exclusivo do festival.</p>
+
+                <div className="pv-field">
+                  <label className="pv-label">Nome completo</label>
+                  <input name="nome" type="text" placeholder="Seu nome" value={form.nome} onChange={handleChange} className="pv-input" />
+                </div>
+                <div className="pv-field">
+                  <label className="pv-label">E-mail</label>
+                  <input name="email" type="email" placeholder="seu@email.com" value={form.email} onChange={handleChange} className="pv-input" />
+                </div>
+                <div className="pv-field">
+                  <label className="pv-label">Telefone / WhatsApp</label>
+                  <input name="telefone" type="tel" placeholder="(DDD) 9 0000-0000" value={form.telefone} onChange={handleChange} className="pv-input" />
+                </div>
+
+                {error && <p className="pv-error">{error}</p>}
+
+                <button type="submit" disabled={loading} className="pv-btn">
+                  {loading ? 'Aguarde...' : 'Garantir pré-venda'}
+                </button>
+              </form>
+            )}
+          </div>
+
         </div>
 
+        {/* FOOTER */}
+        <footer className="pv-footer">
+          <p>letspiri.com &nbsp;·&nbsp; <a href="https://instagram.com/letspiri">@letspiri</a></p>
+          <p style={{ marginTop: '5px' }}>Pirenópolis, Goiás &nbsp;·&nbsp; Setembro 2026</p>
+        </footer>
       </div>
-
-      {/* FOOTER */}
-      <footer style={styles.footer}>
-        <p>letspiri.com &nbsp;·&nbsp; <a href="https://instagram.com/letspiri" style={{ color: AMBER, textDecoration: 'none' }}>@letspiri</a></p>
-        <p style={{ marginTop: '6px' }}>Pirenópolis, Goiás &nbsp;·&nbsp; Setembro 2026</p>
-      </footer>
-    </div>
+    </>
   )
-}
-
-const styles: Record<string, React.CSSProperties> = {
-  page: {
-    fontFamily: "'Poppins', sans-serif",
-    background: `linear-gradient(160deg, #0a5f6e 0%, ${BG} 45%, #1aa8bf 100%)`,
-    color: WHITE,
-    minHeight: '100vh',
-    position: 'relative',
-    overflow: 'hidden',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  bgCircle1: {
-    position: 'absolute',
-    top: '-80px',
-    right: '-80px',
-    width: '320px',
-    height: '320px',
-    backgroundImage: 'url(/catavento.png)',
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    opacity: 0.07,
-    pointerEvents: 'none',
-  },
-  bgCircle2: {
-    position: 'absolute',
-    bottom: '-60px',
-    left: '-60px',
-    width: '240px',
-    height: '240px',
-    backgroundImage: 'url(/catavento.png)',
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    opacity: 0.07,
-    pointerEvents: 'none',
-  },
-  container: {
-    width: '100%',
-    maxWidth: '640px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '52px 24px 40px',
-    position: 'relative',
-    zIndex: 1,
-    flex: 1,
-  },
-  logoWrap: { marginBottom: '20px' },
-  logo: {
-    width: 'clamp(130px, 42vw, 180px)',
-    height: 'auto',
-    filter: 'brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%)',
-  },
-  dateBadge: {
-    fontSize: '10.5px',
-    fontWeight: 500,
-    letterSpacing: '3.5px',
-    color: MUTED,
-    textTransform: 'uppercase',
-    marginBottom: '32px',
-    textAlign: 'center',
-  },
-  artistsWrap: {
-    width: '100%',
-    marginBottom: '52px',
-  },
-  artistsPlaceholder: {
-    width: '100%',
-    aspectRatio: '16/9',
-    background: 'rgba(255,255,255,0.04)',
-    border: `1.5px dashed rgba(240,201,106,0.25)`,
-    borderRadius: '18px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '12px',
-    color: MUTED,
-  },
-  placeholderText: {
-    fontSize: '11px',
-    letterSpacing: '3px',
-    textTransform: 'uppercase',
-    opacity: 0.45,
-  },
-  artistsNames: {
-    marginTop: '18px',
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '40px',
-  },
-  artistEntry: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  artistName: {
-    fontSize: '17px',
-    fontWeight: 600,
-    color: WHITE,
-    textTransform: 'uppercase',
-    letterSpacing: '2px',
-  },
-  artistSupport: {
-    fontSize: '10.5px',
-    letterSpacing: '1.5px',
-    textTransform: 'uppercase',
-    color: MUTED,
-    fontWeight: 400,
-    marginTop: '7px',
-    lineHeight: 1.9,
-    textAlign: 'center',
-  },
-  divider: {
-    width: '36px',
-    height: '1.5px',
-    background: AMBER_DARK,
-    opacity: 0.3,
-    borderRadius: '2px',
-    marginBottom: '44px',
-  },
-  countdownHeadline: {
-    fontSize: 'clamp(22px, 5vw, 36px)',
-    fontWeight: 600,
-    marginBottom: '24px',
-    letterSpacing: '-0.3px',
-    textAlign: 'center',
-  },
-  openNow: {
-    fontSize: '20px',
-    fontWeight: 600,
-    color: AMBER,
-    letterSpacing: '3px',
-    padding: '16px',
-    marginBottom: '24px',
-  },
-  countdown: {
-    display: 'flex',
-    gap: '14px',
-    justifyContent: 'center',
-    marginBottom: '56px',
-  },
-  countdownItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    background: 'rgba(255,255,255,0.05)',
-    border: `1px solid rgba(240,201,106,0.18)`,
-    borderRadius: '16px',
-    padding: '20px 26px',
-    minWidth: '90px',
-  },
-  countNum: {
-    fontSize: '44px',
-    fontWeight: 600,
-    color: AMBER,
-    lineHeight: 1,
-    fontVariantNumeric: 'tabular-nums',
-  },
-  countUnit: {
-    fontSize: '9.5px',
-    letterSpacing: '2.5px',
-    textTransform: 'uppercase',
-    color: MUTED,
-    marginTop: '8px',
-    fontWeight: 500,
-  },
-  socialProof: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '10px',
-    background: 'rgba(240,201,106,0.07)',
-    border: `1px solid rgba(240,201,106,0.18)`,
-    borderRadius: '100px',
-    padding: '10px 22px',
-    marginBottom: '44px',
-    fontSize: '13px',
-  },
-  dot: {
-    width: '7px',
-    height: '7px',
-    background: '#4ade80',
-    borderRadius: '50%',
-    flexShrink: 0,
-    animation: 'pulse 2s infinite',
-  },
-  card: {
-    width: '100%',
-    maxWidth: '480px',
-    background: CARD_BG,
-    border: '1px solid rgba(255,255,255,0.1)',
-    borderRadius: '20px',
-    padding: 'clamp(28px, 6vw, 40px) clamp(22px, 6vw, 36px)',
-  },
-  cardTitle: {
-    fontWeight: 600,
-    fontSize: 'clamp(18px, 5vw, 22px)',
-    color: WHITE,
-    margin: '0 0 8px 0',
-    letterSpacing: '-0.01em',
-  },
-  cardSubtitle: {
-    fontWeight: 400,
-    fontSize: '14px',
-    color: MUTED,
-    margin: '0 0 28px 0',
-    lineHeight: 1.6,
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '18px',
-  },
-  fieldWrap: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '6px',
-  },
-  label: {
-    fontWeight: 600,
-    fontSize: '10px',
-    color: MUTED,
-    letterSpacing: '2.5px',
-    textTransform: 'uppercase',
-  },
-  input: {
-    fontFamily: "'Poppins', sans-serif",
-    fontWeight: 400,
-    fontSize: '14px',
-    color: WHITE,
-    background: 'rgba(255,255,255,0.06)',
-    border: '1px solid rgba(255,255,255,0.1)',
-    borderRadius: '10px',
-    padding: '14px 18px',
-    outline: 'none',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  btn: {
-    fontFamily: "'Poppins', sans-serif",
-    fontWeight: 600,
-    fontSize: '13px',
-    letterSpacing: '2.5px',
-    color: BG,
-    background: AMBER,
-    border: 'none',
-    borderRadius: '10px',
-    padding: '16px',
-    cursor: 'pointer',
-    marginTop: '8px',
-    width: '100%',
-    textTransform: 'uppercase',
-    transition: 'opacity 0.2s, transform 0.15s',
-  },
-  btnLoading: { opacity: 0.7, cursor: 'not-allowed' },
-  errorMsg: {
-    fontSize: '13px',
-    color: '#ff8a80',
-    margin: 0,
-    textAlign: 'center',
-  },
-  successIcon: {
-    width: '60px',
-    height: '60px',
-    borderRadius: '50%',
-    background: `rgba(240,201,106,0.15)`,
-    border: `2px solid ${AMBER}`,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '24px',
-    color: AMBER,
-    margin: '0 auto 20px',
-  },
-  successTitle: {
-    fontWeight: 600,
-    fontSize: '22px',
-    color: WHITE,
-    textAlign: 'center',
-    margin: '0 0 10px 0',
-  },
-  successText: {
-    fontSize: '14px',
-    color: MUTED,
-    textAlign: 'center',
-    margin: 0,
-    lineHeight: 1.6,
-  },
-  fallbackBtn: {
-    display: 'block',
-    marginTop: '20px',
-    fontFamily: "'Poppins', sans-serif",
-    fontWeight: 600,
-    fontSize: '13px',
-    letterSpacing: '0.05em',
-    color: BG,
-    background: AMBER,
-    border: 'none',
-    borderRadius: '10px',
-    padding: '13px 20px',
-    cursor: 'pointer',
-    textAlign: 'center',
-    textDecoration: 'none',
-    textTransform: 'uppercase',
-    width: '100%',
-    boxSizing: 'border-box',
-  },
-  footer: {
-    textAlign: 'center',
-    padding: '28px 24px',
-    background: 'rgba(10,46,58,0.8)',
-    fontSize: '11.5px',
-    color: MUTED,
-    letterSpacing: '1px',
-    width: '100%',
-  },
 }
