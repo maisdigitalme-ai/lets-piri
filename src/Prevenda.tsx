@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const BG = '#0c3545'
+const BG = '#0E7B8C'
 const AMBER = '#f0c96a'
 const AMBER_DARK = '#C9A84C'
 const WHITE = '#f5f0e8'
@@ -257,7 +257,7 @@ export default function Prevenda() {
 const styles: Record<string, React.CSSProperties> = {
   page: {
     fontFamily: "'Poppins', sans-serif",
-    background: `linear-gradient(175deg, ${BG} 0%, #15475b 55%, #1e6070 100%)`,
+    background: `linear-gradient(160deg, #0a5f6e 0%, ${BG} 45%, #1aa8bf 100%)`,
     color: WHITE,
     minHeight: '100vh',
     position: 'relative',
@@ -268,22 +268,28 @@ const styles: Record<string, React.CSSProperties> = {
   },
   bgCircle1: {
     position: 'absolute',
-    top: '-120px',
-    right: '-120px',
-    width: '400px',
-    height: '400px',
-    borderRadius: '50%',
-    background: 'rgba(240,201,106,0.07)',
+    top: '-80px',
+    right: '-80px',
+    width: '320px',
+    height: '320px',
+    backgroundImage: 'url(/catavento.png)',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    opacity: 0.07,
     pointerEvents: 'none',
   },
   bgCircle2: {
     position: 'absolute',
-    bottom: '-80px',
-    left: '-80px',
-    width: '300px',
-    height: '300px',
-    borderRadius: '50%',
-    background: 'rgba(29,114,101,0.25)',
+    bottom: '-60px',
+    left: '-60px',
+    width: '240px',
+    height: '240px',
+    backgroundImage: 'url(/catavento.png)',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    opacity: 0.07,
     pointerEvents: 'none',
   },
   container: {
