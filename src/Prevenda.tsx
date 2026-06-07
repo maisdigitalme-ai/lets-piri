@@ -118,7 +118,7 @@ export default function Prevenda() {
           opacity: 0.08;
           pointer-events: none;
         }
-        .pv-deco1 { top: -60px; right: -60px; width: 260px; height: 260px; }
+        .pv-deco1 { top: 120px; right: -70px; width: 280px; height: 280px; }
         .pv-deco2 { bottom: -50px; left: -50px; width: 200px; height: 200px; }
         .pv-container {
           width: 100%;
