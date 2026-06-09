@@ -149,7 +149,7 @@ export default function Prevenda() {
           width: clamp(110px, 38vw, 170px);
           height: auto;
           filter: brightness(0) saturate(100%) invert(85%) sepia(30%) saturate(500%) hue-rotate(5deg) brightness(105%);
-          margin-bottom: 18px;
+          margin-bottom: 28px;
           display: block;
           margin-left: auto;
           margin-right: auto;
