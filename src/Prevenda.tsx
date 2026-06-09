@@ -165,26 +165,11 @@ export default function Prevenda() {
         }
         .pv-date span { color: ${AMBER}; font-weight: 600; }
         .pv-artists-wrap { width: 100%; margin-bottom: 44px; }
-        .pv-placeholder {
-          width: 100%;
-          aspect-ratio: 16/9;
-          background: rgba(255,255,255,0.04);
-          border: 1.5px dashed rgba(240,201,106,0.25);
-          border-radius: 16px;
-          display: table;
-          vertical-align: middle;
-          text-align: center;
-          padding: 40px 20px;
-        }
-        .pv-placeholder-inner { display: table-cell; vertical-align: middle; }
-        .pv-placeholder-text {
-          display: block;
-          font-size: 10px;
-          letter-spacing: 3px;
-          text-transform: uppercase;
-          color: ${MUTED};
-          opacity: 0.4;
-          margin-top: 10px;
+        .pv-banner-desktop { display: block; width: 100%; border-radius: 16px; }
+        .pv-banner-mobile { display: none; width: 100%; border-radius: 16px; }
+        @media (max-width: 600px) {
+          .pv-banner-desktop { display: none; }
+          .pv-banner-mobile { display: block; }
         }
         .pv-names {
           margin-top: 16px;
@@ -404,16 +389,8 @@ export default function Prevenda() {
 
           {/* ARTISTS */}
           <div className="pv-artists-wrap">
-            <div className="pv-placeholder">
-              <div className="pv-placeholder-inner">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke={MUTED} strokeWidth="1.2" style={{ opacity: 0.35 }}>
-                  <rect x="3" y="3" width="18" height="18" rx="2"/>
-                  <circle cx="8.5" cy="8.5" r="1.5"/>
-                  <path d="M21 15l-5-5L5 21"/>
-                </svg>
-                <span className="pv-placeholder-text">arte dos artistas</span>
-              </div>
-            </div>
+            <img src="/BannerArtistas-1280x720.png" alt="Artistas Let's Piri" className="pv-banner-desktop" />
+            <img src="/BannerArtistas-1080x1350.png" alt="Artistas Let's Piri" className="pv-banner-mobile" />
             <div className="pv-names">
               <div className="pv-names-inner">
                 <div className="pv-artist-col">
