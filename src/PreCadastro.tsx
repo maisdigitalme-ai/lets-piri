@@ -10,8 +10,28 @@ const CARD_BG = 'rgba(255,255,255,0.06)'
 const API_URL = '/api/subscribe'
 const WHATSAPP_URL = 'https://chat.whatsapp.com/DFbq1shJ6zD559HivKtbLb'
 
-// Countdown target: 09/06/2026 12:00 Brasília (UTC-3)
+// Countdown abertura: 09/06/2026 12:00 Brasília
 const TARGET_DATE = new Date('2026-06-09T12:00:00-03:00').getTime()
+// Countdown encerramento: 11/06/2026 12:00 Brasília
+const DEADLINE_DATE = new Date('2026-06-11T12:00:00-03:00').getTime()
+
+function useDeadlineCountdown() {
+  function calc() {
+    const diff = Math.max(0, DEADLINE_DATE - Date.now())
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
+    }
+  }
+  const [t, setT] = useState(calc)
+  useEffect(() => {
+    const id = setInterval(() => setT(calc()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  return t
+}
 
 function useCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
@@ -55,6 +75,7 @@ function useCounter() {
 
 export default function PreCadastro() {
   const { days, hours, minutes, seconds } = useCountdown()
+  const deadline = useDeadlineCountdown()
   const count = useCounter()
   const isOpen = TARGET_DATE - Date.now() <= 0
 
@@ -399,7 +420,30 @@ export default function PreCadastro() {
 
           {/* COUNTDOWN */}
           {isOpen ? (
-            <div className="pv-open-now">A PRÉ-VENDA ESTÁ ABERTA!</div>
+            <>
+              <div className="pv-open-now">A PRÉ-VENDA ESTÁ ABERTA!</div>
+              <div className="pv-cd-title" style={{ marginTop: '4px' }}>A pré-venda encerra em:</div>
+              <div className="pv-cd-row">
+                <div className="pv-cd-cells">
+                  <div className="pv-cd-cell">
+                    <span className="pv-cd-num">{pad(deadline.days)}</span>
+                    <span className="pv-cd-unit">dias</span>
+                  </div>
+                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
+                    <span className="pv-cd-num">{pad(deadline.hours)}</span>
+                    <span className="pv-cd-unit">horas</span>
+                  </div>
+                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
+                    <span className="pv-cd-num">{pad(deadline.minutes)}</span>
+                    <span className="pv-cd-unit">min</span>
+                  </div>
+                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
+                    <span className="pv-cd-num">{pad(deadline.seconds)}</span>
+                    <span className="pv-cd-unit">seg</span>
+                  </div>
+                </div>
+              </div>
+            </>
           ) : (
             <>
               <div className="pv-cd-title">A pré-venda abre em:</div>
