@@ -474,7 +474,7 @@ export default function Prevenda() {
           <div className="pv-proof">
             <span className="pv-proof-dot" />
             <strong style={{ color: AMBER }}>{formatCount(count)}</strong>
-            {' '}pessoas já se cadastraram
+            {' '}pessoas já garantiram sua pré-venda
           </div>
 
           {/* FORM CARD */}
@@ -482,13 +482,13 @@ export default function Prevenda() {
             {success ? (
               <div style={{ textAlign: 'center' }}>
                 <div className="pv-success-icon"><span>✓</span></div>
-                <p className="pv-success-title">Cadastro confirmado!</p>
+                <p className="pv-success-title">Pré-venda garantida!</p>
                 <p className="pv-success-text">Você será redirecionado para o grupo exclusivo em instantes.</p>
                 <a href={WHATSAPP_URL} className="pv-fallback-btn">Entrar no grupo agora</a>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="pv-card-title">Pré-cadastro</div>
+                <div className="pv-card-title">Pré-venda</div>
                 <p className="pv-card-sub">Garanta seu acesso à pré-venda e entre no grupo exclusivo do festival.</p>
 
                 <div className="pv-field">
