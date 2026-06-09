@@ -164,7 +164,7 @@ export default function Prevenda() {
           line-height: 1.8;
         }
         .pv-date span { color: ${AMBER}; font-weight: 600; }
-        .pv-artists-wrap { width: 100%; margin-bottom: 44px; }
+        .pv-artists-wrap { width: 100%; margin-bottom: 20px; }
         .pv-banner-desktop { display: block; width: 100%; border-radius: 16px; }
         .pv-banner-mobile { display: none; width: 100%; border-radius: 16px; }
         @media (max-width: 600px) {
@@ -208,7 +208,7 @@ export default function Prevenda() {
           background: ${AMBER_DARK};
           opacity: 0.3;
           border-radius: 2px;
-          margin: 0 auto 40px;
+          margin: 8px auto 20px;
         }
         .pv-cd-title {
           font-size: clamp(20px, 5.5vw, 34px);
