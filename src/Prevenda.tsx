@@ -34,9 +34,9 @@ function useCountdown() {
 }
 
 // Contador progressivo baseado no tempo decorrido desde o lançamento
-// Lançamento: 07/06/2026 17:00 Brasília — base 3.512, +1 a cada 20s
-const COUNTER_BASE = 3512
-const COUNTER_START_TS = new Date('2026-06-07T17:00:00-03:00').getTime()
+// Atualizado: 09/06/2026 — base 3.219, +1 a cada 20s
+const COUNTER_BASE = 3219
+const COUNTER_START_TS = new Date('2026-06-09T11:00:00-03:00').getTime()
 const COUNTER_INTERVAL_MS = 20000
 
 function useCounter() {
