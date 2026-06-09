@@ -391,18 +391,7 @@ export default function Prevenda() {
           <div className="pv-artists-wrap">
             <img src="/BannerArtistas-1280x720.png" alt="Artistas Let's Piri" className="pv-banner-desktop" />
             <img src="/BannerArtistas-1080x1350.png" alt="Artistas Let's Piri" className="pv-banner-mobile" />
-            <div className="pv-names">
-              <div className="pv-names-inner">
-                <div className="pv-artist-col">
-                  <div className="pv-artist-name">Panda</div>
-                  <div className="pv-artist-support">CDB<br />Back 2 Brothers<br />A.Jota</div>
-                </div>
-                <div className="pv-artist-col">
-                  <div className="pv-artist-name">Mariana Fagundes</div>
-                  <div className="pv-artist-support">Som de Faculdade<br />DJ Topo<br />Marllon</div>
-                </div>
-              </div>
-            </div>
+
           </div>
 
           {/* DIVIDER */}
