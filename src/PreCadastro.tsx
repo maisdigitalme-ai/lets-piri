@@ -1,55 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const API_URL = '/api/subscribe'
-const WHATSAPP_URL = 'https://chat.whatsapp.com/DFbq1shJ6zD559HivKtbLb'
+const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
+
+// Countdown até 11/06/2026 às 12:00 horário de Brasília (UTC-3 = 15:00 UTC)
+const DEADLINE = new Date('2026-06-11T15:00:00Z').getTime()
+
+function useCountdown() {
+  function calc() {
+    const diff = Math.max(0, DEADLINE - Date.now())
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
+      ended: diff === 0,
+    }
+  }
+  const [t, setT] = useState(calc)
+  useEffect(() => {
+    const id = setInterval(() => setT(calc()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  return t
+}
+
+function pad(n: number) { return String(n).padStart(2, '0') }
 
 export default function PreCadastro() {
-  const [form, setForm] = useState({ nome: '', email: '', telefone: '' })
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState('')
-
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target
-    if (name === 'telefone') {
-      const digits = value.replace(/\D/g, '').slice(0, 11)
-      let formatted = digits
-      if (digits.length > 2) formatted = `(${digits.slice(0, 2)}) ${digits.slice(2)}`
-      if (digits.length > 7) formatted = `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
-      setForm(f => ({ ...f, telefone: formatted }))
-    } else {
-      setForm(f => ({ ...f, [name]: value }))
-    }
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!form.nome.trim() || !form.email.trim() || !form.telefone.trim()) {
-      setError('Preencha todos os campos para continuar.')
-      return
-    }
-    setError('')
-    setLoading(true)
-    try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data.error || 'Erro ao processar cadastro')
-      }
-      setSuccess(true)
-      setTimeout(() => {
-        window.location.href = WHATSAPP_URL
-      }, 2500)
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Algo deu errado. Tente novamente.'
-      setError(message)
-      setLoading(false)
-    }
-  }
+  const cd = useCountdown()
 
   return (
     <div style={styles.page}>
@@ -79,81 +57,68 @@ export default function PreCadastro() {
           <span style={styles.eventBadge}>Pirenópolis, GO</span>
         </div>
 
-        {/* Card */}
-        {!success ? (
-          <div style={styles.card}>
-            <h2 style={styles.cardTitle}>Pré-cadastro</h2>
-            <p style={styles.cardSubtitle}>
-              Garanta seu acesso à pré-venda e entre no grupo exclusivo do festival.
-            </p>
+        {/* Card de compra */}
+        <div style={styles.card}>
+          {!cd.ended ? (
+            <>
+              <p style={styles.prevendaLabel}>Pré-venda encerra em:</p>
 
-            <form onSubmit={handleSubmit} style={styles.form}>
-              <div style={styles.fieldWrap}>
-                <label style={styles.label}>Nome completo</label>
-                <input
-                  name="nome"
-                  type="text"
-                  placeholder="Seu nome"
-                  value={form.nome}
-                  onChange={handleChange}
-                  style={styles.input}
-                  autoComplete="name"
-                />
+              {/* Countdown */}
+              <div style={styles.cdRow}>
+                <div style={styles.cdBox}>
+                  <span style={styles.cdNum}>{pad(cd.days)}</span>
+                  <span style={styles.cdUnit}>DIAS</span>
+                </div>
+                <span style={styles.cdSep}>:</span>
+                <div style={styles.cdBox}>
+                  <span style={styles.cdNum}>{pad(cd.hours)}</span>
+                  <span style={styles.cdUnit}>HORAS</span>
+                </div>
+                <span style={styles.cdSep}>:</span>
+                <div style={styles.cdBox}>
+                  <span style={styles.cdNum}>{pad(cd.minutes)}</span>
+                  <span style={styles.cdUnit}>MIN</span>
+                </div>
+                <span style={styles.cdSep}>:</span>
+                <div style={styles.cdBox}>
+                  <span style={styles.cdNum}>{pad(cd.seconds)}</span>
+                  <span style={styles.cdUnit}>SEG</span>
+                </div>
               </div>
 
-              <div style={styles.fieldWrap}>
-                <label style={styles.label}>E-mail</label>
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="seu@email.com"
-                  value={form.email}
-                  onChange={handleChange}
-                  style={styles.input}
-                  autoComplete="email"
-                />
-              </div>
+              <div style={styles.divider} />
 
-              <div style={styles.fieldWrap}>
-                <label style={styles.label}>Telefone / WhatsApp</label>
-                <input
-                  name="telefone"
-                  type="tel"
-                  placeholder="(DDD) 9 0000-0000"
-                  value={form.telefone}
-                  onChange={handleChange}
-                  style={styles.input}
-                  autoComplete="tel"
-                />
-              </div>
+              <h2 style={styles.cardTitle}>Garanta seu ingresso</h2>
+              <p style={styles.cardSubtitle}>
+                Lote promocional disponível por tempo limitado. Após o encerramento, o preço muda.
+              </p>
 
-              {error && <p style={styles.errorMsg}>{error}</p>}
-
-              <button type="submit" disabled={loading} style={{
-                ...styles.btn,
-                ...(loading ? styles.btnLoading : {}),
-              }}>
-                {loading ? 'Enviando...' : 'Garantir Pré-Venda'}
-              </button>
-            </form>
-          </div>
-        ) : (
-          <div style={styles.card}>
-            <div style={styles.successIcon}>✓</div>
-            <h2 style={styles.successTitle}>Você está na lista!</h2>
-            <p style={styles.successText}>
-              Redirecionando para o grupo do WhatsApp...
-            </p>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={styles.fallbackBtn}
-            >
-              Entrar no Grupo
-            </a>
-          </div>
-        )}
+              <a
+                href={INGRESSO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.btn}
+              >
+                COMPRAR INGRESSO
+              </a>
+            </>
+          ) : (
+            <>
+              <h2 style={styles.cardTitle}>A pré-venda encerrou</h2>
+              <p style={styles.cardSubtitle}>
+                Os ingressos ainda estão disponíveis. Garanta o seu agora.
+              </p>
+              <a
+                href={INGRESSO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={styles.btn}
+              >
+                COMPRAR INGRESSO
+              </a>
+            </>
+          )}
+        </div>
 
         {/* Footer */}
         <p style={styles.footer}>
@@ -262,6 +227,64 @@ const styles: Record<string, React.CSSProperties> = {
     borderRadius: '20px',
     padding: 'clamp(24px, 6vw, 40px) clamp(20px, 6vw, 36px)',
     boxShadow: '0 24px 60px rgba(0,0,0,0.3)',
+    textAlign: 'center' as const,
+  },
+  prevendaLabel: {
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 500,
+    fontSize: '13px',
+    color: WHITE_MUTED,
+    letterSpacing: '0.06em',
+    textTransform: 'uppercase' as const,
+    margin: '0 0 16px 0',
+  },
+  cdRow: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '6px',
+    marginBottom: '4px',
+  },
+  cdBox: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    alignItems: 'center',
+    background: 'rgba(255,255,255,0.07)',
+    borderRadius: '10px',
+    padding: '10px 14px',
+    minWidth: '58px',
+  },
+  cdNum: {
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 700,
+    fontSize: 'clamp(22px, 6vw, 32px)',
+    color: GOLD,
+    lineHeight: 1.1,
+  },
+  cdUnit: {
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 500,
+    fontSize: '9px',
+    color: WHITE_MUTED,
+    letterSpacing: '0.1em',
+    marginTop: '4px',
+  },
+  cdSep: {
+    fontFamily: "'Poppins', sans-serif",
+    fontWeight: 700,
+    fontSize: 'clamp(20px, 5vw, 28px)',
+    color: GOLD,
+    opacity: 0.5,
+    lineHeight: 1,
+    marginBottom: '14px',
+  },
+  divider: {
+    width: '32px',
+    height: '1.5px',
+    background: GOLD,
+    opacity: 0.25,
+    borderRadius: '2px',
+    margin: '20px auto 20px',
   },
   cardTitle: {
     fontFamily: "'Poppins', sans-serif",
@@ -276,115 +299,26 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 400,
     fontSize: '14px',
     color: WHITE_MUTED,
-    margin: '0 0 28px 0',
+    margin: '0 0 24px 0',
     lineHeight: '1.6',
   },
-  form: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '18px',
-  },
-  fieldWrap: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '6px',
-  },
-  label: {
-    fontFamily: "'Poppins', sans-serif",
-    fontWeight: 500,
-    fontSize: '12px',
-    color: 'rgba(255,255,255,0.75)',
-    letterSpacing: '0.04em',
-    textTransform: 'uppercase' as const,
-  },
-  input: {
-    fontFamily: "'Poppins', sans-serif",
-    fontWeight: 400,
-    fontSize: '14px',
-    color: WHITE,
-    background: 'rgba(255,255,255,0.08)',
-    border: '1px solid rgba(255,255,255,0.15)',
-    borderRadius: '10px',
-    padding: '13px 16px',
-    outline: 'none',
-    transition: 'border-color 0.2s, background 0.2s',
-    width: '100%',
-    boxSizing: 'border-box' as const,
-  },
   btn: {
+    display: 'block',
     fontFamily: "'Poppins', sans-serif",
     fontWeight: 600,
     fontSize: '14px',
-    letterSpacing: '0.04em',
+    letterSpacing: '0.06em',
     color: BG,
     background: `linear-gradient(135deg, ${GOLD} 0%, #e8a93a 100%)`,
     border: 'none',
     borderRadius: '10px',
     padding: '15px',
     cursor: 'pointer',
-    marginTop: '6px',
-    transition: 'opacity 0.2s, transform 0.15s',
-    width: '100%',
-    textTransform: 'uppercase' as const,
-  },
-  btnLoading: {
-    opacity: 0.7,
-    cursor: 'not-allowed',
-  },
-  errorMsg: {
-    fontFamily: "'Poppins', sans-serif",
-    fontSize: '13px',
-    color: '#ff8a80',
-    margin: '0',
-    textAlign: 'center' as const,
-  },
-  successIcon: {
-    width: '60px',
-    height: '60px',
-    borderRadius: '50%',
-    background: `rgba(245,196,105,0.15)`,
-    border: `2px solid ${GOLD}`,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '24px',
-    color: GOLD,
-    margin: '0 auto 20px',
-  },
-  successTitle: {
-    fontFamily: "'Poppins', sans-serif",
-    fontWeight: 600,
-    fontSize: '22px',
-    color: WHITE,
-    textAlign: 'center' as const,
-    margin: '0 0 10px 0',
-  },
-  successText: {
-    fontFamily: "'Poppins', sans-serif",
-    fontSize: '14px',
-    color: WHITE_MUTED,
-    textAlign: 'center' as const,
-    margin: 0,
-    lineHeight: '1.6',
-  },
-  fallbackBtn: {
-    display: 'block',
-    marginTop: '20px',
-    fontFamily: "'Poppins', sans-serif",
-    fontWeight: 600,
-    fontSize: '13px',
-    letterSpacing: '0.05em',
-    color: BG,
-    background: `linear-gradient(135deg, ${GOLD} 0%, #e8a93a 100%)`,
-    border: 'none',
-    borderRadius: '10px',
-    padding: '13px 20px',
-    cursor: 'pointer',
-    textAlign: 'center' as const,
-    textDecoration: 'none',
-    textTransform: 'uppercase' as const,
     width: '100%',
     boxSizing: 'border-box' as const,
+    textTransform: 'uppercase' as const,
+    textDecoration: 'none',
+    WebkitTapHighlightColor: 'transparent',
   },
   footer: {
     fontFamily: "'Poppins', sans-serif",
