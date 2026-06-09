@@ -390,7 +390,7 @@ export default function Prevenda() {
           {/* ARTISTS */}
           <div className="pv-artists-wrap">
             <img src="/BannerArtistas-1280x720.png" alt="Artistas Let's Piri" className="pv-banner-desktop" />
-            <img src="/BannerArtistas-1280x720.png" alt="Artistas Let's Piri" className="pv-banner-mobile" />
+            <img src="/BannerArtistas-1080x1350.png" alt="Artistas Let's Piri" className="pv-banner-mobile" />
 
           </div>
 
