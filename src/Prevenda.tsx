@@ -8,7 +8,7 @@ const MUTED = '#8fb5c2'
 const CARD_BG = 'rgba(255,255,255,0.06)'
 
 const API_URL = '/api/subscribe'
-const WHATSAPP_URL = 'https://chat.whatsapp.com/DFbq1shJ6zD559HivKtbLb'
+const WHATSAPP_URL = 'https://chat.whatsapp.com/JEiHu7PZOFHExb5ijHDdfz'
 
 // Countdown abertura: 09/06/2026 12:00 Brasília
 const TARGET_DATE = new Date('2026-06-09T12:00:00-03:00').getTime()
