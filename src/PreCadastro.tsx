@@ -8,7 +8,7 @@ const MUTED = '#8fb5c2'
 const CARD_BG = 'rgba(255,255,255,0.06)'
 
 const API_URL = '/api/subscribe'
-const WHATSAPP_URL = 'https://chat.whatsapp.com/JEiHu7PZOFHExb5ijHDdfz'
+const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
 
 // Countdown abertura: 09/06/2026 12:00 Brasília
 const TARGET_DATE = new Date('2026-06-09T12:00:00-03:00').getTime()
@@ -113,7 +113,7 @@ export default function PreCadastro() {
       })
       if (!res.ok) throw new Error()
       setSuccess(true)
-      setTimeout(() => { window.location.href = WHATSAPP_URL }, 2000)
+      setTimeout(() => { window.location.href = INGRESSO_URL }, 2000)
     } catch {
       setError('Algo deu errado. Tente novamente.')
     } finally {
@@ -418,57 +418,8 @@ export default function PreCadastro() {
           {/* DIVIDER */}
           <div className="pv-divider" />
 
-          {/* COUNTDOWN */}
-          {isOpen ? (
-            <>
-              <div className="pv-open-now">A PRÉ-VENDA ESTÁ ABERTA!</div>
-              <div className="pv-cd-title" style={{ marginTop: '4px' }}>A pré-venda encerra em:</div>
-              <div className="pv-cd-row">
-                <div className="pv-cd-cells">
-                  <div className="pv-cd-cell">
-                    <span className="pv-cd-num">{pad(deadline.days)}</span>
-                    <span className="pv-cd-unit">dias</span>
-                  </div>
-                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
-                    <span className="pv-cd-num">{pad(deadline.hours)}</span>
-                    <span className="pv-cd-unit">horas</span>
-                  </div>
-                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
-                    <span className="pv-cd-num">{pad(deadline.minutes)}</span>
-                    <span className="pv-cd-unit">min</span>
-                  </div>
-                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
-                    <span className="pv-cd-num">{pad(deadline.seconds)}</span>
-                    <span className="pv-cd-unit">seg</span>
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="pv-cd-title">A pré-venda abre em:</div>
-              <div className="pv-cd-row">
-                <div className="pv-cd-cells">
-                  <div className="pv-cd-cell">
-                    <span className="pv-cd-num">{pad(days)}</span>
-                    <span className="pv-cd-unit">dias</span>
-                  </div>
-                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
-                    <span className="pv-cd-num">{pad(hours)}</span>
-                    <span className="pv-cd-unit">horas</span>
-                  </div>
-                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
-                    <span className="pv-cd-num">{pad(minutes)}</span>
-                    <span className="pv-cd-unit">min</span>
-                  </div>
-                  <div className="pv-cd-cell" style={{ marginLeft: 'clamp(6px,2vw,12px)' }}>
-                    <span className="pv-cd-num">{pad(seconds)}</span>
-                    <span className="pv-cd-unit">seg</span>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
+          {/* INGRESSO CTA */}
+          <div className="pv-open-now">INGRESSOS DISPONÍVEIS!</div>
 
           {/* SOCIAL PROOF */}
           <div className="pv-proof">
@@ -483,13 +434,13 @@ export default function PreCadastro() {
               <div style={{ textAlign: 'center' }}>
                 <div className="pv-success-icon"><span>✓</span></div>
                 <p className="pv-success-title">Pré-venda garantida!</p>
-                <p className="pv-success-text">Você será redirecionado para o grupo exclusivo em instantes.</p>
-                <a href={WHATSAPP_URL} className="pv-fallback-btn">Entrar no grupo agora</a>
+                <p className="pv-success-text">Você será redirecionado para adquirir seu ingresso em instantes.</p>
+                <a href={INGRESSO_URL} className="pv-fallback-btn">Adquirir ingresso agora</a>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
-                <div className="pv-card-title">Pré-venda</div>
-                <p className="pv-card-sub">Garanta seu acesso à pré-venda e entre no grupo exclusivo do festival.</p>
+                <div className="pv-card-title">Adquirir Ingresso</div>
+                <p className="pv-card-sub">Preencha seus dados e garanta seu ingresso para o Let's Piri.</p>
 
                 <div className="pv-field">
                   <label className="pv-label">Nome completo</label>
@@ -507,7 +458,7 @@ export default function PreCadastro() {
                 {error && <p className="pv-error">{error}</p>}
 
                 <button type="submit" disabled={loading} className="pv-btn">
-                  {loading ? 'Aguarde...' : 'Garantir pré-venda'}
+                  {loading ? 'Aguarde...' : 'ADQUIRIR INGRESSO AGORA'}
                 </button>
               </form>
             )}
