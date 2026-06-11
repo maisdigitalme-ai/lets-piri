@@ -74,10 +74,7 @@ function useCounter() {
 }
 
 export default function Prevenda() {
-  const { days, hours, minutes, seconds } = useCountdown()
-  const deadline = useDeadlineCountdown()
   const count = useCounter()
-  const isOpen = TARGET_DATE - Date.now() <= 0
 
   const [form, setForm] = useState({ nome: '', email: '', telefone: '' })
   const [loading, setLoading] = useState(false)
@@ -121,7 +118,6 @@ export default function Prevenda() {
     }
   }
 
-  const pad = (n: number) => String(n).padStart(2, '0')
   const formatCount = (n: number) => n.toLocaleString('pt-BR')
 
   return (
