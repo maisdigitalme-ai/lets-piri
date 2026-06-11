@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const BG = '#0E7B8C'
 const AMBER = '#f0c96a'
@@ -13,28 +13,10 @@ const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
 
 
 
-// Contador progressivo baseado no tempo decorrido desde o lançamento
-// Atualizado: 09/06/2026 — base 3.219, +1 a cada 20s
-const COUNTER_BASE = 3219
-const COUNTER_START_TS = new Date('2026-06-09T11:00:00-03:00').getTime()
-const COUNTER_INTERVAL_MS = 20000
 
-function useCounter() {
-  function calcCurrent() {
-    const elapsed = Date.now() - COUNTER_START_TS
-    const increments = Math.floor(elapsed / COUNTER_INTERVAL_MS)
-    return COUNTER_BASE + Math.max(0, increments)
-  }
-  const [count, setCount] = useState(calcCurrent)
-  useEffect(() => {
-    const id = setInterval(() => setCount(calcCurrent), COUNTER_INTERVAL_MS)
-    return () => clearInterval(id)
-  }, [])
-  return count
-}
 
 export default function PreCadastro() {
-  const count = useCounter()
+
 
 
   const [form, setForm] = useState({ nome: '', email: '', telefone: '' })
@@ -80,7 +62,7 @@ export default function PreCadastro() {
   }
 
 
-  const formatCount = (n: number) => n.toLocaleString('pt-BR')
+
 
   return (
     <>
