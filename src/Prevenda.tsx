@@ -15,43 +15,7 @@ const TARGET_DATE = new Date('2026-06-09T12:00:00-03:00').getTime()
 // Countdown encerramento: 11/06/2026 12:00 Brasília
 const DEADLINE_DATE = new Date('2026-06-11T12:00:00-03:00').getTime()
 
-function useDeadlineCountdown() {
-  function calc() {
-    const diff = Math.max(0, DEADLINE_DATE - Date.now())
-    return {
-      days: Math.floor(diff / 86400000),
-      hours: Math.floor((diff % 86400000) / 3600000),
-      minutes: Math.floor((diff % 3600000) / 60000),
-      seconds: Math.floor((diff % 60000) / 1000),
-    }
-  }
-  const [t, setT] = useState(calc)
-  useEffect(() => {
-    const id = setInterval(() => setT(calc()), 1000)
-    return () => clearInterval(id)
-  }, [])
-  return t
-}
 
-function useCountdown() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-  useEffect(() => {
-    function calc() {
-      const diff = TARGET_DATE - Date.now()
-      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return }
-      setTimeLeft({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-      })
-    }
-    calc()
-    const id = setInterval(calc, 1000)
-    return () => clearInterval(id)
-  }, [])
-  return timeLeft
-}
 
 // Contador progressivo baseado no tempo decorrido desde o lançamento
 // Atualizado: 09/06/2026 — base 3.219, +1 a cada 20s
