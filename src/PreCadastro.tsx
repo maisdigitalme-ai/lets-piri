@@ -74,8 +74,6 @@ function useCounter() {
 }
 
 export default function PreCadastro() {
-  const { days, hours, minutes, seconds } = useCountdown()
-  const deadline = useDeadlineCountdown()
   const count = useCounter()
 
 

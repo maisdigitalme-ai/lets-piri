@@ -10,10 +10,6 @@ const CARD_BG = 'rgba(255,255,255,0.06)'
 const API_URL = '/api/subscribe'
 const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
 
-// Countdown abertura: 09/06/2026 12:00 Brasília
-const TARGET_DATE = new Date('2026-06-09T12:00:00-03:00').getTime()
-// Countdown encerramento: 11/06/2026 12:00 Brasília
-const DEADLINE_DATE = new Date('2026-06-11T12:00:00-03:00').getTime()
 
 
 
