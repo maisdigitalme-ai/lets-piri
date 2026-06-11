@@ -377,13 +377,6 @@ export default function Prevenda() {
           {/* INGRESSO CTA */}
           <div className="pv-open-now">INGRESSOS DISPONÍVEIS!</div>
 
-          {/* SOCIAL PROOF */}
-          <div className="pv-proof">
-            <span className="pv-proof-dot" />
-            <strong style={{ color: AMBER }}>{formatCount(count)}</strong>
-            {' '}pessoas já garantiram sua pré-venda
-          </div>
-
           {/* FORM CARD */}
           <div className="pv-card">
             {success ? (
