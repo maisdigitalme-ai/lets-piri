@@ -551,18 +551,27 @@ export default function NovaPg() {
           <p className="np-section-subtitle">
             O lugar faz parte de tudo. Entre dunas de história, cachoeiras cristalinas, ruas de pedra que contam séculos e o pôr do sol que muda o ritmo dos dias, Pirenópolis não é só cenário. É o que molda a experiência.
           </p>
-          <div className="np-grid">
-            <div className="np-grid-card">
-              <div className="np-grid-card-title">Cachoeiras</div>
-              <div className="np-grid-card-text">Mergulhe nas águas cristalinas e sinta a energia da natureza</div>
+          <div className="np-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginTop: '40px' }}>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
+              <img src="/piri-01.jpg" alt="Pirenópolis - Natureza" style={{ width: '100%', height: '280px', objectFit: 'cover', display: 'block' }} />
+              <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
+                <div className="np-grid-card-title">Cachoeiras</div>
+                <div className="np-grid-card-text">Mergulhe nas águas cristalinas e sinta a energia da natureza</div>
+              </div>
             </div>
-            <div className="np-grid-card">
-              <div className="np-grid-card-title">Ruas de Pedra</div>
-              <div className="np-grid-card-text">Caminhe pela história colonial e sinta o charme do lugar</div>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
+              <img src="/piri-02.jpg" alt="Pirenópolis - Arquitetura" style={{ width: '100%', height: '280px', objectFit: 'cover', display: 'block' }} />
+              <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
+                <div className="np-grid-card-title">Ruas de Pedra</div>
+                <div className="np-grid-card-text">Caminhe pela história colonial e sinta o charme do lugar</div>
+              </div>
             </div>
-            <div className="np-grid-card">
-              <div className="np-grid-card-title">Pôr do Sol</div>
-              <div className="np-grid-card-text">Viva o momento mágico que marca o ritmo de cada dia</div>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
+              <img src="/piri-03.jpg" alt="Pirenópolis - Céu" style={{ width: '100%', height: '280px', objectFit: 'cover', display: 'block' }} />
+              <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
+                <div className="np-grid-card-title">Pôr do Sol</div>
+                <div className="np-grid-card-text">Viva o momento mágico que marca o ritmo de cada dia</div>
+              </div>
             </div>
           </div>
         </section>
@@ -597,17 +606,23 @@ export default function NovaPg() {
             Além da música, o Let's Piri é sobre viver Pirenópolis em sua totalidade
           </p>
           <div className="np-grid">
-            <div className="np-grid-card">
-              <div className="np-grid-card-title">🎵 Música</div>
-              <div className="np-grid-card-text">Artistas principais e DJs em um ambiente único</div>
+            <div className="np-grid-card" style={{ backgroundImage: 'url(/piri-04.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '200px', position: 'relative', display: 'flex', alignItems: 'flex-end' }}>
+              <div style={{ background: 'linear-gradient(to top, rgba(14,123,140,0.95), transparent)', width: '100%', padding: '20px', borderRadius: '0 0 16px 16px' }}>
+                <div className="np-grid-card-title" style={{ marginBottom: '4px' }}>🎵 Música</div>
+                <div className="np-grid-card-text">Artistas principais e DJs em um ambiente único</div>
+              </div>
             </div>
-            <div className="np-grid-card">
-              <div className="np-grid-card-title">🍹 Gastronomia</div>
-              <div className="np-grid-card-text">Comida boa, bebidas geladas e momentos inesquecíveis</div>
+            <div className="np-grid-card" style={{ backgroundImage: 'url(/piri-05.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '200px', position: 'relative', display: 'flex', alignItems: 'flex-end' }}>
+              <div style={{ background: 'linear-gradient(to top, rgba(14,123,140,0.95), transparent)', width: '100%', padding: '20px', borderRadius: '0 0 16px 16px' }}>
+                <div className="np-grid-card-title" style={{ marginBottom: '4px' }}>🍹 Gastronomia</div>
+                <div className="np-grid-card-text">Comida boa, bebidas geladas e momentos inesquecíveis</div>
+              </div>
             </div>
-            <div className="np-grid-card">
-              <div className="np-grid-card-title">🌄 Natureza</div>
-              <div className="np-grid-card-text">Explore as cachoeiras e a beleza natural da região</div>
+            <div className="np-grid-card" style={{ backgroundImage: 'url(/piri-06.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '200px', position: 'relative', display: 'flex', alignItems: 'flex-end' }}>
+              <div style={{ background: 'linear-gradient(to top, rgba(14,123,140,0.95), transparent)', width: '100%', padding: '20px', borderRadius: '0 0 16px 16px' }}>
+                <div className="np-grid-card-title" style={{ marginBottom: '4px' }}>🌄 Natureza</div>
+                <div className="np-grid-card-text">Explore as cachoeiras e a beleza natural da região</div>
+              </div>
             </div>
             <div className="np-grid-card">
               <div className="np-grid-card-title">👥 Comunidade</div>
