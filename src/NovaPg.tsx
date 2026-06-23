@@ -56,7 +56,8 @@ export default function NovaPg() {
         
         .np-wrap {
           font-family: 'Poppins', sans-serif;
-          background: linear-gradient(160deg, #0a5f6e 0%, ${BG} 45%, #1aa8bf 100%);
+          background: linear-gradient(160deg, rgba(10, 95, 110, 0.92) 0%, rgba(14, 123, 140, 0.92) 45%, rgba(26, 168, 191, 0.92) 100%),
+                      url('/piri-bg-igreja.jpg') center/cover fixed;
           color: ${WHITE};
           width: 100%;
           min-height: 100vh;
