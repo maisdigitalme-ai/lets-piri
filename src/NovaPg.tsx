@@ -4,7 +4,7 @@ const BG = '#0E7B8C'
 const AMBER = '#f0c96a'
 const AMBER_DARK = '#C9A84C'
 const WHITE = '#f5f0e8'
-const MUTED = '#8fb5c2'
+const MUTED = '#f5f0e8'
 const CARD_BG = 'rgba(255,255,255,0.06)'
 
 const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
@@ -57,7 +57,8 @@ export default function NovaPg() {
         .np-wrap {
           font-family: 'Poppins', sans-serif;
           background: linear-gradient(160deg, rgba(10, 95, 110, 0.92) 0%, rgba(14, 123, 140, 0.92) 45%, rgba(26, 168, 191, 0.92) 100%),
-                      url('/piri-bg-igreja.jpg') center/cover fixed;
+                      url('/piri-bg-igreja.jpg') center center / cover no-repeat;
+          background-attachment: fixed;
           color: ${WHITE};
           width: 100%;
           min-height: 100vh;
@@ -486,6 +487,13 @@ export default function NovaPg() {
             grid-template-columns: 1fr;
           }
         }
+        
+        @media (max-width: 768px) {
+          .np-wrap {
+            background-attachment: scroll !important;
+            background-position: center center !important;
+          }
+        }
       `}</style>
 
       <div className="np-wrap">
@@ -554,21 +562,21 @@ export default function NovaPg() {
           </p>
           <div className="np-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginTop: '40px' }}>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-cachoeira.jpg" alt="Pirenópolis - Cachoeiras" style={{ width: '100%', height: '280px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-cachoeira.jpg" alt="Pirenópolis - Cachoeiras" style={{ width: '100%', height: '380px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Cachoeiras</div>
                 <div className="np-grid-card-text">Mergulhe nas águas cristalinas e sinta a energia da natureza</div>
               </div>
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-ruas-pedra.jpg" alt="Pirenópolis - Ruas de Pedra" style={{ width: '100%', height: '280px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-ruas-pedra.jpg" alt="Pirenópolis - Ruas de Pedra" style={{ width: '100%', height: '380px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Ruas de Pedra</div>
                 <div className="np-grid-card-text">Caminhe pela história colonial e sinta o charme do lugar</div>
               </div>
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-por-do-sol.jpg" alt="Pirenópolis - Pôr do Sol" style={{ width: '100%', height: '280px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-por-do-sol.jpg" alt="Pirenópolis - Pôr do Sol" style={{ width: '100%', height: '380px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Pôr do Sol</div>
                 <div className="np-grid-card-text">Viva o momento mágico que marca o ritmo de cada dia</div>
