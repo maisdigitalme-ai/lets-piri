@@ -85,7 +85,7 @@ export default function NovaPg() {
           position: relative;
           z-index: 1;
           width: 100%;
-          max-width: 640px;
+          max-width: 960px;
           margin: 0 auto;
           padding: 48px 20px 40px;
           text-align: center;
@@ -114,7 +114,7 @@ export default function NovaPg() {
         .np-date span { color: ${AMBER}; font-weight: 600; }
         
         .np-artists-wrap { width: 100%; margin-bottom: 20px; }
-        .np-banner-desktop { display: block; width: 100%; border-radius: 16px; }
+        .np-banner-desktop { display: block; width: 100%; max-width: 960px; border-radius: 16px; }
         .np-banner-mobile { display: none; width: 100%; border-radius: 16px; }
         
         @media (max-width: 600px) {
