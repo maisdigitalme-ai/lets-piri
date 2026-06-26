@@ -611,34 +611,6 @@ export default function NovaPg() {
           </div>
         </section>
 
-        {/* ─── INGRESSOS ─── */}
-        <section className="np-section">
-          <h2 className="np-section-title">Ingressos</h2>
-          <p className="np-section-subtitle">
-            Escolha a forma de viver o Let's Piri e garanta seu lugar
-          </p>
-          <div className="np-tickets-grid">
-            <div className="np-ticket-card">
-              <div className="np-ticket-name">1º Lote</div>
-              <div className="np-ticket-price">R$ 199</div>
-              <div className="np-ticket-info">Acesso aos 2 dias<br />Quantidade limitada</div>
-              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
-            </div>
-            <div className="np-ticket-card">
-              <div className="np-ticket-name">Ingresso 1 Dia</div>
-              <div className="np-ticket-price">R$ 129</div>
-              <div className="np-ticket-info">Escolha seu dia<br />05 ou 06 de setembro</div>
-              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
-            </div>
-            <div className="np-ticket-card">
-              <div className="np-ticket-name">VIP</div>
-              <div className="np-ticket-price">R$ 399</div>
-              <div className="np-ticket-info">Acesso VIP aos 2 dias<br />Benefícios exclusivos</div>
-              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
-            </div>
-          </div>
-        </section>
-
         {/* ─── EXPERIÊNCIAS ─── */}
         <section className="np-section">
           <h2 className="np-section-title">Experiências</h2>
