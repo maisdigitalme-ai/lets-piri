@@ -557,6 +557,29 @@ export default function NovaPg() {
           </p>
         </section>
 
+        {/* ─── PROGRAMAÇÃO ─── */}
+        <section className="np-section">
+          <h2 className="np-section-title">Programação</h2>
+          <div className="np-prog-grid">
+            <div className="np-prog-card">
+              <div className="np-prog-date">05 de setembro</div>
+              <div className="np-prog-artist">PANDA</div>
+              <div className="np-prog-support">
+                Com: CDB, John DJ, Marllon e +1<br />
+                <strong>Experiência completa do festival</strong>
+              </div>
+            </div>
+            <div className="np-prog-card">
+              <div className="np-prog-date">06 de setembro</div>
+              <div className="np-prog-artist">MARIANA FAGUNDES</div>
+              <div className="np-prog-support">
+                Com: Som de Faculdade, Vinicius Cavalcante, Marllon e +1<br />
+                <strong>Experiência completa do festival</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ─── PIRENÓPOLIS ─── */}
         <section className="np-section">
           <h2 className="np-section-title">Pirenópolis</h2>
@@ -588,25 +611,30 @@ export default function NovaPg() {
           </div>
         </section>
 
-        {/* ─── PROGRAMAÇÃO ─── */}
+        {/* ─── INGRESSOS ─── */}
         <section className="np-section">
-          <h2 className="np-section-title">Programação</h2>
-          <div className="np-prog-grid">
-            <div className="np-prog-card">
-              <div className="np-prog-date">05 de setembro</div>
-              <div className="np-prog-artist">PANDA</div>
-              <div className="np-prog-support">
-                Com: CDB, John DJ, Marllon e +1<br />
-                <strong>Experiência completa do festival</strong>
-              </div>
+          <h2 className="np-section-title">Ingressos</h2>
+          <p className="np-section-subtitle">
+            Escolha a forma de viver o Let's Piri e garanta seu lugar
+          </p>
+          <div className="np-tickets-grid">
+            <div className="np-ticket-card">
+              <div className="np-ticket-name">1º Lote</div>
+              <div className="np-ticket-price">R$ 199</div>
+              <div className="np-ticket-info">Acesso aos 2 dias<br />Quantidade limitada</div>
+              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
             </div>
-            <div className="np-prog-card">
-              <div className="np-prog-date">06 de setembro</div>
-              <div className="np-prog-artist">MARIANA FAGUNDES</div>
-              <div className="np-prog-support">
-                Com: Som de Faculdade, Vinicius Cavalcante, Marllon e +1<br />
-                <strong>Experiência completa do festival</strong>
-              </div>
+            <div className="np-ticket-card">
+              <div className="np-ticket-name">Ingresso 1 Dia</div>
+              <div className="np-ticket-price">R$ 129</div>
+              <div className="np-ticket-info">Escolha seu dia<br />05 ou 06 de setembro</div>
+              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
+            </div>
+            <div className="np-ticket-card">
+              <div className="np-ticket-name">VIP</div>
+              <div className="np-ticket-price">R$ 399</div>
+              <div className="np-ticket-info">Acesso VIP aos 2 dias<br />Benefícios exclusivos</div>
+              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
             </div>
           </div>
         </section>
@@ -639,34 +667,6 @@ export default function NovaPg() {
             <div className="np-grid-card">
               <div className="np-grid-card-title">👥 Comunidade</div>
               <div className="np-grid-card-text">Encontre pessoas que vibram na mesma frequência</div>
-            </div>
-          </div>
-        </section>
-
-        {/* ─── INGRESSOS ─── */}
-        <section className="np-section">
-          <h2 className="np-section-title">Ingressos</h2>
-          <p className="np-section-subtitle">
-            Escolha a forma de viver o Let's Piri e garanta seu lugar
-          </p>
-          <div className="np-tickets-grid">
-            <div className="np-ticket-card">
-              <div className="np-ticket-name">1º Lote</div>
-              <div className="np-ticket-price">R$ 199</div>
-              <div className="np-ticket-info">Acesso aos 2 dias<br />Quantidade limitada</div>
-              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
-            </div>
-            <div className="np-ticket-card">
-              <div className="np-ticket-name">Ingresso 1 Dia</div>
-              <div className="np-ticket-price">R$ 129</div>
-              <div className="np-ticket-info">Escolha seu dia<br />05 ou 06 de setembro</div>
-              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
-            </div>
-            <div className="np-ticket-card">
-              <div className="np-ticket-name">VIP</div>
-              <div className="np-ticket-price">R$ 399</div>
-              <div className="np-ticket-info">Acesso VIP aos 2 dias<br />Benefícios exclusivos</div>
-              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-ticket-cta">Comprar</a>
             </div>
           </div>
         </section>
