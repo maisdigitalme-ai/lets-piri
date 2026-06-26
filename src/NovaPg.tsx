@@ -565,16 +565,14 @@ export default function NovaPg() {
               <div className="np-prog-date">05 de setembro</div>
               <div className="np-prog-artist">PANDA</div>
               <div className="np-prog-support">
-                Com: CDB, John DJ, Marllon e +1<br />
-                <strong>Experiência completa do festival</strong>
+                Com: CDB, John DJ, Marllon e +1
               </div>
             </div>
             <div className="np-prog-card">
               <div className="np-prog-date">06 de setembro</div>
               <div className="np-prog-artist">MARIANA FAGUNDES</div>
               <div className="np-prog-support">
-                Com: Som de Faculdade, Vinicius Cavalcante, Marllon e +1<br />
-                <strong>Experiência completa do festival</strong>
+                Com: Som de Faculdade, Vinicius Cavalcante, Marllon e +1
               </div>
             </div>
           </div>
@@ -602,7 +600,7 @@ export default function NovaPg() {
               <img src="/piri-por-do-sol.jpg" alt="Pirenópolis - Pôr do Sol" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Pôr do Sol</div>
-                <div className="np-grid-card-text">Viva o momento mágico que marca o ritmo de cada dia</div>
+                <div className="np-grid-card-text">Quando o céu vira parte da experiência.</div>
               </div>
             </div>
           </div>
