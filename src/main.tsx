@@ -10,8 +10,9 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<PreCadastro />} />
+        <Route path="/" element={<NovaPg />} />
         <Route path="/prevenda" element={<Prevenda />} />
+        <Route path="/precadastro" element={<PreCadastro />} />
         <Route path="/novapg" element={<NovaPg />} />
       </Routes>
     </BrowserRouter>
