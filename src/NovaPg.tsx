@@ -565,7 +565,7 @@ export default function NovaPg() {
           </div>
 
           {/* Card ingresso abaixo da Programação */}
-          <div className="np-card" style={{ marginTop: '32px' }}>
+          <div className="np-card" style={{ marginTop: '40px', marginBottom: '40px', marginLeft: 'auto', marginRight: 'auto' }}>
             <p className="np-card-sub" style={{ textAlign: 'center', marginBottom: 0 }}>Garanta seu lugar no Let's Piri e viva uma experiência inesquecível em Pirenópolis.</p>
             <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" style={{
               display: 'block',
