@@ -14,28 +14,40 @@ export default function NovaPg() {
 
   const faqItems = [
     {
-      q: 'O que está incluso no ingresso?',
-      a: 'O ingresso inclui acesso a todas as ativações, áreas do festival e experiências. Consulte a tabela de lotes para mais detalhes.'
+      q: 'Como será o evento?',
+      a: 'O Let’s Piri acontecerá nos dias 05 e 06 de setembro, sábado e domingo. E você ainda terá a segunda-feira, 07 de setembro, feriado da Independência, para descansar e curtir Pirenópolis com calma.\n\nProgramação por dia:\n\n05/09 | Sábado — 16h às 02h\n06/09 | Domingo — 16h às 02h'
     },
     {
-      q: 'Qual é a programação completa?',
-      a: 'Temos 2 dias de festival: 05 de setembro com Panda e 06 de setembro com Mariana Fagundes, além de DJs e artistas complementares.'
+      q: 'O evento será Open Bar?',
+      a: 'Não. As bebidas serão comercializadas dentro do evento, e as marcas parceiras e opções disponíveis serão divulgadas em breve.'
     },
     {
-      q: 'Onde acontece o evento?',
-      a: 'O evento acontecerá em Pirenópolis, Goiás, em um local com vista para as cachoeiras e a natureza da região.'
+      q: 'Quais são as áreas do evento e suas diferenças?',
+      a: 'FRONTSTAGE\nA pista principal, bem em frente ao palco. Ideal para quem gosta de curtir os shows no meio da galera e sentir toda a energia do evento.\nInclui: Acesso ao Frontstage • Área de descanso • Banheiros premium climatizados • Bares • Serviço de garçom\n\nBACKSTAGE\nÁrea elevada com visão panorâmica do palco. Perfeita para quem busca mais conforto e sofisticação, sem abrir mão da animação.\nInclui: Acesso livre ao Frontstage • Bares exclusivos • Serviço de garçom\n\nLOUNGES\nEspaços privativos para grupos de até 13 pessoas. Ideal para quem deseja curtir com amigos ou familiares em um ambiente reservado e confortável.\nInclui: Lounge mobiliado com sofá e bistrô • 1 kit exclusivo Let’s Piri com garrafa de Campari autografada por Panda e Mariana Fagundes • Acesso livre às outras áreas • Banheiros premium climatizados • Bares exclusivos • Serviço de garçom'
     },
     {
-      q: 'Qual a idade mínima?',
-      a: 'Evento proibido para menores de 18 anos. Será necessário apresentar documento de identidade na entrada.'
+      q: 'Qual o local do evento?',
+      a: 'O local oficial será divulgado em breve. Mas já podemos adiantar: será um espaço imersivo, ao ar livre e totalmente conectado à natureza, pensado para fazer parte da experiência do Let’s Piri.'
     },
     {
-      q: 'Posso comprar ingresso avulso?',
-      a: 'Sim, temos opções de ingressos para cada dia do festival. Consulte a tabela de lotes para escolher a melhor opção.'
+      q: 'Haverá praça de alimentação?',
+      a: 'Sim! Teremos uma praça de alimentação com diversas opções gastronômicas disponíveis durante os dois dias de evento.'
     },
     {
-      q: 'Como funciona a hospedagem?',
-      a: 'Pirenópolis oferece várias opções de hospedagem. Recomendamos reservar com antecedência para garantir o melhor local.'
+      q: 'O local tem estacionamento?',
+      a: 'Sim. O evento contará com estacionamento privativo e seguro, com capacidade para mais de 500 carros.'
+    },
+    {
+      q: 'Como encontrar hospedagem em Pirenópolis?',
+      a: 'Pirenópolis oferece diversas opções de hospedagem para todos os estilos e bolso. Você pode pesquisar e reservar sua acomodação através de plataformas como Airbnb.com.br e Booking.com.\n\nAlém disso, o Let’s Piri possui parcerias com pousadas e hotéis da região. As indicações e benefícios exclusivos serão divulgados em nossos canais oficiais. Acompanhe o Instagram do Let’s Piri para ficar por dentro das novidades.'
+    },
+    {
+      q: 'Menores de idade podem entrar?',
+      a: 'Sim. Adolescentes de 16 e 17 anos poderão acessar o evento desde que estejam acompanhados pelos pais ou responsável legal e apresentem o Termo de Responsabilidade devidamente preenchido e assinado (documento que será disponibilizado em breve).\n\nMenores de 15 anos ou menos somente poderão entrar acompanhados pelos pais ou responsável legal.\n\nRecomendamos que todos os menores e responsáveis portem documento oficial com foto para apresentação na entrada do evento.'
+    },
+    {
+      q: 'Política de Reembolso',
+      a: 'Conforme o Art. 49 do Código de Defesa do Consumidor, oferecemos reembolso integral de ingressos e lounges adquiridos, desde que a solicitação seja feita em até 7 dias após a compra.\n\nImportante: o pedido de reembolso só será aceito se realizado até 48 horas antes do início do evento. Ou seja, mesmo dentro do prazo de 7 dias, a solicitação precisa respeitar esse limite mínimo.\n\nExemplo: se o evento ocorrer em menos de 7 dias após a compra, o reembolso não será possível.\n\nApós o prazo de 7 dias ou nas 48 horas que antecedem o evento, não serão aceitos pedidos de devolução, salvo em casos de cancelamento ou adiamento do evento.\n\nPara solicitar reembolso, entre em contato com nossa equipe de atendimento.'
     }
   ]
 
