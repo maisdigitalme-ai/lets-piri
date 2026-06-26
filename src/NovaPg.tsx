@@ -578,41 +578,38 @@ export default function NovaPg() {
           </div>
         </section>
 
-        {/* ─── PIRENÓPOLIS ─── */}
+        {/* ─── PIRENÓPOLIS / EXPERIÊNCIAS ─── */}
         <section className="np-section">
-          <h2 className="np-section-title">Pirenópolis</h2>
+          <h2 className="np-section-title">Por que viver o Let's Piri em Pirenópolis?</h2>
           <div className="np-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginTop: '40px' }}>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-cachoeira.jpg" alt="Pirenópolis - Cachoeiras" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-cachoeira.jpg" alt="Cachoeiras" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Cachoeiras</div>
                 <div className="np-grid-card-text">Mergulhe nas águas cristalinas e sinta a energia da natureza</div>
               </div>
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-ruas-pedra.jpg" alt="Pirenópolis - Ruas de Pedra" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-ruas-pedra.jpg" alt="Ruas de Pedra" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Ruas de Pedra</div>
                 <div className="np-grid-card-text">Caminhe pela história colonial e sinta o charme do lugar</div>
               </div>
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-por-do-sol.jpg" alt="Pirenópolis - Pôr do Sol" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-por-do-sol.jpg" alt="Pôr do Sol" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Pôr do Sol</div>
                 <div className="np-grid-card-text">Quando o céu vira parte da experiência.</div>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* ─── EXPERIÊNCIAS ─── */}
-        <section className="np-section">
-          <h2 className="np-section-title">Experiências</h2>
-          <p className="np-section-subtitle">
-            Além da música, o Let's Piri é sobre viver Pirenópolis em sua totalidade
-          </p>
-          <div className="np-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
+              <img src="/piri-musica.jpg" alt="Música" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
+              <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
+                <div className="np-grid-card-title">Música</div>
+                <div className="np-grid-card-text">Do pôr do sol até o último show</div>
+              </div>
+            </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
               <img src="/piri-gastronomia.jpg" alt="Gastronomia" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
