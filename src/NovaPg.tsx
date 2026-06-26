@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 const BG = '#0E7B8C'
 const AMBER = '#f0c96a'
@@ -11,6 +11,28 @@ const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
 
 export default function NovaPg() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  const handleNewsletter = async () => {
+    if (!newsletterEmail || !newsletterEmail.includes('@')) return
+    setNewsletterStatus('loading')
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome: newsletterEmail.split('@')[0], email: newsletterEmail, telefone: '00000000000' }),
+      })
+      if (res.ok) {
+        setNewsletterStatus('success')
+        setNewsletterEmail('')
+      } else {
+        setNewsletterStatus('error')
+      }
+    } catch {
+      setNewsletterStatus('error')
+    }
+  }
 
   const faqItems = [
     {
@@ -693,12 +715,36 @@ export default function NovaPg() {
             <p className="np-newsletter-text">
               Receba novidades, line-up, viradas de lote e experiências em primeira mão
             </p>
-            <input
-              type="email"
-              className="np-newsletter-input"
-              placeholder="seu@email.com"
-            />
-            <button className="np-newsletter-btn">Inscrever-se</button>
+            {newsletterStatus === 'success' ? (
+              <p style={{ color: AMBER, fontWeight: 600, textAlign: 'center', marginTop: '16px' }}>
+                ✓ Inscrito com sucesso! Verifique seu e-mail.
+              </p>
+            ) : (
+              <>
+                <input
+                  type="email"
+                  className="np-newsletter-input"
+                  placeholder="seu@email.com"
+                  value={newsletterEmail}
+                  onChange={e => setNewsletterEmail(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleNewsletter()}
+                  disabled={newsletterStatus === 'loading'}
+                />
+                <button
+                  className="np-newsletter-btn"
+                  onClick={handleNewsletter}
+                  disabled={newsletterStatus === 'loading'}
+                  style={{ opacity: newsletterStatus === 'loading' ? 0.7 : 1 }}
+                >
+                  {newsletterStatus === 'loading' ? 'Enviando...' : 'Inscrever-se'}
+                </button>
+                {newsletterStatus === 'error' && (
+                  <p style={{ color: '#ff6b6b', fontSize: '13px', textAlign: 'center', marginTop: '8px' }}>
+                    Erro ao inscrever. Tente novamente.
+                  </p>
+                )}
+              </>
+            )}
           </div>
         </section>
 
