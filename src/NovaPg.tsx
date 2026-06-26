@@ -631,9 +631,10 @@ export default function NovaPg() {
                 <div className="np-grid-card-text">Explore as cachoeiras e a beleza natural da região</div>
               </div>
             </div>
-            <div className="np-grid-card" style={{ backgroundImage: 'url(/piri-amigos.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '200px', position: 'relative', display: 'flex', alignItems: 'flex-end' }}>
-              <div style={{ background: 'linear-gradient(to top, rgba(14,123,140,0.95), transparent)', width: '100%', padding: '20px', borderRadius: '0 0 16px 16px' }}>
-                <div className="np-grid-card-title" style={{ marginBottom: '4px' }}>Amigos</div>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
+              <img src="/piri-amigos.jpg" alt="Amigos" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
+              <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
+                <div className="np-grid-card-title">Amigos</div>
                 <div className="np-grid-card-text">Traga sua turma. O resto a gente prepara.</div>
               </div>
             </div>
