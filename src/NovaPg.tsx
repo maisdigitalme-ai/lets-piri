@@ -515,11 +515,8 @@ export default function NovaPg() {
 
           <div className="np-divider" />
 
-          <div className="np-open-now">INGRESSOS DISPONÍVEIS!</div>
-
           <div className="np-card">
-            <div className="np-card-title">Comprar Ingresso</div>
-            <p className="np-card-sub">Garanta seu lugar no Let's Piri e viva uma experiência inesquecível em Pirenópolis.</p>
+            <p className="np-card-sub" style={{ textAlign: 'center', marginBottom: 0 }}>Garanta seu lugar no Let's Piri e viva uma experiência inesquecível em Pirenópolis.</p>
             <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" style={{
               display: 'block',
               fontFamily: 'Poppins, sans-serif',
@@ -547,10 +544,16 @@ export default function NovaPg() {
         <section className="np-section">
           <h2 className="np-section-title">O que é Let's Piri?</h2>
           <p className="np-section-subtitle">
-            Saudade é o que fica. Let's Piri é sobre presença, intensidade e tudo aquilo que continua depois. Entre as ruas de pedra, as cachoeiras e o pôr do sol de Pirenópolis, propomos uma experiência que vai além da festa. É sobre amigos, liberdade, música e a energia boa que só existe quando tudo se alinha.
+            O Let's Piri nasce para transformar o feriado da Independência em uma experiência diferente em Pirenópolis.
+          </p>
+          <p className="np-section-subtitle" style={{ marginTop: 20 }}>
+            Mais do que um evento, é um encontro entre música, natureza, pôr do sol, amigos e uma atmosfera pensada para ser vivida do início ao fim.
+          </p>
+          <p className="np-section-subtitle" style={{ marginTop: 20 }}>
+            Nos dias 05 e 06 de setembro, Piri recebe uma proposta que foge do comum: cenografia viva, espaços instagramáveis, line-up diverso e aquela energia de quem escolheu sair da rotina para viver algo que realmente vale a pena lembrar.
           </p>
           <p className="np-section-subtitle" style={{ marginTop: 20, fontWeight: 500 }}>
-            O vento traz novos ares. E Pirenópolis é o lugar onde tudo faz sentido.
+            Aqui, a cidade não é só cenário.<br />Pirenópolis faz parte da experiência.
           </p>
         </section>
 
