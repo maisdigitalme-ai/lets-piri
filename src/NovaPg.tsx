@@ -371,6 +371,7 @@ export default function NovaPg() {
           align-items: center;
           font-weight: 600;
           font-size: 15px;
+          text-align: left;
           transition: all 0.3s ease;
           user-select: none;
           color: ${WHITE};
