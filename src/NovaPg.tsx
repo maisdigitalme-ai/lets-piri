@@ -623,7 +623,7 @@ export default function NovaPg() {
               <img src="/piri-gastronomia.jpg" alt="Gastronomia" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Gastronomia</div>
-                <div className="np-grid-card-text">Comida boa, bebidas geladas e momentos inesquecíveis</div>
+                <div className="np-grid-card-text">A pausa perfeita entre uma experiência e outra</div>
               </div>
             </div>
             <div className="np-grid-card" style={{ backgroundImage: 'url(/piri-06.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '200px', position: 'relative', display: 'flex', alignItems: 'flex-end' }}>
