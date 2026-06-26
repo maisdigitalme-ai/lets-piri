@@ -514,30 +514,6 @@ export default function NovaPg() {
           </div>
 
           <div className="np-divider" />
-
-          <div className="np-card">
-            <p className="np-card-sub" style={{ textAlign: 'center', marginBottom: 0 }}>Garanta seu lugar no Let's Piri e viva uma experiência inesquecível em Pirenópolis.</p>
-            <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" style={{
-              display: 'block',
-              fontFamily: 'Poppins, sans-serif',
-              fontWeight: 600,
-              fontSize: '13px',
-              letterSpacing: '2.5px',
-              color: BG,
-              background: AMBER,
-              border: 'none',
-              borderRadius: '10px',
-              padding: '16px',
-              cursor: 'pointer',
-              marginTop: '8px',
-              width: '100%',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              textAlign: 'center'
-            }}>
-              Adquirir Ingresso Agora
-            </a>
-          </div>
         </div>
 
         {/* ─── STORYTELLING ─── */}
@@ -575,6 +551,31 @@ export default function NovaPg() {
                 SOM DE FACULDADE<br />DJ TOPO<br />MARLLON<br />A.JOTA
               </div>
             </div>
+          </div>
+
+          {/* Card ingresso abaixo da Programação */}
+          <div className="np-card" style={{ marginTop: '32px' }}>
+            <p className="np-card-sub" style={{ textAlign: 'center', marginBottom: 0 }}>Garanta seu lugar no Let's Piri e viva uma experiência inesquecível em Pirenópolis.</p>
+            <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" style={{
+              display: 'block',
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 600,
+              fontSize: '13px',
+              letterSpacing: '2.5px',
+              color: BG,
+              background: AMBER,
+              border: 'none',
+              borderRadius: '10px',
+              padding: '16px',
+              cursor: 'pointer',
+              marginTop: '8px',
+              width: '100%',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              textAlign: 'center'
+            }}>
+              Adquirir Ingresso Agora
+            </a>
           </div>
         </section>
 
@@ -624,6 +625,31 @@ export default function NovaPg() {
                 <div className="np-grid-card-text">Traga sua turma. O resto a gente prepara.</div>
               </div>
             </div>
+          </div>
+
+          {/* Card ingresso abaixo de Por que viver o Let's Piri */}
+          <div className="np-card" style={{ marginTop: '32px' }}>
+            <p className="np-card-sub" style={{ textAlign: 'center', marginBottom: 0 }}>Garanta seu lugar no Let's Piri e viva uma experiência inesquecível em Pirenópolis.</p>
+            <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" style={{
+              display: 'block',
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 600,
+              fontSize: '13px',
+              letterSpacing: '2.5px',
+              color: BG,
+              background: AMBER,
+              border: 'none',
+              borderRadius: '10px',
+              padding: '16px',
+              cursor: 'pointer',
+              marginTop: '8px',
+              width: '100%',
+              textTransform: 'uppercase',
+              textDecoration: 'none',
+              textAlign: 'center'
+            }}>
+              Adquirir Ingresso Agora
+            </a>
           </div>
         </section>
 
