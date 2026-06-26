@@ -186,7 +186,7 @@ export default function NovaPg() {
           width: 100%;
           max-width: 1000px;
           margin: 0 auto;
-          padding: clamp(24px, 4vw, 48px) 20px;
+          padding: clamp(16px, 3vw, 32px) 20px;
           text-align: center;
         }
         
@@ -485,7 +485,7 @@ export default function NovaPg() {
         /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
           .np-section {
-            padding: 40px 16px;
+            padding: 24px 16px;
           }
           
           .np-grid {
@@ -539,9 +539,6 @@ export default function NovaPg() {
           </p>
           <p className="np-section-subtitle" style={{ marginTop: 20 }}>
             Nos dias 05 e 06 de setembro, Piri recebe uma proposta que foge do comum: cenografia viva, espaços instagramáveis, line-up diverso e aquela energia de quem escolheu sair da rotina para viver algo que realmente vale a pena lembrar.
-          </p>
-          <p className="np-section-subtitle" style={{ marginTop: 20, fontWeight: 500 }}>
-            Aqui, a cidade não é só cenário.<br />Pirenópolis faz parte da experiência.
           </p>
         </section>
 
