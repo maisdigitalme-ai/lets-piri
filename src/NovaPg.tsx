@@ -583,26 +583,23 @@ export default function NovaPg() {
         {/* ─── PIRENÓPOLIS ─── */}
         <section className="np-section">
           <h2 className="np-section-title">Pirenópolis</h2>
-          <p className="np-section-subtitle">
-            O lugar faz parte de tudo. Entre dunas de história, cachoeiras cristalinas, ruas de pedra que contam séculos e o pôr do sol que muda o ritmo dos dias, Pirenópolis não é só cenário. É o que molda a experiência.
-          </p>
           <div className="np-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginTop: '40px' }}>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-cachoeira.jpg" alt="Pirenópolis - Cachoeiras" style={{ width: '100%', height: '380px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-cachoeira.jpg" alt="Pirenópolis - Cachoeiras" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Cachoeiras</div>
                 <div className="np-grid-card-text">Mergulhe nas águas cristalinas e sinta a energia da natureza</div>
               </div>
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-ruas-pedra.jpg" alt="Pirenópolis - Ruas de Pedra" style={{ width: '100%', height: '380px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-ruas-pedra.jpg" alt="Pirenópolis - Ruas de Pedra" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Ruas de Pedra</div>
                 <div className="np-grid-card-text">Caminhe pela história colonial e sinta o charme do lugar</div>
               </div>
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
-              <img src="/piri-por-do-sol.jpg" alt="Pirenópolis - Pôr do Sol" style={{ width: '100%', height: '380px', objectFit: 'cover', display: 'block' }} />
+              <img src="/piri-por-do-sol.jpg" alt="Pirenópolis - Pôr do Sol" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Pôr do Sol</div>
                 <div className="np-grid-card-text">Viva o momento mágico que marca o ritmo de cada dia</div>
