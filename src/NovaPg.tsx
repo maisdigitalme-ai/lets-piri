@@ -186,7 +186,7 @@ export default function NovaPg() {
           width: 100%;
           max-width: 1000px;
           margin: 0 auto;
-          padding: clamp(40px, 8vw, 80px) 20px;
+          padding: clamp(24px, 4vw, 48px) 20px;
           text-align: center;
         }
         
