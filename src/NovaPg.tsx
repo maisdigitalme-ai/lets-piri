@@ -612,24 +612,12 @@ export default function NovaPg() {
           <p className="np-section-subtitle">
             Além da música, o Let's Piri é sobre viver Pirenópolis em sua totalidade
           </p>
-          <div className="np-grid">
-            <div className="np-grid-card" style={{ backgroundImage: 'url(/piri-04.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '200px', position: 'relative', display: 'flex', alignItems: 'flex-end' }}>
-              <div style={{ background: 'linear-gradient(to top, rgba(14,123,140,0.95), transparent)', width: '100%', padding: '20px', borderRadius: '0 0 16px 16px' }}>
-                <div className="np-grid-card-title" style={{ marginBottom: '4px' }}>🎵 Música</div>
-                <div className="np-grid-card-text">Artistas principais e DJs em um ambiente único</div>
-              </div>
-            </div>
+          <div className="np-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
               <img src="/piri-gastronomia.jpg" alt="Gastronomia" style={{ width: '100%', height: '494px', objectFit: 'cover', display: 'block' }} />
               <div className="np-grid-card" style={{ borderRadius: '0', border: 'none', padding: '20px' }}>
                 <div className="np-grid-card-title">Gastronomia</div>
                 <div className="np-grid-card-text">A pausa perfeita entre uma experiência e outra</div>
-              </div>
-            </div>
-            <div className="np-grid-card" style={{ backgroundImage: 'url(/piri-06.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '200px', position: 'relative', display: 'flex', alignItems: 'flex-end' }}>
-              <div style={{ background: 'linear-gradient(to top, rgba(14,123,140,0.95), transparent)', width: '100%', padding: '20px', borderRadius: '0 0 16px 16px' }}>
-                <div className="np-grid-card-title" style={{ marginBottom: '4px' }}>🌄 Natureza</div>
-                <div className="np-grid-card-text">Explore as cachoeiras e a beleza natural da região</div>
               </div>
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: `1px solid rgba(255,255,255,0.1)` }}>
