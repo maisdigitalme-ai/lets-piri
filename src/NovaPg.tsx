@@ -562,17 +562,17 @@ export default function NovaPg() {
           <h2 className="np-section-title">Programação</h2>
           <div className="np-prog-grid">
             <div className="np-prog-card">
-              <div className="np-prog-date">05 de setembro</div>
+              <div className="np-prog-date">05 | Set — Sábado</div>
               <div className="np-prog-artist">PANDA</div>
               <div className="np-prog-support">
-                Com: CDB, John DJ, Marllon e +1
+                CDB<br />B2 BROTHERS<br />MARLLON<br />A.JOTA
               </div>
             </div>
             <div className="np-prog-card">
-              <div className="np-prog-date">06 de setembro</div>
+              <div className="np-prog-date">06 | Set — Domingo</div>
               <div className="np-prog-artist">MARIANA FAGUNDES</div>
               <div className="np-prog-support">
-                Com: Som de Faculdade, Vinicius Cavalcante, Marllon e +1
+                SOM DE FACULDADE<br />DJ TOPO<br />MARLLON<br />A.JOTA
               </div>
             </div>
           </div>
