@@ -99,7 +99,7 @@ export default function NovaPg() {
           width: 100%;
           max-width: 960px;
           margin: 0 auto;
-          padding: 48px 20px 40px;
+          padding: 48px 20px 16px;
           text-align: center;
         }
         
@@ -525,7 +525,6 @@ export default function NovaPg() {
             <img src="/BannerArtistas-1080x1350.png" alt="Artistas Let's Piri" className="np-banner-mobile" />
           </div>
 
-          <div className="np-divider" />
         </div>
 
         {/* ─── STORYTELLING ─── */}
