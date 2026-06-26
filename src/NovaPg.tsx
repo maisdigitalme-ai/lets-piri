@@ -193,7 +193,7 @@ export default function NovaPg() {
         .np-section-title {
           font-size: clamp(28px, 6vw, 44px);
           font-weight: 700;
-          margin-bottom: 40px;
+          margin-bottom: 20px;
           text-align: center;
           letter-spacing: -0.5px;
         }
@@ -201,7 +201,7 @@ export default function NovaPg() {
         .np-section-subtitle {
           font-size: clamp(14px, 3vw, 18px);
           line-height: 1.8;
-          margin-bottom: 30px;
+          margin-bottom: 16px;
           text-align: center;
           max-width: 700px;
           margin-left: auto;
@@ -247,15 +247,15 @@ export default function NovaPg() {
         .np-prog-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 32px;
-          margin-top: 40px;
+          gap: 24px;
+          margin-top: 24px;
         }
         
         .np-prog-card {
           background: ${CARD_BG};
           border: 1px solid rgba(255,255,255,0.1);
           border-radius: 16px;
-          padding: clamp(32px, 6vw, 48px);
+          padding: clamp(20px, 4vw, 32px);
           text-align: center;
         }
         
