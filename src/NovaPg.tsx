@@ -553,14 +553,20 @@ export default function NovaPg() {
         {/* ─── STORYTELLING ─── */}
         <section className="np-section">
           <h2 className="np-section-title">O que é Let's Piri?</h2>
-          <p className="np-section-subtitle">
+          <p className="np-section-subtitle" style={{ fontStyle: 'italic', fontWeight: 500, lineHeight: 2 }}>
+            LET'S é movimento.<br />
+            É convite.<br />
+            É ir.<br />
+            É experiência.
+          </p>
+          <p className="np-section-subtitle" style={{ marginTop: 24 }}>
             O Let's Piri nasce para transformar o feriado da Independência em uma experiência diferente em Pirenópolis.
           </p>
           <p className="np-section-subtitle" style={{ marginTop: 20 }}>
             Mais do que um evento, é um encontro entre música, natureza, pôr do sol, amigos e uma atmosfera pensada para ser vivida do início ao fim.
           </p>
           <p className="np-section-subtitle" style={{ marginTop: 20 }}>
-            Nos dias 05 e 06 de setembro, Piri recebe uma proposta que foge do comum: cenografia viva, espaços instagramáveis, line-up diverso e aquela energia de quem escolheu sair da rotina para viver algo que realmente vale a pena lembrar.
+            Nos dias 05 e 06 de setembro, Pirenópolis recebe uma proposta que foge do comum. Um festival ao ar livre, conectado à natureza, com cenografia imersiva, espaços instagramáveis, grandes artistas e experiências criadas para quem busca viver algo além dos shows.
           </p>
         </section>
 
