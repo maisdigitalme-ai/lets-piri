@@ -415,12 +415,12 @@ export default function NovaPg() {
         .np-faq-answer {
           max-height: 0;
           overflow: hidden;
-          transition: max-height 0.3s ease;
+          transition: max-height 0.6s ease;
           padding: 0 20px;
         }
         
         .np-faq-item.active .np-faq-answer {
-          max-height: 1000px;
+          max-height: 2000px;
           padding: 0 20px 20px;
         }
         
