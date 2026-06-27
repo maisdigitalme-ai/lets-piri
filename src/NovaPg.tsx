@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 const BG = '#0E7B8C'
 const AMBER = '#f0c96a'
