@@ -426,8 +426,11 @@ export default function NovaPg() {
         
         .np-faq-answer-text {
           font-size: 14px;
-          line-height: 1.6;
+          line-height: 1.8;
           color: ${MUTED};
+          white-space: pre-line;
+          text-align: left;
+          padding: 4px 0;
         }
         
         /* ─── NEWSLETTER ─── */
