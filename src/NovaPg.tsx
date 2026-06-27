@@ -420,7 +420,7 @@ export default function NovaPg() {
         }
         
         .np-faq-item.active .np-faq-answer {
-          max-height: 300px;
+          max-height: 1000px;
           padding: 0 20px 20px;
         }
         
