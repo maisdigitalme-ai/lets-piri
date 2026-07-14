@@ -128,7 +128,7 @@ export default function Patrocinador() {
           margin: 0 auto 32px;
         }
         .sp-hero-info {
-          display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+          display: flex; flex-direction: column; gap: 10px; align-items: center;
           font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
           color: rgba(245,240,232,0.6);
         }
@@ -492,10 +492,8 @@ export default function Patrocinador() {
             <div className="sp-hero-divider" />
             <div className="sp-hero-info">
               <span><strong>05 e 06</strong> de Setembro</span>
-              <span>•</span>
-              <span>Pirenópolis <strong>•</strong> Goiás</span>
-              <span>•</span>
-              <span><strong>6.000–8.000</strong> pessoas/dia</span>
+              <span>Pirenópolis, Goiás</span>
+              <span><strong>6.000 a 8.000</strong> pessoas/dia</span>
             </div>
           </div>
 
