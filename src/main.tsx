@@ -5,6 +5,7 @@ import './index.css'
 import PreCadastro from './PreCadastro'
 import Prevenda from './Prevenda'
 import NovaPg from './NovaPg'
+import Patrocinador from './Patrocinador'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/prevenda" element={<Prevenda />} />
         <Route path="/precadastro" element={<PreCadastro />} />
         <Route path="/novapg" element={<NovaPg />} />
+        <Route path="/patrocinador" element={<Patrocinador />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
