@@ -247,6 +247,21 @@ export default function Patrocinador() {
         .sp-photo-item.tall { grid-row: span 2; aspect-ratio: auto; }
         .sp-photo-item.tall img { height: 100%; }
 
+        @media (max-width: 768px) {
+          .sp-photo-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+          .sp-photo-item {
+            aspect-ratio: 9/16;
+            border-radius: 16px;
+          }
+          .sp-photo-item.tall {
+            grid-row: span 1;
+            aspect-ratio: 9/16;
+          }
+        }
+
         /* ─── LINE-UP ─── */
         .sp-lineup-grid {
           display: grid;
