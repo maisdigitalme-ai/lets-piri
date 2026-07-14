@@ -583,14 +583,14 @@ export default function Patrocinador() {
 
             <div className="sp-photo-grid" style={{ marginTop: 48 }}>
               {[
-                { src: '/piri-ruas-pedra.jpg', tall: true },
-                { src: '/piri-cachoeira.jpg', tall: false },
-                { src: '/piri-por-do-sol.jpg', tall: false },
-                { src: '/piri-gastronomia.jpg', tall: false },
-                { src: '/piri-musica.jpg', tall: false },
+                { src: '/piri-ruas-pedra.jpg', tall: true, pos: 'center center' },
+                { src: '/piri-cachoeira.jpg', tall: false, pos: 'center 30%' },
+                { src: '/piri-por-do-sol.jpg', tall: false, pos: 'center 60%' },
+                { src: '/piri-gastronomia.jpg', tall: false, pos: 'center center' },
+                { src: '/piri-musica.jpg', tall: false, pos: 'center center' },
               ].map((p, i) => (
                 <div key={i} id={`photo-${i}`} data-animate style={animStyle(`photo-${i}`, i * 0.08)} className={`sp-photo-item${p.tall ? ' tall' : ''}`}>
-                  <img src={p.src} alt="Pirenópolis" />
+                  <img src={p.src} alt="Pirenópolis" style={{ objectPosition: p.pos }} />
                 </div>
               ))}
             </div>
