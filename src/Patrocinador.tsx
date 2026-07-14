@@ -557,7 +557,7 @@ export default function Patrocinador() {
 
             <div className="sp-stats">
               {[
-                { num: '6–8K', label: 'Pessoas por dia' },
+                { num: '6 | 8K', label: 'Pessoas por dia' },
                 { num: '2', label: 'Dias de festival' },
                 { num: '10+', label: 'Atrações no palco' },
                 { num: '1,2M+', label: 'Views mensais' },
