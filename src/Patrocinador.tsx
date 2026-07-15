@@ -256,29 +256,42 @@ export default function Patrocinador() {
         }
 
         /* ─── CARROSSEL ─── */
-        .sp-carousel-wrap {
-          position: relative;
+        .sp-carousel-outer {
           margin-top: 48px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 16px;
+          position: relative;
+        }
+        .sp-carousel-viewport {
+          overflow: hidden;
+          border-radius: 24px;
+          width: 100%;
         }
         .sp-carousel-track {
           display: flex;
-          gap: 16px;
-          overflow: hidden;
-          width: 100%;
-          justify-content: center;
+          transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          will-change: transform;
         }
         .sp-carousel-slide {
           flex-shrink: 0;
-          width: calc((100% - 32px) / 3);
+          width: 33.333%;
+          padding: 0 8px;
           aspect-ratio: 9/16;
+        }
+        .sp-carousel-slide-inner {
+          width: 100%; height: 100%;
           border-radius: 20px;
           overflow: hidden;
-          position: relative;
-          transition: transform 0.4s ease, opacity 0.4s ease;
+          transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      box-shadow 0.65s ease;
+        }
+        .sp-carousel-slide.center .sp-carousel-slide-inner {
+          transform: scale(1.05);
+          box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+          z-index: 2;
+        }
+        .sp-carousel-slide.side .sp-carousel-slide-inner {
+          opacity: 0.45;
+          transform: scale(0.93);
         }
         .sp-carousel-slide img {
           width: 100%; height: 100%;
@@ -286,54 +299,50 @@ export default function Patrocinador() {
           object-position: center;
           display: block;
         }
-        .sp-carousel-slide.center {
-          transform: scale(1.04);
-          box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-          z-index: 2;
-        }
-        .sp-carousel-slide.side {
-          opacity: 0.6;
-          transform: scale(0.96);
+        .sp-carousel-controls {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-top: 24px;
         }
         .sp-carousel-btn {
-          background: rgba(240,201,106,0.15);
-          border: 1px solid rgba(240,201,106,0.4);
+          background: rgba(240,201,106,0.12);
+          border: 1px solid rgba(240,201,106,0.35);
           color: ${AMBER};
           width: 44px; height: 44px;
           border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
-          cursor: pointer; flex-shrink: 0;
-          font-size: 18px;
-          transition: background 0.2s;
-          z-index: 3;
+          cursor: pointer;
+          font-size: 20px;
+          transition: background 0.25s, transform 0.2s;
+          line-height: 1;
         }
-        .sp-carousel-btn:hover { background: rgba(240,201,106,0.3); }
+        .sp-carousel-btn:hover { background: rgba(240,201,106,0.25); transform: scale(1.08); }
         .sp-carousel-dots {
-          display: flex; gap: 8px; justify-content: center;
-          margin-top: 20px;
+          display: flex; gap: 6px; align-items: center;
         }
         .sp-carousel-dot {
-          width: 6px; height: 6px;
+          width: 5px; height: 5px;
           border-radius: 50%;
           background: rgba(240,201,106,0.3);
-          transition: background 0.3s, transform 0.3s;
+          transition: background 0.4s, width 0.4s, border-radius 0.4s;
           cursor: pointer;
         }
         .sp-carousel-dot.active {
           background: ${AMBER};
-          transform: scale(1.4);
+          width: 20px;
+          border-radius: 3px;
         }
 
         @media (max-width: 768px) {
-          .sp-carousel-slide {
-            width: calc((100% - 16px) / 2);
-          }
-          .sp-carousel-btn { width: 36px; height: 36px; font-size: 14px; }
+          .sp-carousel-slide { width: 50%; padding: 0 6px; }
+          .sp-carousel-slide.center .sp-carousel-slide-inner { transform: scale(1.04); }
+          .sp-carousel-btn { width: 38px; height: 38px; font-size: 17px; }
         }
         @media (max-width: 480px) {
-          .sp-carousel-slide {
-            width: 72%;
-          }
+          .sp-carousel-slide { width: 78%; padding: 0 6px; }
+          .sp-carousel-slide.side .sp-carousel-slide-inner { opacity: 0.3; transform: scale(0.9); }
         }
 
         /* ─── LINE-UP ─── */
@@ -655,32 +664,49 @@ export default function Patrocinador() {
               <p className="sp-lead">Fundada em 1727. Patrimônio histórico nacional. Um dos destinos turísticos mais visitados de Goiás. No Let's Piri, a experiência não começa quando os portões abrem — ela começa quando a viagem começa.</p>
             </div>
 
-            <div id="s-carousel" data-animate style={animStyle('s-carousel')}>
-              <div className="sp-carousel-wrap">
-                <button className="sp-carousel-btn" onClick={() => { prevSlide(); if (carouselTimer.current) { clearInterval(carouselTimer.current); carouselTimer.current = setInterval(nextSlide, 3500) } }} aria-label="Anterior">‹</button>
-                <div className="sp-carousel-track">
-                  {[-1, 0, 1].map((offset) => {
-                    const idx = (carouselIndex + offset + carouselPhotos.length) % carouselPhotos.length
+            <div id="s-carousel" data-animate style={animStyle('s-carousel')} className="sp-carousel-outer">
+              <div className="sp-carousel-viewport">
+                <div
+                  className="sp-carousel-track"
+                  style={{ transform: `translateX(calc(-${carouselIndex * 33.333}% + 33.333%))` }}
+                >
+                  {carouselPhotos.map((src, i) => {
+                    const diff = i - carouselIndex
+                    const isCenter = diff === 0
+                    const isSide = Math.abs(diff) === 1 || Math.abs(diff) === carouselPhotos.length - 1
                     return (
                       <div
-                        key={offset}
-                        className={`sp-carousel-slide ${offset === 0 ? 'center' : 'side'}`}
+                        key={i}
+                        className={`sp-carousel-slide${isCenter ? ' center' : isSide ? ' side' : ' side'}`}
                       >
-                        <img src={carouselPhotos[idx]} alt={`Pirenópolis ${idx + 1}`} loading="lazy" />
+                        <div className="sp-carousel-slide-inner">
+                          <img src={src} alt={`Pirenópolis ${i + 1}`} loading="lazy" />
+                        </div>
                       </div>
                     )
                   })}
                 </div>
-                <button className="sp-carousel-btn" onClick={() => { nextSlide(); if (carouselTimer.current) { clearInterval(carouselTimer.current); carouselTimer.current = setInterval(nextSlide, 3500) } }} aria-label="Próxima">›</button>
               </div>
-              <div className="sp-carousel-dots">
-                {carouselPhotos.map((_, i) => (
-                  <div
-                    key={i}
-                    className={`sp-carousel-dot${i === carouselIndex ? ' active' : ''}`}
-                    onClick={() => setCarouselIndex(i)}
-                  />
-                ))}
+              <div className="sp-carousel-controls">
+                <button
+                  className="sp-carousel-btn"
+                  onClick={() => { prevSlide(); if (carouselTimer.current) { clearInterval(carouselTimer.current); carouselTimer.current = setInterval(nextSlide, 3500) } }}
+                  aria-label="Anterior"
+                >‹</button>
+                <div className="sp-carousel-dots">
+                  {carouselPhotos.map((_, i) => (
+                    <div
+                      key={i}
+                      className={`sp-carousel-dot${i === carouselIndex ? ' active' : ''}`}
+                      onClick={() => setCarouselIndex(i)}
+                    />
+                  ))}
+                </div>
+                <button
+                  className="sp-carousel-btn"
+                  onClick={() => { nextSlide(); if (carouselTimer.current) { clearInterval(carouselTimer.current); carouselTimer.current = setInterval(nextSlide, 3500) } }}
+                  aria-label="Próxima"
+                >›</button>
               </div>
             </div>
           </div>
