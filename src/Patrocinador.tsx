@@ -795,7 +795,7 @@ export default function Patrocinador() {
               <h2 className="sp-h2">Um festival pensado<br />para ser <span>vivido</span></h2>
               <div className="sp-divider" />
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 16, marginTop: 40 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginTop: 40 }}>
               {['Cataventos', 'Banderolas', 'Pôr do sol', 'Natureza', 'Espaços instagramáveis', 'Áreas de convivência', 'Experiências sensoriais', 'Cenografia imersiva'].map((item, i) => (
                 <div key={i} id={`conceito-${i}`} data-animate style={{ ...animStyle(`conceito-${i}`, i * 0.07), background: CARD_BG, border: `1px solid ${CARD_BORDER}`, borderRadius: 12, padding: '20px 16px', textAlign: 'center', fontSize: 13, fontWeight: 500, color: 'rgba(245,240,232,0.8)', backdropFilter: 'blur(8px)' }}>
                   {item}
