@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 const AMBER = '#f0c96a'
 const WHITE = '#f5f0e8'
@@ -9,7 +9,34 @@ export default function Patrocinador() {
   const [visibleSections, setVisibleSections] = useState<Set<string>>(new Set())
   const [contactForm, setContactForm] = useState({ nome: '', empresa: '', email: '', mensagem: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [carouselIndex, setCarouselIndex] = useState(0)
+  const carouselTimer = useRef<ReturnType<typeof setInterval> | null>(null)
   const observerRef = useRef<IntersectionObserver | null>(null)
+
+  const carouselPhotos = [
+    '/carousel/foto3.jpg',
+    '/carousel/foto7.jpg',
+    '/carousel/foto1.jpg',
+    '/carousel/foto5.jpg',
+    '/carousel/foto9.jpg',
+    '/carousel/foto2.jpg',
+    '/carousel/foto6.jpg',
+    '/carousel/foto4.jpg',
+    '/carousel/foto8.jpg',
+  ]
+
+  const nextSlide = useCallback(() => {
+    setCarouselIndex(i => (i + 1) % carouselPhotos.length)
+  }, [carouselPhotos.length])
+
+  const prevSlide = useCallback(() => {
+    setCarouselIndex(i => (i - 1 + carouselPhotos.length) % carouselPhotos.length)
+  }, [carouselPhotos.length])
+
+  useEffect(() => {
+    carouselTimer.current = setInterval(nextSlide, 3500)
+    return () => { if (carouselTimer.current) clearInterval(carouselTimer.current) }
+  }, [nextSlide])
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -228,37 +255,84 @@ export default function Patrocinador() {
           margin-top: 8px;
         }
 
-        /* ─── PHOTO GRID ─── */
-        .sp-photo-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 12px; margin-top: 48px;
+        /* ─── CARROSSEL ─── */
+        .sp-carousel-wrap {
+          position: relative;
+          margin-top: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
         }
-        .sp-photo-item {
-          border-radius: 12px; overflow: hidden;
-          aspect-ratio: 4/3;
+        .sp-carousel-track {
+          display: flex;
+          gap: 16px;
+          overflow: hidden;
+          width: 100%;
+          justify-content: center;
         }
-        .sp-photo-item img {
+        .sp-carousel-slide {
+          flex-shrink: 0;
+          width: calc((100% - 32px) / 3);
+          aspect-ratio: 9/16;
+          border-radius: 20px;
+          overflow: hidden;
+          position: relative;
+          transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .sp-carousel-slide img {
           width: 100%; height: 100%;
           object-fit: cover;
-          transition: transform 0.6s ease;
+          object-position: center;
+          display: block;
         }
-        .sp-photo-item:hover img { transform: scale(1.06); }
-        .sp-photo-item.tall { grid-row: span 2; aspect-ratio: auto; }
-        .sp-photo-item.tall img { height: 100%; }
+        .sp-carousel-slide.center {
+          transform: scale(1.04);
+          box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+          z-index: 2;
+        }
+        .sp-carousel-slide.side {
+          opacity: 0.6;
+          transform: scale(0.96);
+        }
+        .sp-carousel-btn {
+          background: rgba(240,201,106,0.15);
+          border: 1px solid rgba(240,201,106,0.4);
+          color: ${AMBER};
+          width: 44px; height: 44px;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer; flex-shrink: 0;
+          font-size: 18px;
+          transition: background 0.2s;
+          z-index: 3;
+        }
+        .sp-carousel-btn:hover { background: rgba(240,201,106,0.3); }
+        .sp-carousel-dots {
+          display: flex; gap: 8px; justify-content: center;
+          margin-top: 20px;
+        }
+        .sp-carousel-dot {
+          width: 6px; height: 6px;
+          border-radius: 50%;
+          background: rgba(240,201,106,0.3);
+          transition: background 0.3s, transform 0.3s;
+          cursor: pointer;
+        }
+        .sp-carousel-dot.active {
+          background: ${AMBER};
+          transform: scale(1.4);
+        }
 
         @media (max-width: 768px) {
-          .sp-photo-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+          .sp-carousel-slide {
+            width: calc((100% - 16px) / 2);
           }
-          .sp-photo-item {
-            aspect-ratio: 9/16;
-            border-radius: 16px;
-          }
-          .sp-photo-item.tall {
-            grid-row: span 1;
-            aspect-ratio: 9/16;
+          .sp-carousel-btn { width: 36px; height: 36px; font-size: 14px; }
+        }
+        @media (max-width: 480px) {
+          .sp-carousel-slide {
+            width: 72%;
           }
         }
 
@@ -581,18 +655,33 @@ export default function Patrocinador() {
               <p className="sp-lead">Fundada em 1727. Patrimônio histórico nacional. Um dos destinos turísticos mais visitados de Goiás. No Let's Piri, a experiência não começa quando os portões abrem — ela começa quando a viagem começa.</p>
             </div>
 
-            <div className="sp-photo-grid" style={{ marginTop: 48 }}>
-              {[
-                { src: '/piri-ruas-pedra.jpg', tall: true, pos: 'center center' },
-                { src: '/piri-cachoeira.jpg', tall: false, pos: 'center 30%' },
-                { src: '/piri-por-do-sol.jpg', tall: false, pos: 'center 60%' },
-                { src: '/piri-gastronomia.jpg', tall: false, pos: 'center center' },
-                { src: '/piri-musica.jpg', tall: false, pos: 'center center' },
-              ].map((p, i) => (
-                <div key={i} id={`photo-${i}`} data-animate style={animStyle(`photo-${i}`, i * 0.08)} className={`sp-photo-item${p.tall ? ' tall' : ''}`}>
-                  <img src={p.src} alt="Pirenópolis" style={{ objectPosition: p.pos }} />
+            <div id="s-carousel" data-animate style={animStyle('s-carousel')}>
+              <div className="sp-carousel-wrap">
+                <button className="sp-carousel-btn" onClick={() => { prevSlide(); if (carouselTimer.current) { clearInterval(carouselTimer.current); carouselTimer.current = setInterval(nextSlide, 3500) } }} aria-label="Anterior">‹</button>
+                <div className="sp-carousel-track">
+                  {[-1, 0, 1].map((offset) => {
+                    const idx = (carouselIndex + offset + carouselPhotos.length) % carouselPhotos.length
+                    return (
+                      <div
+                        key={offset}
+                        className={`sp-carousel-slide ${offset === 0 ? 'center' : 'side'}`}
+                      >
+                        <img src={carouselPhotos[idx]} alt={`Pirenópolis ${idx + 1}`} loading="lazy" />
+                      </div>
+                    )
+                  })}
                 </div>
-              ))}
+                <button className="sp-carousel-btn" onClick={() => { nextSlide(); if (carouselTimer.current) { clearInterval(carouselTimer.current); carouselTimer.current = setInterval(nextSlide, 3500) } }} aria-label="Próxima">›</button>
+              </div>
+              <div className="sp-carousel-dots">
+                {carouselPhotos.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`sp-carousel-dot${i === carouselIndex ? ' active' : ''}`}
+                    onClick={() => setCarouselIndex(i)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
