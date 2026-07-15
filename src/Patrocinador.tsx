@@ -894,7 +894,7 @@ export default function Patrocinador() {
             <div className="sp-benefits-grid">
               <div id="ben-1" data-animate style={animStyle('ben-1', 0.1)} className="sp-benefits-col">
                 <h3>No Evento</h3>
-                {['Presença em palco', 'Arena principal', 'Entrada do evento', 'Áreas premium', 'Lounges exclusivos', 'Praça gastronômica', 'Photopoints', 'Ativações especiais', 'Distribuição de brindes', 'Exclusividade de segmento', 'Experiências proprietárias'].map(b => (
+                {['Entrada oficial do evento', 'Arena principal de shows', 'Frontstage, Backstage e Lounges', 'Telões e mídia interna', 'Espaços instagramáveis', 'Ativações proprietárias', 'Distribuição de brindes', 'Praça gastronômica', 'Backdrops oficiais', 'Exclusividade de segmento', 'Experiências cocriadas com a marca'].map(b => (
                   <div key={b} className="sp-benefit-item">
                     <span className="sp-benefit-check">✓</span>
                     {b}
