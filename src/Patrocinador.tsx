@@ -724,7 +724,9 @@ export default function Patrocinador() {
               <p className="sp-label">O Destino</p>
               <h2 className="sp-h2">Por que <span>Pirenópolis?</span></h2>
               <div className="sp-divider" />
-              <p className="sp-lead">Fundada em 1727. Patrimônio histórico nacional. Um dos destinos turísticos mais visitados de Goiás. No Let's Piri, a experiência não começa quando os portões abrem. Ela começa quando a viagem começa.</p>
+              <p className="sp-lead">Fundada em 1727 e reconhecida como Patrimônio Histórico Nacional, Pirenópolis reúne história, natureza e experiências que transformaram a cidade em um dos destinos mais desejados do Centro-Oeste.</p>
+              <p className="sp-lead" style={{ marginTop: 20 }}>Cachoeiras, gastronomia, ruas de pedra, passeios de quadriciclo, arquitetura colonial e o pôr do sol na Serra dos Pireneus criam uma atmosfera única para quem busca viver algo além da rotina.</p>
+              <p className="sp-lead" style={{ marginTop: 20, fontStyle: 'italic', color: '#f0c96a', fontWeight: 500 }}>No Let's Piri, o destino não é apenas o cenário. A experiência começa quando a viagem começa.</p>
             </div>
 
             <div id="s-carousel" data-animate style={animStyle('s-carousel')} className="sp-carousel-outer">
