@@ -258,53 +258,68 @@ export default function Patrocinador() {
         /* ─── CARROSSEL ─── */
         .sp-carousel-outer {
           margin-top: 48px;
-          position: relative;
         }
-        .sp-carousel-viewport {
-          overflow: hidden;
-          border-radius: 24px;
-          width: 100%;
+
+        /* ── DESKTOP: 3 colunas visíveis ── */
+        .sp-carousel-desktop {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 16px;
         }
-        .sp-carousel-track {
-          display: flex;
-          transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          will-change: transform;
-        }
-        .sp-carousel-slide {
-          flex-shrink: 0;
-          width: 33.333%;
-          padding: 0 8px;
+        .sp-carousel-desktop-item {
           aspect-ratio: 9/16;
-        }
-        .sp-carousel-slide-inner {
-          width: 100%; height: 100%;
           border-radius: 20px;
           overflow: hidden;
-          transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                      opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                      box-shadow 0.65s ease;
+          transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.5s ease;
         }
-        .sp-carousel-slide.center .sp-carousel-slide-inner {
-          transform: scale(1.05);
-          box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+        .sp-carousel-desktop-item.dc-center {
+          transform: scale(1.04);
+          box-shadow: 0 32px 80px rgba(0,0,0,0.55);
           z-index: 2;
         }
-        .sp-carousel-slide.side .sp-carousel-slide-inner {
-          opacity: 0.45;
-          transform: scale(0.93);
+        .sp-carousel-desktop-item.dc-side {
+          opacity: 0.5;
+          transform: scale(0.95);
         }
-        .sp-carousel-slide img {
+        .sp-carousel-desktop-item img {
           width: 100%; height: 100%;
-          object-fit: cover;
-          object-position: center;
-          display: block;
+          object-fit: cover; object-position: center; display: block;
         }
+
+        /* ── MOBILE: 1 foto por vez, tela cheia ── */
+        .sp-carousel-mobile {
+          display: none;
+          position: relative;
+        }
+        .sp-carousel-mobile-viewport {
+          overflow: hidden;
+          border-radius: 20px;
+          width: 100%;
+          aspect-ratio: 9/16;
+        }
+        .sp-carousel-mobile-track {
+          display: flex;
+          height: 100%;
+          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          will-change: transform;
+        }
+        .sp-carousel-mobile-slide {
+          flex-shrink: 0;
+          width: 100%;
+          height: 100%;
+        }
+        .sp-carousel-mobile-slide img {
+          width: 100%; height: 100%;
+          object-fit: cover; object-position: center; display: block;
+        }
+
+        /* controles compartilhados */
         .sp-carousel-controls {
           display: flex;
           align-items: center;
           justify-content: center;
           gap: 16px;
-          margin-top: 24px;
+          margin-top: 20px;
         }
         .sp-carousel-btn {
           background: rgba(240,201,106,0.12);
@@ -313,36 +328,25 @@ export default function Patrocinador() {
           width: 44px; height: 44px;
           border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
-          cursor: pointer;
-          font-size: 20px;
+          cursor: pointer; font-size: 22px; line-height: 1;
           transition: background 0.25s, transform 0.2s;
-          line-height: 1;
         }
         .sp-carousel-btn:hover { background: rgba(240,201,106,0.25); transform: scale(1.08); }
-        .sp-carousel-dots {
-          display: flex; gap: 6px; align-items: center;
-        }
+        .sp-carousel-dots { display: flex; gap: 6px; align-items: center; }
         .sp-carousel-dot {
-          width: 5px; height: 5px;
-          border-radius: 50%;
+          width: 5px; height: 5px; border-radius: 50%;
           background: rgba(240,201,106,0.3);
           transition: background 0.4s, width 0.4s, border-radius 0.4s;
           cursor: pointer;
         }
         .sp-carousel-dot.active {
-          background: ${AMBER};
-          width: 20px;
-          border-radius: 3px;
+          background: ${AMBER}; width: 20px; border-radius: 3px;
         }
 
         @media (max-width: 768px) {
-          .sp-carousel-slide { width: 50%; padding: 0 6px; }
-          .sp-carousel-slide.center .sp-carousel-slide-inner { transform: scale(1.04); }
-          .sp-carousel-btn { width: 38px; height: 38px; font-size: 17px; }
-        }
-        @media (max-width: 480px) {
-          .sp-carousel-slide { width: 78%; padding: 0 6px; }
-          .sp-carousel-slide.side .sp-carousel-slide-inner { opacity: 0.3; transform: scale(0.9); }
+          .sp-carousel-desktop { display: none; }
+          .sp-carousel-mobile { display: block; }
+          .sp-carousel-btn { width: 40px; height: 40px; font-size: 20px; }
         }
 
         /* ─── LINE-UP ─── */
@@ -665,28 +669,36 @@ export default function Patrocinador() {
             </div>
 
             <div id="s-carousel" data-animate style={animStyle('s-carousel')} className="sp-carousel-outer">
-              <div className="sp-carousel-viewport">
-                <div
-                  className="sp-carousel-track"
-                  style={{ transform: `translateX(calc(-${carouselIndex * 33.333}% + 33.333%))` }}
-                >
-                  {carouselPhotos.map((src, i) => {
-                    const diff = i - carouselIndex
-                    const isCenter = diff === 0
-                    const isSide = Math.abs(diff) === 1 || Math.abs(diff) === carouselPhotos.length - 1
-                    return (
-                      <div
-                        key={i}
-                        className={`sp-carousel-slide${isCenter ? ' center' : isSide ? ' side' : ' side'}`}
-                      >
-                        <div className="sp-carousel-slide-inner">
-                          <img src={src} alt={`Pirenópolis ${i + 1}`} loading="lazy" />
-                        </div>
+
+              {/* DESKTOP: 3 fotos visíveis */}
+              <div className="sp-carousel-desktop">
+                {[-1, 0, 1].map((offset) => {
+                  const idx = (carouselIndex + offset + carouselPhotos.length) % carouselPhotos.length
+                  return (
+                    <div key={offset} className={`sp-carousel-desktop-item${offset === 0 ? ' dc-center' : ' dc-side'}`}>
+                      <img src={carouselPhotos[idx]} alt={`Pirenópolis ${idx + 1}`} loading="lazy" />
+                    </div>
+                  )
+                })}
+              </div>
+
+              {/* MOBILE: 1 foto por vez, deslize horizontal */}
+              <div className="sp-carousel-mobile">
+                <div className="sp-carousel-mobile-viewport">
+                  <div
+                    className="sp-carousel-mobile-track"
+                    style={{ transform: `translateX(-${carouselIndex * 100}%)` }}
+                  >
+                    {carouselPhotos.map((src, i) => (
+                      <div key={i} className="sp-carousel-mobile-slide">
+                        <img src={src} alt={`Pirenópolis ${i + 1}`} loading="lazy" />
                       </div>
-                    )
-                  })}
+                    ))}
+                  </div>
                 </div>
               </div>
+
+              {/* Controles */}
               <div className="sp-carousel-controls">
                 <button
                   className="sp-carousel-btn"
@@ -698,7 +710,7 @@ export default function Patrocinador() {
                     <div
                       key={i}
                       className={`sp-carousel-dot${i === carouselIndex ? ' active' : ''}`}
-                      onClick={() => setCarouselIndex(i)}
+                      onClick={() => { setCarouselIndex(i) }}
                     />
                   ))}
                 </div>
