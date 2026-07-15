@@ -15,9 +15,11 @@ export default function Patrocinador() {
 
   const carouselPhotos = [
     '/carousel/foto3.jpg',
+    '/carousel/foto10.jpg',
     '/carousel/foto7.jpg',
     '/carousel/foto1.jpg',
     '/carousel/foto5.jpg',
+    '/carousel/foto11.jpg',
     '/carousel/foto9.jpg',
     '/carousel/foto2.jpg',
     '/carousel/foto6.jpg',
