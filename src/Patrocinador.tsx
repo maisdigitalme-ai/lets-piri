@@ -214,19 +214,62 @@ export default function Patrocinador() {
           background: ${AMBER}; margin: 24px 0;
         }
 
-        /* ─── MANIFESTO ─── */
-        .sp-manifesto {
-          font-size: clamp(18px, 3vw, 28px);
-          font-weight: 300; line-height: 1.9;
-          color: ${WHITE}; text-align: center;
-          max-width: 780px; margin: 0 auto;
+        /* ─── MANIFESTO / CONCEITO ─── */
+        .sp-conceito-words {
+          display: flex; flex-wrap: wrap; justify-content: center;
+          gap: 12px 20px; margin: 32px 0;
         }
-        .sp-manifesto em {
-          font-style: italic; color: ${AMBER};
-          font-weight: 500;
+        .sp-conceito-word {
+          font-size: clamp(22px, 4vw, 40px);
+          font-weight: 800; letter-spacing: -0.5px;
+          color: ${AMBER}; opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .sp-manifesto strong {
-          font-weight: 700; color: ${WHITE};
+        .sp-conceito-word.visible {
+          opacity: 1; transform: translateY(0);
+        }
+        .sp-conceito-sep {
+          font-size: clamp(22px, 4vw, 40px);
+          font-weight: 300; color: rgba(245,240,232,0.2);
+          align-self: center;
+        }
+        .sp-conceito-body {
+          max-width: 820px; margin: 0 auto;
+          display: grid; grid-template-columns: 1fr 1fr;
+          gap: 32px; margin-top: 56px;
+        }
+        .sp-conceito-block {
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(240,201,106,0.12);
+          border-radius: 16px; padding: 28px 24px;
+          backdrop-filter: blur(8px);
+        }
+        .sp-conceito-block-label {
+          font-size: 10px; font-weight: 700;
+          letter-spacing: 3px; text-transform: uppercase;
+          color: ${AMBER}; margin-bottom: 12px;
+        }
+        .sp-conceito-block p {
+          font-size: clamp(14px, 1.8vw, 16px);
+          font-weight: 300; line-height: 1.8;
+          color: rgba(245,240,232,0.8); margin: 0;
+        }
+        .sp-conceito-quote {
+          max-width: 680px; margin: 48px auto 0;
+          text-align: center;
+          font-size: clamp(16px, 2.2vw, 20px);
+          font-weight: 300; line-height: 1.8;
+          color: rgba(245,240,232,0.7);
+          font-style: italic;
+          border-top: 1px solid rgba(240,201,106,0.2);
+          padding-top: 40px;
+        }
+        .sp-conceito-quote strong {
+          color: ${WHITE}; font-style: normal; font-weight: 600;
+        }
+        @media (max-width: 768px) {
+          .sp-conceito-body { grid-template-columns: 1fr; gap: 16px; }
         }
 
         /* ─── GRID STATS ─── */
@@ -610,50 +653,66 @@ export default function Patrocinador() {
           </div>
         </section>
 
-        {/* ─── MANIFESTO ─── */}
-        <section className="sp-section-full" style={{ background: 'linear-gradient(180deg, #071e22 0%, rgba(14,123,140,0.15) 50%, #071e22 100%)', padding: '100px 24px' }}>
+        {/* ─── CONCEITO ─── */}
+        <section className="sp-section-full" style={{ background: 'linear-gradient(180deg, #071e22 0%, rgba(14,123,140,0.12) 50%, #071e22 100%)', padding: '100px 24px' }}>
           <div style={{ position: 'relative', maxWidth: 900, margin: '0 auto' }}>
-            <div className="sp-deco sp-deco-spin" style={{ width: 300, height: 300, top: -60, right: -80, opacity: 0.05 }} />
+            <div className="sp-deco sp-deco-spin" style={{ width: 280, height: 280, top: -40, right: -60, opacity: 0.05 }} />
+
             <div id="s-manifesto" data-animate style={animStyle('s-manifesto')}>
               <p className="sp-label" style={{ textAlign: 'center' }}>O Conceito</p>
-              <div className="sp-manifesto">
-                <em>Existem eventos.</em><br />
-                <em>Existem viagens.</em><br />
-                <em>E existem experiências que unem os dois.</em>
-                <br /><br />
-                <strong>O Let's Piri nasce para transformar o feriado da Independência em algo maior do que um simples final de semana.</strong>
-                <br /><br />
-                Uma experiência onde música, natureza, gastronomia, amigos e o charme de Pirenópolis se encontram para criar memórias que permanecem muito depois da última música.
-                <br /><br />
-                <em>Porque alguns lugares fazem a gente desacelerar.</em><br />
-                <em>Pirenópolis é um deles.</em>
+
+              {/* Palavras de impacto */}
+              <div className="sp-conceito-words">
+                {['Let’s', 'é', 'movimento.', 'Let’s', 'é', 'liberdade.', 'Let’s', 'é', 'partir.'].map((w, i) => (
+                  <span
+                    key={i}
+                    className={`sp-conceito-word${visible('s-manifesto') ? ' visible' : ''}`}
+                    style={{ transitionDelay: `${i * 0.08}s`, color: [1,4,7].includes(i) ? 'rgba(245,240,232,0.35)' : undefined }}
+                  >{w}</span>
+                ))}
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* ─── O QUE É ─── */}
-        <section className="sp-section-full sp-section-dark">
-          <div className="sp-section">
-            <div id="s-oque" data-animate style={animStyle('s-oque')}>
-              <p className="sp-label">O que é</p>
-              <h2 className="sp-h2">O Let's Piri é um<br /><span>festival de experiência</span></h2>
-              <div className="sp-divider" />
-              <p className="sp-lead">Criado para celebrar o feriado prolongado da Independência em um dos destinos mais desejados do Centro-Oeste. Mais do que um festival — um encontro entre música, turismo, natureza, gastronomia e experiências. Uma produção pensada para transformar um simples feriado em uma lembrança que acompanha as pessoas por muito tempo.</p>
-            </div>
-
-            <div className="sp-stats">
-              {[
-                { num: '6 | 8K', label: 'Pessoas por dia' },
-                { num: '2', label: 'Dias de festival' },
-                { num: '10+', label: 'Atrações no palco' },
-                { num: '1,2M+', label: 'Views mensais' },
-              ].map((s, i) => (
-                <div key={i} id={`stat-${i}`} data-animate style={animStyle(`stat-${i}`, i * 0.1)} className="sp-stat">
-                  <div className="sp-stat-num">{s.num}</div>
-                  <div className="sp-stat-label">{s.label}</div>
+              {/* 2 blocos */}
+              <div className="sp-conceito-body">
+                <div className="sp-conceito-block">
+                  <div className="sp-conceito-block-label">O nome</div>
+                  <p>“Let’s” significa <strong style={{color:'#f0c96a',fontWeight:600}}>vamos</strong>. Vamos viajar, reunir os amigos, sair da rotina, viver algo novo. E não existe momento melhor para isso do que o feriado da Independência — que por natureza já representa liberdade.</p>
                 </div>
-              ))}
+                <div className="sp-conceito-block">
+                  <div className="sp-conceito-block-label">O símbolo</div>
+                  <p>O catavento é movido pelo vento. Representa <strong style={{color:'#f0c96a',fontWeight:600}}>movimento, novos caminhos e a liberdade de escolher para onde ir</strong>. Foi dessa ideia que nasceu o festival.</p>
+                </div>
+                <div className="sp-conceito-block">
+                  <div className="sp-conceito-block-label">A experiência</div>
+                  <p>Cenografia autoral, elementos inspirados em Pirenópolis, espaços instagramáveis e áreas de convivência. Um ambiente pensado para encantar e estimular conexão.</p>
+                </div>
+                <div className="sp-conceito-block">
+                  <div className="sp-conceito-block-label">A proposta</div>
+                  <p>Música, natureza, turismo e experiência caminhando juntos. Não apenas mais um evento — <strong style={{color:'#f0c96a',fontWeight:600}}>uma nova forma de viver o feriado</strong> em Pirenópolis.</p>
+                </div>
+              </div>
+
+              {/* Quote final + stats */}
+              <div className="sp-conceito-quote">
+                O público não procura apenas shows.<br />
+                Procura <strong>histórias para viver.</strong><br />
+                E marcas relevantes precisam estar presentes nesses momentos.
+              </div>
+
+              {/* Números */}
+              <div className="sp-stats" style={{ marginTop: 56 }}>
+                {[
+                  { num: '6 | 8K', label: 'Pessoas por dia' },
+                  { num: '2', label: 'Dias de festival' },
+                  { num: '10+', label: 'Atrações no palco' },
+                  { num: '1,2M+', label: 'Views mensais' },
+                ].map((s, i) => (
+                  <div key={i} id={`stat-${i}`} data-animate style={animStyle(`stat-${i}`, i * 0.1)} className="sp-stat">
+                    <div className="sp-stat-num">{s.num}</div>
+                    <div className="sp-stat-label">{s.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
