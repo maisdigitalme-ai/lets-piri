@@ -676,7 +676,7 @@ export default function Patrocinador() {
               <div className="sp-conceito-body">
                 <div className="sp-conceito-block">
                   <div className="sp-conceito-block-label">O nome</div>
-                  <p>“Let’s” significa <strong style={{color:'#f0c96a',fontWeight:600}}>vamos</strong>. Vamos viajar, reunir os amigos, sair da rotina, viver algo novo. E não existe momento melhor para isso do que o feriado da Independência — que por natureza já representa liberdade.</p>
+                  <p>Let’s significa <strong style={{color:'#f0c96a',fontWeight:600}}>vamos</strong>. Vamos viajar, reunir os amigos, sair da rotina, viver algo novo. E não existe momento melhor para isso do que o feriado da Independência, que por natureza já representa liberdade.</p>
                 </div>
                 <div className="sp-conceito-block">
                   <div className="sp-conceito-block-label">O símbolo</div>
@@ -688,7 +688,7 @@ export default function Patrocinador() {
                 </div>
                 <div className="sp-conceito-block">
                   <div className="sp-conceito-block-label">A proposta</div>
-                  <p>Música, natureza, turismo e experiência caminhando juntos. Não apenas mais um evento — <strong style={{color:'#f0c96a',fontWeight:600}}>uma nova forma de viver o feriado</strong> em Pirenópolis.</p>
+                  <p>Música, natureza, turismo e experiência caminhando juntos. Não apenas mais um evento: <strong style={{color:'#f0c96a',fontWeight:600}}>uma nova forma de viver o feriado</strong> em Pirenópolis.</p>
                 </div>
               </div>
 
@@ -724,7 +724,7 @@ export default function Patrocinador() {
               <p className="sp-label">O Destino</p>
               <h2 className="sp-h2">Por que <span>Pirenópolis?</span></h2>
               <div className="sp-divider" />
-              <p className="sp-lead">Fundada em 1727. Patrimônio histórico nacional. Um dos destinos turísticos mais visitados de Goiás. No Let's Piri, a experiência não começa quando os portões abrem — ela começa quando a viagem começa.</p>
+              <p className="sp-lead">Fundada em 1727. Patrimônio histórico nacional. Um dos destinos turísticos mais visitados de Goiás. No Let's Piri, a experiência não começa quando os portões abrem. Ela começa quando a viagem começa.</p>
             </div>
 
             <div id="s-carousel" data-animate style={animStyle('s-carousel')} className="sp-carousel-outer">
@@ -811,14 +811,14 @@ export default function Patrocinador() {
             </div>
             <div className="sp-lineup-grid">
               <div id="lineup-1" data-animate style={animStyle('lineup-1', 0.1)} className="sp-lineup-card">
-                <div className="sp-lineup-date">05 | Set — Sábado</div>
+                <div className="sp-lineup-date">05 | Set | Sábado</div>
                 <div className="sp-lineup-headliner">PANDA</div>
                 <ul className="sp-lineup-support">
                   {['CDB', 'Back 2 Brothers', 'Marllon', 'A.Jota'].map(a => <li key={a}>{a}</li>)}
                 </ul>
               </div>
               <div id="lineup-2" data-animate style={animStyle('lineup-2', 0.2)} className="sp-lineup-card">
-                <div className="sp-lineup-date">06 | Set — Domingo</div>
+                <div className="sp-lineup-date">06 | Set | Domingo</div>
                 <div className="sp-lineup-headliner" style={{ fontSize: 'clamp(24px, 3.5vw, 38px)' }}>MARIANA<br />FAGUNDES</div>
                 <ul className="sp-lineup-support">
                   {['Som de Faculdade', 'DJ Topo', 'Marllon', 'A.Jota'].map(a => <li key={a}>{a}</li>)}
