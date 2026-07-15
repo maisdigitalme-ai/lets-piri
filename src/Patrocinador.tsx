@@ -535,6 +535,28 @@ export default function Patrocinador() {
           background: rgba(240,201,106,0.3);
           margin: 0 auto 24px;
         }
+        .sp-cota-tagline {
+          font-size: 13px; font-style: italic;
+          color: rgba(245,240,232,0.55);
+          line-height: 1.5; margin-bottom: 20px;
+        }
+        .sp-cota-list {
+          list-style: none; padding: 0; margin: 0 0 28px;
+          text-align: left;
+        }
+        .sp-cota-list li {
+          display: flex; align-items: flex-start; gap: 10px;
+          font-size: 13px; color: rgba(245,240,232,0.8);
+          padding: 7px 0;
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+          line-height: 1.4;
+        }
+        .sp-cota-list li:last-child { border-bottom: none; }
+        .sp-cota-check {
+          color: #f0c96a; font-size: 11px;
+          font-weight: 700; flex-shrink: 0;
+          margin-top: 2px;
+        }
 
         /* ─── CTA FINAL ─── */
         .sp-cta-section {
@@ -922,33 +944,54 @@ export default function Patrocinador() {
               <h2 className="sp-h2">Escolha como sua<br />marca <span>quer estar presente</span></h2>
               <div className="sp-divider" />
             </div>
+
             <div className="sp-cotas-grid">
-              {[
-                {
-                  name: 'Apresenta', price: '150.000', featured: true,
-                  badge: 'Maior Visibilidade',
-                  desc: 'A marca apresenta oficialmente o Let\'s Piri. Exclusividade de segmento. Maior visibilidade do projeto.',
-                },
-                {
-                  name: 'Diamante', price: '90.000', featured: false,
-                  badge: null,
-                  desc: 'Alta visibilidade. Ativação física e digital. Presença qualificada em todos os pontos de contato.',
-                },
-                {
-                  name: 'Ouro', price: '60.000', featured: false,
-                  badge: null,
-                  desc: 'Presença qualificada nos principais pontos de contato do evento.',
-                },
-              ].map((c, i) => (
-                <div key={i} id={`cota-${i}`} data-animate style={animStyle(`cota-${i}`, i * 0.15)} className={`sp-cota-card${c.featured ? ' featured' : ''}`}>
-                  {c.badge && <div className="sp-cota-badge">{c.badge}</div>}
-                  <div className="sp-cota-name">{c.name}</div>
-                  <div className="sp-cota-price"><span>R$</span> {c.price}</div>
-                  <div className="sp-cota-divider" />
-                  <p className="sp-cota-desc">{c.desc}</p>
-                  <a href="#contato" className="sp-btn-outline" style={{ fontSize: 11, padding: '10px 24px' }}>Quero esta cota</a>
-                </div>
-              ))}
+
+              {/* COTA APRESENTA */}
+              <div id="cota-0" data-animate style={animStyle('cota-0', 0)} className="sp-cota-card featured">
+                <div className="sp-cota-badge">01 cota disponível</div>
+                <div className="sp-cota-name">Cota Apresenta</div>
+                <div className="sp-cota-price"><span>R$</span> 150.000</div>
+                <div className="sp-cota-divider" />
+                <p className="sp-cota-tagline">A marca que apresenta oficialmente o Let's Piri.</p>
+                <ul className="sp-cota-list">
+                  {['Naming rights do evento','Exclusividade de segmento','Presença em todas as campanhas','Destaque em palco, telões e mídia','Ativação principal do evento','Experiência proprietária de grande porte'].map(item => (
+                    <li key={item}><span className="sp-cota-check">✓</span>{item}</li>
+                  ))}
+                </ul>
+                <a href="#contato" className="sp-btn-gold" style={{ fontSize: 12, padding: '12px 28px', marginTop: 8 }}>Quero esta cota</a>
+              </div>
+
+              {/* COTA DIAMANTE */}
+              <div id="cota-1" data-animate style={animStyle('cota-1', 0.12)} className="sp-cota-card">
+                <div className="sp-cota-badge" style={{ background: 'rgba(180,210,255,0.15)', color: '#a8c8ff', border: '1px solid rgba(168,200,255,0.3)' }}>Até 03 cotas disponíveis</div>
+                <div className="sp-cota-name" style={{ color: '#a8c8ff' }}>Cota Diamante</div>
+                <div className="sp-cota-price"><span>R$</span> 90.000</div>
+                <div className="sp-cota-divider" />
+                <p className="sp-cota-tagline">A marca protagonista da experiência.</p>
+                <ul className="sp-cota-list">
+                  {['Exclusividade de segmento','Espaço instagramável proprietário','Ativação de marca','Presença em áreas estratégicas','Mídia digital e física','Experiências cocriadas'].map(item => (
+                    <li key={item}><span className="sp-cota-check">✓</span>{item}</li>
+                  ))}
+                </ul>
+                <a href="#contato" className="sp-btn-outline" style={{ fontSize: 12, padding: '12px 28px', marginTop: 8 }}>Quero esta cota</a>
+              </div>
+
+              {/* COTA OURO */}
+              <div id="cota-2" data-animate style={animStyle('cota-2', 0.24)} className="sp-cota-card">
+                <div className="sp-cota-badge" style={{ background: 'rgba(240,201,106,0.1)', color: 'rgba(240,201,106,0.7)', border: '1px solid rgba(240,201,106,0.2)' }}>Até 05 cotas disponíveis</div>
+                <div className="sp-cota-name">Cota Ouro</div>
+                <div className="sp-cota-price"><span>R$</span> 60.000</div>
+                <div className="sp-cota-divider" />
+                <p className="sp-cota-tagline">A marca presente nos principais momentos do evento.</p>
+                <ul className="sp-cota-list">
+                  {['Presença física','Backdrops','Distribuição de brindes','Praça gastronômica','Plano digital'].map(item => (
+                    <li key={item}><span className="sp-cota-check">✓</span>{item}</li>
+                  ))}
+                </ul>
+                <a href="#contato" className="sp-btn-outline" style={{ fontSize: 12, padding: '12px 28px', marginTop: 8 }}>Quero esta cota</a>
+              </div>
+
             </div>
             <div id="s-tailor" data-animate style={{ ...animStyle('s-tailor', 0.2), marginTop: 48, background: CARD_BG, border: `1px solid ${CARD_BORDER}`, borderRadius: 20, padding: '40px 32px', textAlign: 'center', backdropFilter: 'blur(8px)' }}>
               <p className="sp-label">Projetos Personalizados</p>
