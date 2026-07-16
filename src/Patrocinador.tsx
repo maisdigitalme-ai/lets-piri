@@ -493,7 +493,7 @@ export default function Patrocinador() {
           background: ${CARD_BG};
           border: 1px solid ${CARD_BORDER};
           border-radius: 24px; padding: 40px 32px;
-          text-align: center; position: relative;
+          text-align: center;
           backdrop-filter: blur(12px);
           transition: transform 0.3s ease, border-color 0.3s ease;
         }
@@ -506,13 +506,13 @@ export default function Patrocinador() {
           background: rgba(240,201,106,0.08);
         }
         .sp-cota-badge {
-          position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+          display: inline-block;
           background: ${AMBER}; color: #071e22;
           font-size: 10px; font-weight: 800;
           letter-spacing: 1.5px; text-transform: uppercase;
-          padding: 5px 14px; border-radius: 100px;
+          padding: 5px 16px; border-radius: 100px;
           white-space: nowrap;
-          max-width: calc(100% - 32px);
+          margin-bottom: 20px;
         }
         .sp-cota-name {
           font-size: 12px; font-weight: 700;
