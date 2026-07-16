@@ -436,7 +436,7 @@ export default function Patrocinador() {
           margin-top: 48px;
         }
         .sp-publico-tags {
-          display: flex; flex-wrap: wrap; gap: 12px;
+          display: flex; flex-direction: column; gap: 10px;
           margin-top: 24px;
         }
         .sp-tag {
@@ -445,7 +445,8 @@ export default function Patrocinador() {
           color: ${AMBER};
           font-size: 12px; font-weight: 600;
           letter-spacing: 1px; text-transform: uppercase;
-          padding: 8px 16px; border-radius: 100px;
+          padding: 10px 20px; border-radius: 100px;
+          display: inline-block; align-self: flex-start;
         }
         .sp-publico-img {
           border-radius: 20px; overflow: hidden;
@@ -508,8 +509,10 @@ export default function Patrocinador() {
           position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
           background: ${AMBER}; color: #071e22;
           font-size: 10px; font-weight: 800;
-          letter-spacing: 2px; text-transform: uppercase;
-          padding: 4px 16px; border-radius: 100px;
+          letter-spacing: 1.5px; text-transform: uppercase;
+          padding: 5px 14px; border-radius: 100px;
+          white-space: nowrap;
+          max-width: calc(100% - 32px);
         }
         .sp-cota-name {
           font-size: 12px; font-weight: 700;
@@ -629,7 +632,10 @@ export default function Patrocinador() {
           font-size: 12px; color: rgba(245,240,232,0.35);
           letter-spacing: 1px;
         }
-        .sp-footer img { height: 36px; margin-bottom: 16px; opacity: 0.6; }
+        .sp-footer > div {
+          display: flex; flex-direction: column; align-items: center;
+        }
+        .sp-footer img { height: 36px; margin-bottom: 16px; opacity: 0.6; display: block; }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
@@ -640,6 +646,9 @@ export default function Patrocinador() {
           .sp-photo-grid { grid-template-columns: 1fr 1fr; }
           .sp-photo-item.tall { grid-row: span 1; aspect-ratio: 4/3; }
           .sp-form-row { grid-template-columns: 1fr; }
+          .sp-conceito-visual-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .sp-publico-tags { flex-direction: column; }
+          .sp-tag { align-self: flex-start; }
         }
       `}</style>
 
@@ -817,7 +826,7 @@ export default function Patrocinador() {
               <h2 className="sp-h2">Um festival pensado<br />para ser <span>vivido</span></h2>
               <div className="sp-divider" />
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginTop: 40 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginTop: 40 }} className="sp-conceito-visual-grid">
               {['Cataventos', 'Banderolas', 'Pôr do sol', 'Natureza', 'Espaços instagramáveis', 'Áreas de convivência', 'Experiências sensoriais', 'Cenografia imersiva'].map((item, i) => (
                 <div key={i} id={`conceito-${i}`} data-animate style={{ ...animStyle(`conceito-${i}`, i * 0.07), background: CARD_BG, border: `1px solid ${CARD_BORDER}`, borderRadius: 12, padding: '20px 16px', textAlign: 'center', fontSize: 13, fontWeight: 500, color: 'rgba(245,240,232,0.8)', backdropFilter: 'blur(8px)' }}>
                   {item}
