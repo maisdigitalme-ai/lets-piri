@@ -876,7 +876,7 @@ export default function Patrocinador() {
                 <p className="sp-lead">O público do Let's Piri viaja. Compartilha. Produz conteúdo. Marca localização. Indica experiências. Influencia decisões.</p>
                 <p className="sp-lead" style={{ marginTop: 16 }}>Cada experiência vivida dentro do evento gera alcance muito além dos portões.</p>
                 <div className="sp-publico-tags">
-                  {['Classe A e B', '20 a 40 anos', 'Alto poder de consumo', 'Público conectado', 'Consumidor de turismo', 'Gastronomia & entretenimento'].map(t => (
+                  {['Classe A e B', '20 a 40 anos', 'Público conectado', 'Alto poder de consumo', 'Consumidor de turismo', 'Gastronomia & entretenimento'].map(t => (
                     <span key={t} className="sp-tag">{t}</span>
                   ))}
                 </div>
