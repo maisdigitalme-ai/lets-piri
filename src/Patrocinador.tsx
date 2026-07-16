@@ -700,7 +700,7 @@ export default function Patrocinador() {
                   <span
                     key={i}
                     className={`sp-conceito-word${visible('s-manifesto') ? ' visible' : ''}`}
-                    style={{ transitionDelay: `${i * 0.08}s`, color: [1,4,7].includes(i) ? 'rgba(245,240,232,0.35)' : undefined }}
+                    style={{ transitionDelay: `${i * 0.08}s`, color: [1,4,7].includes(i) ? '#f5f0e8' : undefined }}
                   >{w}</span>
                 ))}
               </div>
