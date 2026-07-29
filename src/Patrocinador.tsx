@@ -844,21 +844,21 @@ export default function Patrocinador() {
               <h2 className="sp-h2">Grandes nomes.<br /><span>Dois dias inesquecíveis.</span></h2>
               <div className="sp-divider" />
             </div>
-            <div className="sp-lineup-grid">
-              <div id="lineup-1" data-animate style={animStyle('lineup-1', 0.1)} className="sp-lineup-card">
-                <div className="sp-lineup-date">05 | Set | Sábado</div>
-                <div className="sp-lineup-headliner">PANDA</div>
-                <ul className="sp-lineup-support">
-                  {['CDB', 'Back 2 Brothers', 'Marllon', 'A.Jota'].map(a => <li key={a}>{a}</li>)}
-                </ul>
-              </div>
-              <div id="lineup-2" data-animate style={animStyle('lineup-2', 0.2)} className="sp-lineup-card">
-                <div className="sp-lineup-date">06 | Set | Domingo</div>
-                <div className="sp-lineup-headliner" style={{ fontSize: 'clamp(24px, 3.5vw, 38px)' }}>MARIANA<br />FAGUNDES</div>
-                <ul className="sp-lineup-support">
-                  {['Som de Faculdade', 'DJ Topo', 'Marllon', 'A.Jota'].map(a => <li key={a}>{a}</li>)}
-                </ul>
-              </div>
+            <div id="lineup-flyer" data-animate style={{ ...animStyle('lineup-flyer', 0.1), display: 'flex', justifyContent: 'center', marginTop: '48px' }}>
+              <img
+                src="/PandaeMarianaFagundes(Stories).png"
+                alt="Panda e Mariana Fagundes - Let's Piri 2026"
+                loading="lazy"
+                style={{
+                  width: '100%',
+                  maxWidth: '420px',
+                  aspectRatio: '9/16',
+                  objectFit: 'cover',
+                  borderRadius: '20px',
+                  boxShadow: '0 32px 80px rgba(0,0,0,0.55)',
+                  display: 'block',
+                }}
+              />
             </div>
           </div>
         </section>
@@ -1054,7 +1054,7 @@ export default function Patrocinador() {
           <div>
             <img src="/Logo-Lets-Piri.png" alt="Let's Piri" />
             <p style={{ margin: '0 0 4px' }}>Let's Piri Festival • 05 e 06 de Setembro de 2026 • Pirenópolis, Goiás</p>
-            <p style={{ margin: 0 }}>One Life Entretenimento • Boêmios Eventos • TopHits Music • Nobel Music</p>
+            <p style={{ margin: 0 }}>Boemio  |  ONE Life  |  Move  |  Voxxer</p>
           </div>
         </footer>
 
