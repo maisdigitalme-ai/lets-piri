@@ -860,6 +860,22 @@ export default function Patrocinador() {
                 }}
               />
             </div>
+            <div className="sp-lineup-grid" style={{ marginTop: '40px' }}>
+              <div id="lineup-1" data-animate style={animStyle('lineup-1', 0.1)} className="sp-lineup-card">
+                <div className="sp-lineup-date">05 | Set | Sábado</div>
+                <div className="sp-lineup-headliner">PANDA</div>
+                <ul className="sp-lineup-support">
+                  {['CDB', 'Back 2 Brothers', 'Marllon', 'A.Jota'].map(a => <li key={a}>{a}</li>)}
+                </ul>
+              </div>
+              <div id="lineup-2" data-animate style={animStyle('lineup-2', 0.2)} className="sp-lineup-card">
+                <div className="sp-lineup-date">06 | Set | Domingo</div>
+                <div className="sp-lineup-headliner" style={{ fontSize: 'clamp(24px, 3.5vw, 38px)' }}>MARIANA<br />FAGUNDES</div>
+                <ul className="sp-lineup-support">
+                  {['Som de Faculdade', 'DJ Topo', 'Marllon', 'A.Jota'].map(a => <li key={a}>{a}</li>)}
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
