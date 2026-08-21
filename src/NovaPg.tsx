@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-const BG = '#0E7B8C'
+const BG = '#071e22'
 const AMBER = '#f0c96a'
-const AMBER_DARK = '#C9A84C'
-const WHITE = '#f5f0e8'
-const MUTED = '#f5f0e8'
-const CARD_BG = 'rgba(255,255,255,0.06)'
+const AMBER_DARK = '#c9a84c'
+const WHITE = '#f7f4eb'
+const MUTED = 'rgba(247,244,235,0.68)'
+const CARD_BG = 'rgba(255,255,255,0.045)'
 
 const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
 
@@ -90,9 +90,7 @@ export default function NovaPg() {
         
         .np-wrap {
           font-family: 'Poppins', sans-serif;
-          background: linear-gradient(160deg, rgba(10, 95, 110, 0.92) 0%, rgba(14, 123, 140, 0.92) 45%, rgba(26, 168, 191, 0.92) 100%),
-                      url('/piri-bg-igreja.jpg') center center / cover no-repeat;
-          background-attachment: fixed;
+          background: ${BG};
           color: ${WHITE};
           width: 100%;
           min-height: 100vh;
@@ -532,26 +530,277 @@ export default function NovaPg() {
             background-position: center center !important;
           }
         }
+
+        /* Adaptação premium inspirada em /patrocinador */
+        html, body { background: ${BG}; }
+
+        .np-hero-shell {
+          position: relative;
+          min-height: min(760px, 100vh);
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          border-bottom: 1px solid rgba(240,201,106,0.14);
+        }
+
+        .np-hero-bg {
+          position: absolute;
+          inset: 0;
+          background: url('/piri-bg-igreja.jpg') center 38% / cover no-repeat;
+          opacity: 0.42;
+          transform: scale(1.03);
+        }
+
+        .np-hero-shade {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(7,30,34,0.72) 0%, rgba(7,30,34,0.33) 36%, rgba(7,30,34,0.76) 83%, ${BG} 100%);
+        }
+
+        .np-hero {
+          z-index: 2;
+          padding: 64px 20px 104px;
+        }
+
+        .np-logo {
+          filter: drop-shadow(0 0 20px rgba(240,201,106,0.24));
+          margin-bottom: 22px;
+        }
+
+        .np-date {
+          display: inline-block;
+          color: ${MUTED};
+          background: rgba(7,30,34,0.46);
+          border: 1px solid rgba(240,201,106,0.26);
+          border-radius: 999px;
+          padding: 9px 17px;
+          margin-bottom: 28px;
+          font-size: 10px;
+          line-height: 1.5;
+          letter-spacing: 2.25px;
+          backdrop-filter: blur(10px);
+        }
+
+        .np-date span { color: ${AMBER}; }
+
+        .np-banner-desktop, .np-banner-mobile {
+          border: 1px solid rgba(240,201,106,0.22);
+          box-shadow: 0 24px 70px rgba(0,0,0,0.42), 0 0 0 1px rgba(7,30,34,0.26);
+        }
+
+        .np-divider {
+          width: 54px;
+          margin: 27px auto 22px;
+          background: linear-gradient(90deg, transparent, ${AMBER}, transparent);
+          opacity: 1;
+        }
+
+        .np-hero-cta, .np-card a, .np-newsletter-btn {
+          display: inline-block;
+          color: ${BG} !important;
+          background: ${AMBER} !important;
+          border-radius: 10px !important;
+          padding: 16px 30px;
+          font-family: 'Poppins', sans-serif;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 2px;
+          line-height: 1;
+          text-transform: uppercase;
+          text-decoration: none;
+          box-shadow: 0 8px 26px rgba(240,201,106,0.26);
+          transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1), background 180ms ease, box-shadow 180ms ease;
+        }
+
+        .np-hero-cta:hover, .np-card a:hover, .np-newsletter-btn:hover {
+          background: ${AMBER_DARK} !important;
+          color: ${BG} !important;
+          transform: translateY(-3px);
+          box-shadow: 0 14px 34px rgba(240,201,106,0.34);
+        }
+
+        .np-hero-ctas {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .np-hero-cta-secondary {
+          color: ${AMBER} !important;
+          background: rgba(7,30,34,0.56) !important;
+          border: 1px solid rgba(240,201,106,0.52);
+          box-shadow: none;
+        }
+
+        .np-hero-cta-secondary:hover {
+          color: ${BG} !important;
+          background: ${AMBER} !important;
+        }
+
+        .np-hero-cta:active, .np-card a:active, .np-newsletter-btn:active { transform: scale(0.97); }
+
+        .np-scroll-hint {
+          position: absolute;
+          bottom: 27px;
+          left: 50%;
+          z-index: 2;
+          transform: translateX(-50%);
+          color: rgba(247,244,235,0.60);
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+          align-items: center;
+          font-size: 9px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        .np-scroll-hint span { color: ${AMBER}; font-size: 17px; line-height: 1; }
+
+        .np-section {
+          max-width: 1060px;
+          padding: clamp(54px, 7vw, 88px) 22px;
+          border-top: 1px solid rgba(240,201,106,0.12);
+        }
+
+        .np-section-title {
+          color: ${WHITE};
+          line-height: 1.14;
+          letter-spacing: -0.9px;
+          margin-bottom: 25px;
+        }
+
+        .np-section-title::before {
+          content: 'LET\'S PIRI';
+          display: block;
+          margin-bottom: 13px;
+          color: ${AMBER};
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 3.6px;
+          text-transform: uppercase;
+        }
+
+        .np-section-subtitle { color: ${MUTED}; max-width: 760px; }
+
+        .np-card, .np-grid-card, .np-prog-card, .np-faq-item, .np-newsletter {
+          background: linear-gradient(145deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
+          border-color: rgba(240,201,106,0.18);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.16);
+        }
+
+        .np-prog-grid { gap: 20px; margin-top: 36px; }
+
+        .np-prog-card {
+          position: relative;
+          overflow: hidden;
+          border-radius: 18px;
+          padding: clamp(28px, 5vw, 38px);
+          transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), border-color 220ms ease, box-shadow 220ms ease;
+        }
+
+        .np-prog-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 20%;
+          width: 60%;
+          height: 2px;
+          background: ${AMBER};
+          opacity: 0.75;
+        }
+
+        .np-prog-card:hover, .np-grid > div:hover {
+          transform: translateY(-6px);
+          border-color: rgba(240,201,106,0.45);
+          box-shadow: 0 18px 42px rgba(0,0,0,0.34);
+        }
+
+        .np-prog-date { color: ${AMBER}; font-size: 11px; letter-spacing: 2.4px; }
+        .np-prog-artist { color: ${WHITE}; }
+        .np-prog-support, .np-grid-card-text, .np-faq-answer-text, .np-newsletter-text { color: ${MUTED}; }
+
+        .np-grid { gap: 20px !important; }
+
+        .np-grid > div {
+          background: rgba(255,255,255,0.03);
+          border-color: rgba(240,201,106,0.18) !important;
+          border-radius: 18px !important;
+          transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1), border-color 220ms ease, box-shadow 220ms ease;
+        }
+
+        .np-grid > div > img {
+          filter: saturate(0.82) contrast(1.05);
+          transition: transform 420ms cubic-bezier(0.23, 1, 0.32, 1), filter 420ms ease;
+        }
+
+        .np-grid > div:hover > img { transform: scale(1.045); filter: saturate(1) contrast(1.05); }
+        .np-grid-card-title { color: ${WHITE}; }
+
+        .np-faq-item { margin-bottom: 12px; border-radius: 14px; }
+        .np-faq-question { padding: 20px 22px; }
+        .np-faq-question:hover { background: rgba(240,201,106,0.055); }
+        .np-faq-icon { color: ${AMBER}; font-size: 15px; }
+        .np-faq-item.active { border-color: rgba(240,201,106,0.42); }
+        .np-faq-answer-text { border-top: 1px solid rgba(240,201,106,0.12); padding-top: 16px; }
+
+        .np-newsletter { border-radius: 18px; max-width: 620px; }
+        .np-newsletter-input { border-color: rgba(240,201,106,0.24); background: rgba(7,30,34,0.55); }
+        .np-newsletter-input:focus { outline: none; border-color: ${AMBER}; box-shadow: 0 0 0 3px rgba(240,201,106,0.11); }
+
+        .np-footer {
+          margin-top: 0;
+          padding: 36px 20px;
+          background: #051518;
+          border-top: 1px solid rgba(240,201,106,0.16);
+        }
+
+        @media (max-width: 600px) {
+          .np-hero-shell { min-height: auto; }
+          .np-hero { padding: 54px 16px 92px; }
+          .np-date { font-size: 9px; padding: 8px 13px; letter-spacing: 1.55px; }
+          .np-hero-ctas { flex-direction: column; }
+          .np-hero-cta { width: 100%; max-width: 360px; }
+          .np-section { padding: 52px 16px; }
+          .np-section-title::before { letter-spacing: 2.8px; }
+        }
       `}</style>
 
       <div className="np-wrap">
         <div className="np-deco np-deco1" />
         <div className="np-deco np-deco2" />
 
-        {/* ─── HERO ─── */}
-        <div className="np-hero">
-          <img src="/Logo-Lets-Piri.png" alt="Let's Piri" className="np-logo" />
-          
-          <div className="np-date">
-            05 e 06 de setembro &nbsp;·&nbsp; <span>Pirenópolis, GO</span> &nbsp;·&nbsp; Véspera de feriado
-          </div>
+        {/* HERO */}
+        <section className="np-hero-shell">
+          <div className="np-hero-bg" />
+          <div className="np-hero-shade" />
+          <div className="np-deco np-deco1" />
+          <div className="np-hero">
+            <img src="/Logo-Lets-Piri.png" alt="Let's Piri" className="np-logo" />
 
-          <div className="np-artists-wrap">
-            <img src="/BannerArtistas-1280x720.png" alt="Artistas Let's Piri" className="np-banner-desktop" />
-            <img src="/BannerArtistas-1080x1350.png" alt="Artistas Let's Piri" className="np-banner-mobile" />
-          </div>
+            <div className="np-date">
+              05 e 06 de setembro <span>·</span> Pirenópolis, GO <span>·</span> Véspera de feriado
+            </div>
 
-        </div>
+            <div className="np-artists-wrap">
+              <img src="/BannerArtistas-1280x720.png" alt="Artistas Let's Piri" className="np-banner-desktop" />
+              <img src="/BannerArtistas-1080x1350.png" alt="Artistas Let's Piri" className="np-banner-mobile" />
+            </div>
+
+            <div className="np-divider" />
+            <div className="np-hero-ctas">
+              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-hero-cta">
+                Adquirir ingresso agora
+              </a>
+              <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-secondary">
+                Quero viver o Let's Piri
+              </a>
+            </div>
+          </div>
+          <div className="np-scroll-hint" aria-hidden="true">Conheça a experiência <span>↓</span></div>
+        </section>
 
         {/* ─── STORYTELLING ─── */}
         <section className="np-section">
