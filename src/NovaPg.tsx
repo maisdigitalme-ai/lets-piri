@@ -639,6 +639,18 @@ export default function NovaPg() {
           background: ${AMBER} !important;
         }
 
+        .np-hero-cta-pix {
+          color: #062126 !important;
+          background: #4ecdc4 !important;
+          box-shadow: 0 8px 26px rgba(78,205,196,0.24);
+        }
+
+        .np-hero-cta-pix:hover {
+          color: #062126 !important;
+          background: #78e3dc !important;
+          box-shadow: 0 14px 34px rgba(78,205,196,0.34);
+        }
+
         .np-hero-cta:active, .np-card a:active, .np-newsletter-btn:active { transform: scale(0.97); }
 
         .np-scroll-hint {
@@ -796,6 +808,9 @@ export default function NovaPg() {
               </a>
               <a href="https://wa.me/556291436445?text=Ol%C3%A1%21%20Quero%20reservar%20um%20lounge%20para%20o%20Let%27s%20Piri." target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-secondary" aria-label="Reservar lounge pelo WhatsApp">
                 Reservar lounge
+              </a>
+              <a href="https://wa.me/556292861883?text=Ol%C3%A1%21%20Quero%20comprar%20meu%20ingresso%20via%20PIX%20sem%20taxa%20para%20o%20Let%27s%20Piri." target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-pix" aria-label="Comprar ingresso PIX sem taxa pelo WhatsApp">
+                Ingresso PIX sem taxa
               </a>
             </div>
           </div>
