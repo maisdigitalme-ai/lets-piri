@@ -780,13 +780,13 @@ export default function NovaPg() {
           <div className="np-hero">
             <img src="/Logo-Lets-Piri.png" alt="Let's Piri" className="np-logo" />
 
-            <div className="np-date">
-              05 e 06 de setembro <span>·</span> Pirenópolis, GO <span>·</span> Véspera de feriado
-            </div>
-
             <div className="np-artists-wrap">
               <img src="/BannerArtistas-1280x720.png" alt="Artistas Let's Piri" className="np-banner-desktop" />
               <img src="/BannerArtistas-1080x1350.png" alt="Artistas Let's Piri" className="np-banner-mobile" />
+            </div>
+
+            <div className="np-date">
+              05 e 06 de setembro <span>·</span> Pirenópolis, GO <span>·</span> Véspera de feriado
             </div>
 
             <div className="np-divider" />
