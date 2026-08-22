@@ -804,7 +804,7 @@ export default function NovaPg() {
             <div className="np-divider" />
             <div className="np-hero-ctas">
               <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-hero-cta">
-                Adquirir ingresso agora
+                Adquirir ingresso
               </a>
               <a href="https://wa.me/556291436445?text=Ol%C3%A1%21%20Quero%20reservar%20um%20lounge%20para%20o%20Let%27s%20Piri." target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-secondary" aria-label="Reservar lounge pelo WhatsApp">
                 Reservar lounge
