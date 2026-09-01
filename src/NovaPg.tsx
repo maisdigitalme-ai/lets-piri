@@ -36,7 +36,7 @@ export default function NovaPg() {
     }
   }
 
-  const faqItems: Array<{ q: string; a: string; link?: { href: string; label: string; note?: string } }> = [
+  const faqItems: Array<{ q: string; a: string }> = [
     {
       q: 'Como será o evento?',
       a: 'O Let’s Piri acontecerá nos dias 05 e 06 de setembro, sábado e domingo. E você ainda terá a segunda-feira, 07 de setembro, feriado da Independência, para descansar e curtir Pirenópolis com calma.\n\nProgramação por dia:\n\n05/09 | Sábado — 16h às 02h\n06/09 | Domingo — 16h às 02h'
@@ -67,12 +67,7 @@ export default function NovaPg() {
     },
     {
       q: 'Menores de idade podem entrar?',
-      a: 'Sim. Adolescentes de 16 e 17 anos poderão acessar o evento desde que estejam acompanhados pelos pais ou responsável legal e apresentem o Termo de Responsabilidade devidamente preenchido e assinado.\n\nMenores de 15 anos ou menos somente poderão entrar acompanhados pelos pais ou responsável legal.\n\nRecomendamos que todos os menores e responsáveis portem documento oficial com foto para apresentação na entrada do evento.',
-      link: {
-        href: TERMO_MENORES_URL,
-        label: 'Baixar Termo de Responsabilidade para Menores',
-        note: 'Preencha e apresente o documento conforme as orientações da organização.'
-      }
+      a: 'Sim. Adolescentes de 16 e 17 anos poderão acessar o evento desde que estejam acompanhados pelos pais ou responsável legal e apresentem o Termo de Responsabilidade devidamente preenchido e assinado.\n\nMenores de 15 anos ou menos somente poderão entrar acompanhados pelos pais ou responsável legal.\n\nRecomendamos que todos os menores e responsáveis portem documento oficial com foto para apresentação na entrada do evento.'
     },
     {
       q: 'Política de Reembolso',
@@ -776,11 +771,13 @@ export default function NovaPg() {
         .np-faq-icon { color: ${AMBER}; font-size: 15px; }
         .np-faq-item.active { border-color: rgba(240,201,106,0.42); }
         .np-faq-answer-text { border-top: 1px solid rgba(240,201,106,0.12); padding-top: 16px; }
-        .np-faq-download { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(240,201,106,0.12); }
-        .np-faq-download-link { display: inline-flex; align-items: center; gap: 10px; color: ${AMBER}; background: rgba(240,201,106,0.08); border: 1px solid rgba(240,201,106,0.35); border-radius: 8px; padding: 10px 14px; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.35px; transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
-        .np-faq-download-link:hover { background: rgba(240,201,106,0.16); border-color: rgba(240,201,106,0.65); transform: translateY(-1px); }
-        .np-faq-download-arrow { font-size: 17px; line-height: 1; }
-        .np-faq-download-note { margin: 8px 0 0; color: ${MUTED}; font-size: 12px; line-height: 1.5; }
+        .np-minor-term-block { max-width: 700px; margin: 30px auto 0; padding: clamp(24px, 5vw, 34px); background: linear-gradient(145deg, rgba(240,201,106,0.11), rgba(255,255,255,0.035)); border: 1px solid rgba(240,201,106,0.42); border-radius: 16px; box-shadow: 0 14px 38px rgba(0,0,0,0.24); text-align: center; }
+        .np-minor-term-kicker { margin: 0 0 10px; color: ${AMBER}; font-size: 10px; font-weight: 600; letter-spacing: 2.6px; text-transform: uppercase; }
+        .np-minor-term-title { margin: 0 0 10px; color: ${WHITE}; font-size: clamp(18px, 4vw, 24px); line-height: 1.3; }
+        .np-minor-term-text { max-width: 560px; margin: 0 auto 20px; color: ${MUTED}; font-size: 13px; line-height: 1.7; }
+        .np-minor-term-link { display: flex; width: 100%; align-items: center; justify-content: center; gap: 12px; color: ${BG}; background: ${AMBER}; border: 1px solid ${AMBER}; border-radius: 10px; padding: 16px 20px; text-decoration: none; font-size: clamp(12px, 2.4vw, 15px); font-weight: 700; letter-spacing: 0.4px; box-shadow: 0 9px 28px rgba(240,201,106,0.24); transition: background 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease; }
+        .np-minor-term-link:hover { color: ${BG}; background: #f5d784; border-color: #f5d784; transform: translateY(-2px); box-shadow: 0 14px 34px rgba(240,201,106,0.34); }
+        .np-minor-term-arrow { font-size: 20px; line-height: 1; }
 
         .np-newsletter { border-radius: 18px; max-width: 620px; }
         .np-newsletter-input { border-color: rgba(240,201,106,0.24); background: rgba(7,30,34,0.55); }
@@ -1005,18 +1002,19 @@ export default function NovaPg() {
                 </button>
                 <div id={`faq-answer-${idx}`} className="np-faq-answer">
                   <div className="np-faq-answer-text">{item.a}</div>
-                  {item.link && (
-                    <div className="np-faq-download">
-                      <a className="np-faq-download-link" href={item.link.href} target="_blank" rel="noopener noreferrer" download>
-                        <span>{item.link.label}</span>
-                        <span className="np-faq-download-arrow" aria-hidden="true">↗</span>
-                      </a>
-                      {item.link.note && <p className="np-faq-download-note">{item.link.note}</p>}
-                    </div>
-                  )}
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="np-minor-term-block">
+            <p className="np-minor-term-kicker">Documento obrigatório para menores</p>
+            <h3 className="np-minor-term-title">Termo de Responsabilidade para Menores</h3>
+            <p className="np-minor-term-text">Baixe, preencha e apresente o documento conforme as orientações da organização na entrada do evento.</p>
+            <a className="np-minor-term-link" href={TERMO_MENORES_URL} target="_blank" rel="noopener noreferrer" download>
+              <span>Baixar Termo de Responsabilidade para Menores</span>
+              <span className="np-minor-term-arrow" aria-hidden="true">↗</span>
+            </a>
           </div>
         </section>
 
