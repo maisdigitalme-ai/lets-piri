@@ -9,6 +9,7 @@ const CARD_BG = 'rgba(255,255,255,0.045)'
 
 const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
 const TERMO_MENORES_URL = '/Autoriza%C3%A7%C3%A3odeEntradaePermanenciadeMenores-LetsPiri.pdf'
+const ESTACIONAMENTO_URL = 'https://www.vaideingresso.com.br/estacionamento-lets-piri'
 
 export default function NovaPg() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
@@ -657,6 +658,18 @@ export default function NovaPg() {
           box-shadow: 0 14px 34px rgba(78,205,196,0.34);
         }
 
+        .np-hero-cta-parking {
+          color: #251511 !important;
+          background: #e89576 !important;
+          box-shadow: 0 8px 26px rgba(232,149,118,0.24);
+        }
+
+        .np-hero-cta-parking:hover {
+          color: #251511 !important;
+          background: #f2ad91 !important;
+          box-shadow: 0 14px 34px rgba(232,149,118,0.34);
+        }
+
         .np-hero-cta:active, .np-card a:active, .np-newsletter-btn:active { transform: scale(0.97); }
 
         .np-scroll-hint {
@@ -822,6 +835,9 @@ export default function NovaPg() {
               </a>
               <a href="https://wa.me/556292861883?text=Ol%C3%A1%21%20Quero%20comprar%20meu%20ingresso%20via%20PIX%20sem%20taxa%20para%20o%20Let%27s%20Piri." target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-pix" aria-label="Comprar ingresso PIX sem taxa pelo WhatsApp">
                 Ingresso PIX sem taxa
+              </a>
+              <a href={ESTACIONAMENTO_URL} target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-parking" aria-label="Comprar estacionamento para o Let's Piri">
+                Estacionamento
               </a>
             </div>
           </div>
