@@ -8,6 +8,7 @@ const MUTED = 'rgba(247,244,235,0.68)'
 const CARD_BG = 'rgba(255,255,255,0.045)'
 
 const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
+const TERMO_MENORES_URL = '/termo-autorizacao-menores-lets-piri.pdf'
 
 export default function NovaPg() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
@@ -34,7 +35,7 @@ export default function NovaPg() {
     }
   }
 
-  const faqItems = [
+  const faqItems: Array<{ q: string; a: string; link?: { href: string; label: string; note?: string } }> = [
     {
       q: 'Como será o evento?',
       a: 'O Let’s Piri acontecerá nos dias 05 e 06 de setembro, sábado e domingo. E você ainda terá a segunda-feira, 07 de setembro, feriado da Independência, para descansar e curtir Pirenópolis com calma.\n\nProgramação por dia:\n\n05/09 | Sábado — 16h às 02h\n06/09 | Domingo — 16h às 02h'
@@ -65,7 +66,12 @@ export default function NovaPg() {
     },
     {
       q: 'Menores de idade podem entrar?',
-      a: 'Sim. Adolescentes de 16 e 17 anos poderão acessar o evento desde que estejam acompanhados pelos pais ou responsável legal e apresentem o Termo de Responsabilidade devidamente preenchido e assinado (documento que será disponibilizado em breve).\n\nMenores de 15 anos ou menos somente poderão entrar acompanhados pelos pais ou responsável legal.\n\nRecomendamos que todos os menores e responsáveis portem documento oficial com foto para apresentação na entrada do evento.'
+      a: 'Sim. Adolescentes de 16 e 17 anos poderão acessar o evento desde que estejam acompanhados pelos pais ou responsável legal e apresentem o Termo de Responsabilidade devidamente preenchido e assinado.\n\nMenores de 15 anos ou menos somente poderão entrar acompanhados pelos pais ou responsável legal.\n\nRecomendamos que todos os menores e responsáveis portem documento oficial com foto para apresentação na entrada do evento.',
+      link: {
+        href: TERMO_MENORES_URL,
+        label: 'Baixar Termo de Responsabilidade para Menores',
+        note: 'Preencha e apresente o documento conforme as orientações da organização.'
+      }
     },
     {
       q: 'Política de Reembolso',
@@ -752,11 +758,16 @@ export default function NovaPg() {
         .np-grid-card-title { color: ${WHITE}; }
 
         .np-faq-item { margin-bottom: 12px; border-radius: 14px; }
-        .np-faq-question { padding: 20px 22px; }
+        .np-faq-question { padding: 20px 22px; width: 100%; border: 0; background: transparent; font-family: inherit; }
         .np-faq-question:hover { background: rgba(240,201,106,0.055); }
         .np-faq-icon { color: ${AMBER}; font-size: 15px; }
         .np-faq-item.active { border-color: rgba(240,201,106,0.42); }
         .np-faq-answer-text { border-top: 1px solid rgba(240,201,106,0.12); padding-top: 16px; }
+        .np-faq-download { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(240,201,106,0.12); }
+        .np-faq-download-link { display: inline-flex; align-items: center; gap: 10px; color: ${AMBER}; background: rgba(240,201,106,0.08); border: 1px solid rgba(240,201,106,0.35); border-radius: 8px; padding: 10px 14px; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.35px; transition: background 180ms ease, border-color 180ms ease, transform 180ms ease; }
+        .np-faq-download-link:hover { background: rgba(240,201,106,0.16); border-color: rgba(240,201,106,0.65); transform: translateY(-1px); }
+        .np-faq-download-arrow { font-size: 17px; line-height: 1; }
+        .np-faq-download-note { margin: 8px 0 0; color: ${MUTED}; font-size: 12px; line-height: 1.5; }
 
         .np-newsletter { border-radius: 18px; max-width: 620px; }
         .np-newsletter-input { border-color: rgba(240,201,106,0.24); background: rgba(7,30,34,0.55); }
@@ -966,15 +977,27 @@ export default function NovaPg() {
                 key={idx}
                 className={`np-faq-item ${expandedFaq === idx ? 'active' : ''}`}
               >
-                <div
+                <button
+                  type="button"
                   className="np-faq-question"
                   onClick={() => setExpandedFaq(expandedFaq === idx ? null : idx)}
+                  aria-expanded={expandedFaq === idx}
+                  aria-controls={`faq-answer-${idx}`}
                 >
                   <span>{item.q}</span>
-                  <span className="np-faq-icon">▼</span>
-                </div>
-                <div className="np-faq-answer">
+                  <span className="np-faq-icon" aria-hidden="true">▼</span>
+                </button>
+                <div id={`faq-answer-${idx}`} className="np-faq-answer">
                   <div className="np-faq-answer-text">{item.a}</div>
+                  {item.link && (
+                    <div className="np-faq-download">
+                      <a className="np-faq-download-link" href={item.link.href} target="_blank" rel="noopener noreferrer" download>
+                        <span>{item.link.label}</span>
+                        <span className="np-faq-download-arrow" aria-hidden="true">↗</span>
+                      </a>
+                      {item.link.note && <p className="np-faq-download-note">{item.link.note}</p>}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
