@@ -8,7 +8,7 @@ const MUTED = 'rgba(247,244,235,0.68)'
 const CARD_BG = 'rgba(255,255,255,0.045)'
 
 const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
-const TERMO_MENORES_URL = '/termo-autorizacao-menores-lets-piri.pdf'
+const TERMO_MENORES_URL = '/Autoriza%C3%A7%C3%A3odeEntradaePermanenciadeMenores-LetsPiri.pdf'
 
 export default function NovaPg() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
