@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const BG = '#071e22'
 const AMBER = '#f0c96a'
@@ -10,11 +10,31 @@ const CARD_BG = 'rgba(255,255,255,0.045)'
 const INGRESSO_URL = 'https://www.vaideingresso.com.br/lets-piri'
 const TERMO_MENORES_URL = '/Autoriza%C3%A7%C3%A3odeEntradaePermanenciadeMenores-LetsPiri.pdf'
 const ESTACIONAMENTO_URL = 'https://www.vaideingresso.com.br/estacionamento-lets-piri'
+const EVENT_START_AT = new Date('2026-09-05T00:00:00-03:00').getTime()
+
+function getCountdown() {
+  const distance = Math.max(0, EVENT_START_AT - Date.now())
+  return {
+    isToday: distance === 0,
+    days: Math.floor(distance / 86_400_000),
+    hours: Math.floor((distance / 3_600_000) % 24),
+    minutes: Math.floor((distance / 60_000) % 60),
+    seconds: Math.floor((distance / 1_000) % 60)
+  }
+}
+
+const padCountdown = (value: number) => String(value).padStart(2, '0')
 
 export default function NovaPg() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [countdown, setCountdown] = useState(getCountdown)
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setCountdown(getCountdown()), 1000)
+    return () => window.clearInterval(timer)
+  }, [])
 
   const handleNewsletter = async () => {
     if (!newsletterEmail || !newsletterEmail.includes('@')) return
@@ -576,7 +596,7 @@ export default function NovaPg() {
           border: 1px solid rgba(240,201,106,0.26);
           border-radius: 999px;
           padding: 9px 17px;
-          margin-bottom: 28px;
+          margin-bottom: 14px;
           font-size: 10px;
           line-height: 1.5;
           letter-spacing: 2.25px;
@@ -584,6 +604,42 @@ export default function NovaPg() {
         }
 
         .np-date span { color: ${AMBER}; }
+
+        .np-countdown {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          min-height: 42px;
+          margin: 0 auto 22px;
+          padding: 8px 16px;
+          color: ${WHITE};
+          background: rgba(7,30,34,0.56);
+          border: 1px solid rgba(240,201,106,0.28);
+          border-radius: 999px;
+          box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+        }
+
+        .np-countdown-label {
+          padding-right: 12px;
+          color: ${MUTED};
+          border-right: 1px solid rgba(240,201,106,0.22);
+          font-size: 8px;
+          font-weight: 600;
+          letter-spacing: 2px;
+          line-height: 1;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+
+        .np-countdown-values { display: inline-flex; align-items: center; gap: 8px; }
+        .np-countdown-unit { display: inline-flex; align-items: baseline; gap: 3px; }
+        .np-countdown-unit strong { color: ${WHITE}; font-size: 14px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+        .np-countdown-unit small { color: ${AMBER}; font-size: 7px; font-weight: 600; letter-spacing: 0.7px; text-transform: uppercase; }
+        .np-countdown-separator { color: rgba(240,201,106,0.52); font-size: 11px; line-height: 1; }
+        .np-countdown-today { min-width: 168px; color: ${AMBER}; background: rgba(240,201,106,0.10); font-size: 13px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
 
         .np-banner-desktop, .np-banner-mobile {
           border: 1px solid rgba(240,201,106,0.22);
@@ -794,6 +850,11 @@ export default function NovaPg() {
           .np-hero-shell { min-height: auto; }
           .np-hero { padding: 54px 16px 92px; }
           .np-date { font-size: 9px; padding: 8px 13px; letter-spacing: 1.55px; }
+          .np-countdown { gap: 9px; padding: 8px 12px; }
+          .np-countdown-label { padding-right: 9px; font-size: 7px; letter-spacing: 1.5px; }
+          .np-countdown-values { gap: 6px; }
+          .np-countdown-unit strong { font-size: 13px; }
+          .np-countdown-unit small { font-size: 6px; }
           .np-hero-ctas { flex-direction: column; }
           .np-hero-cta { width: 100%; max-width: 360px; }
           .np-section { padding: 52px 16px; }
@@ -822,7 +883,22 @@ export default function NovaPg() {
               05 e 06 de setembro <span>·</span> Pirenópolis, GO <span>·</span> Véspera de feriado
             </div>
 
-            <div className="np-divider" />
+            {countdown.isToday ? (
+              <div className="np-countdown np-countdown-today" role="timer" aria-live="polite">É HOJE</div>
+            ) : (
+              <div className="np-countdown" role="timer" aria-live="polite" aria-label={`${countdown.days} dias, ${countdown.hours} horas, ${countdown.minutes} minutos e ${countdown.seconds} segundos para o evento`}>
+                <span className="np-countdown-label">Começa em</span>
+                <span className="np-countdown-values">
+                  <span className="np-countdown-unit"><strong>{padCountdown(countdown.days)}</strong><small>dias</small></span>
+                  <span className="np-countdown-separator">:</span>
+                  <span className="np-countdown-unit"><strong>{padCountdown(countdown.hours)}</strong><small>h</small></span>
+                  <span className="np-countdown-separator">:</span>
+                  <span className="np-countdown-unit"><strong>{padCountdown(countdown.minutes)}</strong><small>m</small></span>
+                  <span className="np-countdown-separator">:</span>
+                  <span className="np-countdown-unit"><strong>{padCountdown(countdown.seconds)}</strong><small>s</small></span>
+                </span>
+              </div>
+            )}
             <div className="np-hero-ctas">
               <a href={INGRESSO_URL} target="_blank" rel="noopener noreferrer" className="np-hero-cta">
                 Adquirir ingresso
