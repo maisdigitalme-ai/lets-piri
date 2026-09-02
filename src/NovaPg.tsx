@@ -1086,7 +1086,7 @@ export default function NovaPg() {
           <div className="np-minor-term-block">
             <p className="np-minor-term-kicker">Documento obrigatório para menores</p>
             <h3 className="np-minor-term-title">Termo de Responsabilidade para Menores</h3>
-            <p className="np-minor-term-text">Menores de idade devem apresentar o termo de responsabilidade devidamente preenchido e assinado, conforme as orientações da organização.</p>
+            <p className="np-minor-term-text">Menores de idade devem apresentar o termo de responsabilidade devidamente preenchido e assinado.</p>
             <a className="np-minor-term-link" href={TERMO_MENORES_URL} target="_blank" rel="noopener noreferrer" download>
               <span>Baixar Termo de Responsabilidade para Menores</span>
               <span className="np-minor-term-arrow" aria-hidden="true">↗</span>
