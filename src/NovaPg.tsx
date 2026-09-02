@@ -606,7 +606,8 @@ export default function NovaPg() {
         .np-date span { color: ${AMBER}; }
 
         .np-countdown {
-          display: inline-flex;
+          display: flex;
+          width: fit-content;
           align-items: center;
           justify-content: center;
           gap: 12px;
