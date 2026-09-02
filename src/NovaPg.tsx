@@ -833,8 +833,8 @@ export default function NovaPg() {
               <a href="https://wa.me/556292861883?text=Ol%C3%A1%21%20Quero%20comprar%20meu%20ingresso%20via%20PIX%20sem%20taxa%20para%20o%20Let%27s%20Piri." target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-pix" aria-label="Comprar ingresso PIX sem taxa pelo WhatsApp">
                 Ingresso PIX sem taxa
               </a>
-              <a href={ESTACIONAMENTO_URL} target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-parking" aria-label="Comprar estacionamento para o Let's Piri">
-                Estacionamento
+              <a href={ESTACIONAMENTO_URL} target="_blank" rel="noopener noreferrer" className="np-hero-cta np-hero-cta-parking" aria-label="Comprar ticket de estacionamento para o Let's Piri">
+                Ticket Estacionamento
               </a>
             </div>
           </div>
